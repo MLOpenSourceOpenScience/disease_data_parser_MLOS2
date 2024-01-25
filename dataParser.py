@@ -7,7 +7,7 @@ from Modules.PDFoperators import *
 if __name__ == "__main__":
     
     n = len(sys.argv)
-    if n == 2 and sys.argv[1] == "-h": #TODO: improve help options
+    if n == 2 and sys.argv[1] == "-h": #TODO: improve help dialogue
         print("Usage: dataParser.py <folder-to-parse/> <output-file.csv> <parsing-model.py>") 
         print("Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model")
         print("Arg 2: output file, in csv format")
@@ -29,8 +29,7 @@ if __name__ == "__main__":
     #formattedPDF = formatPDF(filename) #Alan
     #rtfData = PDFtoRTF(formattedPDF) #Alan
     rtfData = "ahhhh"
-    importantText,timestamps = model.extractDataFromRTF(rtfData) #Eoin
-    table = model.convertToTable(importantText,timestamps) #Mahi
+    table = model.extractToTable(rtfData) #Mahi
 
     print(table)
 

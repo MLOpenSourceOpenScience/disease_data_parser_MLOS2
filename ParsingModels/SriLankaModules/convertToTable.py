@@ -1,6 +1,9 @@
 #Mahi
+import sys
+sys.path.append("...")
+sys.path.append("..")
 
-from LLaMaInterface import separateCellHeaders
+from Modules.LLaMaInterface import separateCellHeaders
 from datetime import datetime,timedelta;
 
 
