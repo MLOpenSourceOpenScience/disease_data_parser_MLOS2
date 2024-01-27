@@ -21,6 +21,7 @@ def separateCellHeaders(row):
     
     LLM = Llama(model_path="./llama-2-7b-chat.Q5_K_M.gguf", n_ctx=2048)
     # WARNING! ggml is no longer compatable with llama_cpp, so use gguf models
+    # Also remind that we need llama module file to run this command
 
     output = LLM(f"{row}", max_tokens=0)
 
