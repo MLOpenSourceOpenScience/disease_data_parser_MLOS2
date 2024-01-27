@@ -2,8 +2,22 @@
 import requests
 
 
-def getLongLat(location, API):
+def getLongLat(location: str, API: str) -> list[int]:
+    """
+    get the name of the location, and returns Longtitude and Latitude
+
+    Parameters:
+    - location (str): The name of the location.
+    - API (str): The api value of HERE.com.
+
+    Returns:
+    - list[int]: Longtitude, Latitude.
+    """
+
     url = "https://geocode.search.hereapi.com/v1/geocode"
+    # first tried to use Google API, but it is clearly paid, so found another one.
+    ## I'm sure it is working, but I need to figure out the license and usage is permitted.
+
     params = {
         'limit': 2,
         'q': location,
@@ -26,7 +40,7 @@ def getLongLat(location, API):
             longitude = position.get('lng')
             
             if latitude is not None and longitude is not None:
-                print(f"Latitude: {latitude}, Longitude: {longitude}")
+                return [longitude, latitude]
             else:
                 print("Latitude or Longitude not found in the response.")
         else:
@@ -39,4 +53,6 @@ def getLongLat(location, API):
 key = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
 name = 'Colombo'
 
-getLongLat(name, key)
+long, lat = getLongLat(name, key)
+
+print (long, lat)
