@@ -27,11 +27,13 @@ def separateCellHeaders(row):
 
     return output["choices"][0]["text"]
 
-now = time.time()
 
-test_out = separateCellHeaders("What is the coordinates of Colombo, Sri Lanka (as specific as possible)?")
+if __name__ == "__main__":
+    now = time.time()
 
-print(test_out)
+    test_out = separateCellHeaders("What is the coordinates of Colombo, Sri Lanka (as specific as possible)?")
 
-finished = time.time()
-print(finished - now, "seconds elapsed.")
+    print(test_out)
+
+    finished = time.time()
+    print(finished - now, "seconds elapsed.")

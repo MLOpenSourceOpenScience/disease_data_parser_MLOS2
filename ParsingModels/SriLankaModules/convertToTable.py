@@ -1,10 +1,14 @@
 #Mahi
 import sys
-sys.path.append("...")
-sys.path.append("..")
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
 
-from LLaMa.LLaMaInterface import separateCellHeaders
-from datetime import datetime,timedelta;
+from LLaMaInterface import separateCellHeaders
+from datetime import datetime,timedelta
+
+
+
+
 
 
 latLongDict = {
