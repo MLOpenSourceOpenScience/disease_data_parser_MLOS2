@@ -1,18 +1,30 @@
 
 import requests
+import csv
+import os
 
-
-def getLongLat(location: str, API: str) -> list[int]:
+def getLongLat(searchLocation: str, API: str) -> list[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
 
     Parameters:
-    - location (str): The name of the location.
+    - searchLocation (str): The name of the location.
     - API (str): The api value of HERE.com.
 
     Returns:
     - list[int]: Longtitude, Latitude.
     """
+
+    currentDirectory = os.path.dirname(os.path.realpath(__file__))
+    filePath = os.path.join(currentDirectory, 'LongLatDict.csv')
+
+    with open(filePath, 'r') as file:
+
+        reader = csv.reader(file)
+
+        for row in reader:
+            if row and row[0] == searchLocation:
+                return [row[1], row[2]]
 
     url = "https://geocode.search.hereapi.com/v1/geocode"
     # first tried to use Google API, but it is clearly paid, so found another one.
@@ -20,7 +32,7 @@ def getLongLat(location: str, API: str) -> list[int]:
 
     params = {
         'limit': 2,
-        'q': location,
+        'q': searchLocation,
         'apiKey': API
     }
 
@@ -40,6 +52,10 @@ def getLongLat(location: str, API: str) -> list[int]:
             longitude = position.get('lng')
             
             if latitude is not None and longitude is not None:
+                with open(filePath, 'a', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow([searchLocation, longitude, latitude])
+
                 return [longitude, latitude]
             else:
                 print("Latitude or Longitude not found in the response.")
@@ -49,6 +65,8 @@ def getLongLat(location: str, API: str) -> list[int]:
         print(f"Error: {response.status_code}, {response.text}")
 
     return 0
+
+### example code
 
 key = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
 name = 'Colombo'
