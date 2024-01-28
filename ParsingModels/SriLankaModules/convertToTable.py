@@ -24,7 +24,7 @@ latLongDict = {
 '''
 Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][TimeStampStart][TimeStampEnd]
 '''
-def convertToTable(importantText,timestamps):
+def convertToTable(importantText: str,timestamps: list[datetime])-> list[str]:
     table = []
     rows = importantText.split('\n')
     labels = separateCellHeaders(rows[0])
@@ -41,7 +41,7 @@ def convertToTable(importantText,timestamps):
             table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
     return table
 
-def printTable(table):
+def printTable(table: list[str])-> None:
     for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
         print("|{:<20}".format(heading),end=" ")
     print("|")

@@ -2,6 +2,5 @@
 
 
 ### Dependencies
-llama-cpp-python
-
-PyPDF2
+- llama-cpp-python
+- PyPDF2
