@@ -3,7 +3,7 @@ import sys
 sys.path.append("...")
 sys.path.append("..")
 
-from Modules.LLaMaInterface import separateCellHeaders
+from LLaMa.LLaMaInterface import separateCellHeaders
 from datetime import datetime,timedelta;
 
 
