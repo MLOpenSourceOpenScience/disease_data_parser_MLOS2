@@ -2,7 +2,7 @@
 
 
 ### Dependencies
-- llama-cpp-python
-- PyPDF2
+- llama-cpp-python `pip3 install llama-cpp-python`
+- PyPDF2 `pip3 install PyPDF2`
 - Poppler
     - Linux: `sudo apt install poppler-utils`
