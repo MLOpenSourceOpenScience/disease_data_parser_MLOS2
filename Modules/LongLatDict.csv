@@ -1,3 +1,4 @@
+Item, "Region Type", "Country Code", Longitude, Latitude, "Item Boundary"
 Colombo,city,LKA,79.84588,6.93243,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}"
 "Clombo, Sri Lanka",city,LKA,79.84588,6.93243,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}"
 gampaha,city,LKA,80.92297,6.99555,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}"
