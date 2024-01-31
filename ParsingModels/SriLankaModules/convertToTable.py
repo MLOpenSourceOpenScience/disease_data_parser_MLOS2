@@ -5,6 +5,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the 
 
 from LLaMaInterface import separateCellHeaders
 from datetime import datetime,timedelta
+from typing import *
 
 
 
@@ -24,7 +25,7 @@ latLongDict = {
 '''
 Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][TimeStampStart][TimeStampEnd]
 '''
-def convertToTable(importantText: str,timestamps: list[datetime])-> list[str]:
+def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     table = []
     rows = importantText.split('\n')
     labels = separateCellHeaders(rows[0])
@@ -41,7 +42,7 @@ def convertToTable(importantText: str,timestamps: list[datetime])-> list[str]:
             table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
     return table
 
-def printTable(table: list[str])-> None:
+def printTable(table: List[str])-> None:
     for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
         print("|{:<20}".format(heading),end=" ")
     print("|")
