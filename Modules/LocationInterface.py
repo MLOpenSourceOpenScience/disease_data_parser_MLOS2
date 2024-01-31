@@ -6,6 +6,7 @@ import os
 def getLongLat(searchLocation: str, API: str) -> list[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
+    Also will store the type of the region, boundary of the region, and the country code in the dictionary
 
     Parameters:
     - searchLocation (str): The name of the location.
@@ -24,7 +25,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 
         for row in reader:
             if row and row[0] == searchLocation:
-                return [row[1], row[2]]
+                return [row[3], row[4]]
 
     url = "https://geocode.search.hereapi.com/v1/geocode"
     # first tried to use Google API, but it is clearly paid, so found another one.
@@ -43,9 +44,23 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 
     if response.status_code == 200:
         data = response.json()
+        # call it with json()
         
         if 'items' in data and data['items']:
             location = data['items'][0]
+            
+            regionType = location.get('resultType')
+            regionName = location.get(regionType+'Type')
+            # what type of region? city, state...
+
+            address = location.get('address', {})
+            countryCode = address.get('countryCode')
+            # code of the country
+
+            regionMap = location.get('mapView', {})
+            # will hold the value of longlat, but as a box-shaped.
+            ## leftmost, rightmost, upmost, undermost longlats (4 numbers)
+
             position = location.get('position', {})
             
             latitude = position.get('lat')
@@ -54,7 +69,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
             if latitude is not None and longitude is not None:
                 with open(filePath, 'a', newline='') as file:
                     writer = csv.writer(file)
-                    writer.writerow([searchLocation, longitude, latitude])
+                    writer.writerow([searchLocation, regionName, countryCode, longitude, latitude, regionMap])
 
                 return [longitude, latitude]
             else:
@@ -69,7 +84,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 ### example code
 
 key = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
-name = 'Colombo'
+name = 'Kalumune'
 
 long, lat = getLongLat(name, key)
 
