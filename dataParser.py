@@ -34,7 +34,8 @@ if __name__ == "__main__":
         print("Locating files...")
         for root, dirs, files in os.walk(inFolder):
             for name in files:
-                filesToParse.append(name)
+                #print(f'root: {root} dirs: {dirs} files: {files}')
+                filesToParse.append(f'{root}/{name}')
     else:
         print(f"ERROR: folder '{inFolder}' not found!")
         quit()
