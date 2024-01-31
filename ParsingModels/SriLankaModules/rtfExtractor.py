@@ -681,10 +681,10 @@ def extractDataFromRTF(rtfData):
         #error
         print("Error: Invalid month")
 
-    table_date = datetime(int(year), int(month), int(day))
+    end_date = datetime(int(year), int(month), int(day))
     table_change_date = datetime(2013, 5, 17)
 
-    if(table_date > table_change_date):
+    if(end_date > table_change_date):
         table = extract_table("RDHS", "Table", rtfData)
     else:
         table = extract_table("DPDHS", "Source", rtfData)
@@ -692,8 +692,10 @@ def extractDataFromRTF(rtfData):
     print(table)
     #if old (by volume or date or identifying factor do this or that)
 
+    start_date = end_date - timedelta(weeks=1)
+    dates = [start_date, end_date]
     #extract table
-    return table, table_date
+    return table, dates
 
 if __name__ == "__main__":
     extractDataFromRTF(testString2)
