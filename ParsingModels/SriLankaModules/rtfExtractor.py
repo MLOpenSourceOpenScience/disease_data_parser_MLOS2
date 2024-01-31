@@ -637,7 +637,7 @@ def extract_date_components(text):
         print("Error: No match")
 
 
-
+#given a start and end word, extract the table between them
 def extract_table(first_word, second_word, text):
     start_index = text.find(first_word)
     end_index = text.find(second_word, start_index + len(first_word))
@@ -650,6 +650,7 @@ def extract_table(first_word, second_word, text):
 
 
 def extractDataFromRTF(rtfData):
+    # months used to convert text month to datetime
     month_dict = {
         'January': 1,
         'February': 2,
