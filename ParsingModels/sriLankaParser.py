@@ -4,9 +4,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../ParsingModels')) # G
 
 from SriLankaModules.convertToTable import convertToTable
 from SriLankaModules.rtfExtractor import extractDataFromRTF
+from typing import *
 
 
-def extractToTable(rtfData: str) -> list[list[str]]:
+def extractToTable(rtfData: str) -> List[List[str]]:
     importantText,timestamps = extractDataFromRTF(rtfData) #Eoin
     return convertToTable(importantText,timestamps) #Mahi
 
