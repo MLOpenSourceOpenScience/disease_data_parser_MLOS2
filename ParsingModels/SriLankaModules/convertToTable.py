@@ -2,8 +2,10 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
+sys.path.append(os.path.join(os.path.dirname(__file__), '../Modules')) # Gets the directory of LLaMaInterface module for import
 
 from LLaMaInterface import separateCellHeaders
+from Modules.LocationInterface import getLongLat
 from datetime import datetime,timedelta
 from typing import *
 
@@ -23,7 +25,7 @@ latLongDict = {
 
 
 '''
-Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][TimeStampStart][TimeStampEnd]
+Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][Region Type(City/County/Country)][TimeStampStart][TimeStampEnd]
 '''
 def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     table = []
