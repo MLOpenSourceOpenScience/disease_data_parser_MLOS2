@@ -16,6 +16,10 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
     - list[int]: Longtitude, Latitude.
     """
 
+    # even before searching, change word into lowercases (for efficiency)
+    
+    searchLocation = searchLocation.lower()
+
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
     filePath = os.path.join(currentDirectory, 'LongLatDict.csv')
 
@@ -84,7 +88,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 ### example code
 
 key = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
-name = 'Kalumune'
+name = 'colombo'
 
 long, lat = getLongLat(name, key)
 
