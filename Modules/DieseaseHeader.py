@@ -56,6 +56,7 @@ def detectDiseases(line: str) -> list[str]:
 
     return parsedNames
 
+#example code
 if __name__ == "__main__":
 
     parseLine = "RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
