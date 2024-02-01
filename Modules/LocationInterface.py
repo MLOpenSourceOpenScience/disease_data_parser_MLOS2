@@ -2,8 +2,9 @@
 import requests
 import csv
 import os
+from typing import *
 
-def getLongLat(searchLocation: str, API: str) -> list[int]:
+def getLongLat(searchLocation: str, API: str) -> List[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
     Also will store the type of the region, boundary of the region, and the country code in the dictionary
