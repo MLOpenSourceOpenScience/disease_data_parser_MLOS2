@@ -10,7 +10,7 @@ def detectDiseases(line: str) -> list[str]:
     - line (str): The list of names, seperated by space.
 
     Returns:
-    - list[str]: names
+    - list[str]: names of diseases parsed
     """
 
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
@@ -20,27 +20,39 @@ def detectDiseases(line: str) -> list[str]:
 
     parsedNames = []
 
+    doubleLength = False
+    # flag for two-combined words
+
     for i in range(0, len(names)):
-        with open(filePath, 'r') as file:
+        if doubleLength:
+            doubleLength = False
+        else:
+            with open(filePath, 'r') as file:
 
-            reader = csv.reader(file)
-            nameFound = False
+                reader = csv.reader(file)
+                nameFound = False
+                # for efficiency, if found, will break.
 
-            for row in reader:
-                if nameFound:
-                    break
-                if i+1 < len(names) and row and row[0] == names[i]+' '+names[i+1]:
-                    # check whether it is two-word combination before going through
-                    parsedNames.append(row[1])
-                    i += 1
-                    nameFound = True
-                elif row and row[0] == names[i]:
-                    if row[1] == "ignore":
-                        # such as RDHS (location column), WRCD (time and percentage column), or headers that does not have disease data in it.
-                        pass
-                    else:
+                for row in reader:
+
+                    if nameFound:
+                        break
+                    if i+1 < len(names) and row and row[0] == names[i]+' '+names[i+1]:
+                        # check whether it is two-word combination before going through
                         parsedNames.append(row[1])
-                    nameFound = True
+                        doubleLength = True
+                        nameFound = True
+                    elif row and row[0] == names[i]:
+                        if row[1] == "ignore":
+                            # such as RDHS (location column), WRCD (time and percentage column), or headers that does not have disease data in it.
+                            pass
+                        else:
+                            parsedNames.append(row[1])
+                        nameFound = True
+
+                if not nameFound:
+                    # for now, append non-sence, but later I will make this to import new words into library
+                    parsedNames.append('Error detected with name: {}. Please check the dictionary'.format(names[i]))
 
     return parsedNames
 
