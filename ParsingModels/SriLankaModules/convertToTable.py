@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
 
-from LLaMaInterface import separateCellHeaders
+from ParsingModels.LLaMa.LLaMaInterface import separateCellHeaders
 from datetime import datetime,timedelta
 from typing import *
 
