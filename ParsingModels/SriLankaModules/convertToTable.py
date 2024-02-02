@@ -2,7 +2,7 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
-sys.path.append(os.path.join(os.path.dirname(__file__), '../Modules')) # Gets the directory of LLaMaInterface module for import
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets the directory of LLaMaInterface module for import
 print(os.path.dirname(__file__))
 print(os.path.join(os.path.dirname(__file__), '../ParsingModels'))
 print(os.path.join(os.path.dirname(__file__), '../LLaMa'))
