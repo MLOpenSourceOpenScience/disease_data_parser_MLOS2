@@ -33,7 +33,6 @@ def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
         data = rows[i].strip().split(" ")
         locationName = data[0]
         long, lat, regionType = getLongLat(locationName)
-        regionType = "Not Found"
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2]
