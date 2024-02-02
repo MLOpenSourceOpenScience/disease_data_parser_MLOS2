@@ -2,6 +2,8 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../ParsingModels')) # Gets the directory of SriLankaModules for importing dependencies
 
+print(os.path.dirname(__file__))
+
 from SriLankaModules.convertToTable import convertToTable
 from SriLankaModules.rtfExtractor import extractDataFromRTF
 from typing import *

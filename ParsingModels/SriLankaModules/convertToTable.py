@@ -3,9 +3,13 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
 sys.path.append(os.path.join(os.path.dirname(__file__), '../Modules')) # Gets the directory of LLaMaInterface module for import
+print(os.path.dirname(__file__))
+print(os.path.join(os.path.dirname(__file__), '../ParsingModels'))
+print(os.path.join(os.path.dirname(__file__), '../LLaMa'))
+print(sys.path)
 
 from LLaMaInterface import separateCellHeaders
-from Modules.LocationInterface import getLongLat
+from LocationInterface import getLongLat
 from datetime import datetime,timedelta
 from typing import *
 
@@ -32,20 +36,21 @@ def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     rows = importantText.split('\n')
     labels = separateCellHeaders(rows[0])
     if __name__ == '__main__': #for testing
-        labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human','Chickenpox','Meningitis','Leishmaniasis','WRCD']
+        labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Rabies','Chickenpox','Meningitis','Leishmaniasis','WRCD']
     
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         locationName = data[0]
-        latLong = latLongDict.get(locationName,["Not Found","Not Found"])
+        latLong = getLongLat(locationName,"Sri Lanka")
+        regionType = "Not Found"
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2+1]
-            table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
+            table.append([diseaseName,cases,locationName,latLong[0],latLong[1],regionType,timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
     return table
 
 def printTable(table: List[str])-> None:
-    for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
+    for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','RegionType','TimeStampStart','TimeStampEnd']:
         print("|{:<20}".format(heading),end=" ")
     print("|")
     for row in table:
