@@ -1,5 +1,6 @@
 #Mahi
 import sys
+import csv
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets the directory of LLaMaInterface module for import
@@ -32,15 +33,15 @@ def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         locationName = data[0]
-        long, lat, regionType = getLongLat(locationName)
+        long, lat, regionType, countryCode, regionBoundary = getLongLat(locationName)
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2]
-            table.append([diseaseName,cases,locationName,lat,long,regionType,timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
+            table.append([diseaseName,cases,locationName,countryCode,lat,long,regionBoundary,regionType,timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
     return table
 
 def printTable(table: List[str])-> None:
-    for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','RegionType','TimeStampStart','TimeStampEnd']:
+    for heading in ['Disease Name','Cases','Location Name','Country Code','Lattitude','Longitude','Region Boundary','Region Type','TimeStampStart','TimeStampEnd']:
         print("|{:<20}".format(heading),end=" ")
     print("|")
     for row in table:
@@ -48,6 +49,21 @@ def printTable(table: List[str])-> None:
             print("|{:<20}".format(col),end=" ")
         print("|")
 
+def printToCsv(table: List[str]) -> None:
+    headings = ['Disease Name','Cases','Location Name','Country Code','Lattitude','Longitude','Region Boundary','Region Type','TimeStampStart','TimeStampEnd']
+
+    currentDirectory = os.path.dirname(os.path.realpath(__file__))
+    filePath = os.path.join(currentDirectory, '../../Data/output.csv')
+
+    with open(filePath, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(headings)
+
+    for row in table:
+
+        with open(filePath, 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(row)
 
 if __name__ == '__main__':
     testData = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD 
@@ -81,4 +97,4 @@ Kalmune 29 1448 3 34 0 7 0 0 0 0 2 30 0 0 0 0 0 0 4 35 1 16 0 0 41 100
 SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 566 74 1582 33 98 '''
 
     table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
-    printTable(table)
+    printToCsv(table)
