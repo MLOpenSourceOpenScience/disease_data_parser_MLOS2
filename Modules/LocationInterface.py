@@ -32,7 +32,7 @@ def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
 
         for row in reader:
             if row and row[0] == searchLocation:
-                return [row[3], row[4]]
+                return [row[3], row[4], row[1]]
 
     url = "https://geocode.search.hereapi.com/v1/geocode"
     # first tried to use Google API, but it is clearly paid, so found another one.
@@ -78,7 +78,7 @@ def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
                     writer = csv.writer(file)
                     writer.writerow([searchLocation, regionName, countryCode, longitude, latitude, regionMap])
 
-                return [longitude, latitude]
+                return [longitude, latitude, regionName]
             else:
                 print("Latitude or Longitude not found in the response.")
         else:
