@@ -6,7 +6,8 @@ def printToCSV(table: List[List[str]], headings: List[str] = None, filePath: str
 
     with open(filePath, 'a', newline='') as file:
         writer = csv.writer(file)
-        if headings:
+        isFileEmpty = os.path.getsize(filePath) == 0 #Checks if file is empty, only empty files will get a heading
+        if headings and isFileEmpty:
             writer.writerow(headings)
 
     for row in table:
