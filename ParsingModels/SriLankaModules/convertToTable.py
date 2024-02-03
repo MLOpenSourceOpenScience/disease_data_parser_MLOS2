@@ -21,7 +21,7 @@ latLongDict = {
 }
 
 '''
-Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][Region Type(City/County/Country)][TimeStampStart][TimeStampEnd]
+Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)][Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 '''
 def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     table = []
@@ -37,23 +37,23 @@ def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2]
-            table.append([diseaseName,cases,locationName,countryCode,lat,long,regionBoundary,regionType,timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
+            table.append([diseaseName,cases,locationName,countryCode,regionType,lat,long,regionBoundary,timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
     return table
 
 def printTable(table: List[str])-> None:
-    for heading in ['Disease Name','Cases','Location Name','Country Code','Lattitude','Longitude','Region Boundary','Region Type','TimeStampStart','TimeStampEnd']:
-        print("|{:<20}".format(heading),end=" ")
+    for heading in ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']:
+        print("|{:<15}".format(heading),end=" ")
     print("|")
     for row in table:
         for col in row:
-            print("|{:<20}".format(col),end=" ")
+            print("|{:<15}".format(col),end=" ")
         print("|")
 
 def printToCsv(table: List[str]) -> None:
-    headings = ['Disease Name','Cases','Location Name','Country Code','Lattitude','Longitude','Region Boundary','Region Type','TimeStampStart','TimeStampEnd']
+    headings = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
 
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
-    filePath = os.path.join(currentDirectory, '../../Data/output.csv')
+    filePath = os.path.join(currentDirectory, '../../Out/output.csv')
 
     with open(filePath, 'w', newline='') as file:
         writer = csv.writer(file)
@@ -97,4 +97,5 @@ Kalmune 29 1448 3 34 0 7 0 0 0 0 2 30 0 0 0 0 0 0 4 35 1 16 0 0 41 100
 SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 566 74 1582 33 98 '''
 
     table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
+    printTable(table)
     printToCsv(table)
