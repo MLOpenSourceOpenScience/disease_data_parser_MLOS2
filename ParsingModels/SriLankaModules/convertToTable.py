@@ -20,6 +20,9 @@ latLongDict = {
     "NuwaraEliya" : ["6.9497N","80.7891E"]
 }
 
+def timeToExcelTime(time: datetime)-> str:
+    return time.strftime("%d-%b-%Y %H:%M:%S")
+
 '''
 Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)][Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 '''
@@ -37,7 +40,7 @@ def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2]
-            table.append([diseaseName,cases,locationName,countryCode,regionType,lat,long,regionBoundary,timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
+            table.append([diseaseName,cases,locationName,countryCode,regionType,lat,long,regionBoundary,timeToExcelTime(timestamps[0]),timeToExcelTime(timestamps[1])])
     return table
 
 def printTable(table: List[str])-> None:
