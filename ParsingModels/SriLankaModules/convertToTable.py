@@ -11,14 +11,8 @@ from DiseaseHeader import detectDiseases
 from datetime import datetime,timedelta
 from typing import *
 
-latLongDict = {
-    "Colombo" : ["6.9271N","79.8612E"],
-    "Gampaha" : ["7.0840N", "80.0098E"],
-    "Kalutara" : ["6.5854N","79.9607E"],
-    "Kandy" : ["7.2906N","80.6337E"],
-    "Matale" : ["7.4675N","80.6234E"],
-    "NuwaraEliya" : ["6.9497N","80.7891E"]
-}
+
+tableHeading = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
 
 def timeToExcelTime(time: datetime)-> str:
     return time.strftime("%d-%b-%Y %H:%M:%S")
@@ -86,6 +80,5 @@ SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 56
 
     table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
     printTable(table)
-    from TableToCSV import printToCsv
-    headings = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
-    printToCsv(table, headings)
+    from TableToCSV import printToCSV
+    printToCSV(table,tableHeading)
