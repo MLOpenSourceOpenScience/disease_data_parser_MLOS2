@@ -96,3 +96,4 @@ if __name__ == '__main__':
     long, lat, a, b, c = getLongLat(name)
 
     print (long, lat, a, b, c)
+
