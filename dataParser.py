@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 from Modules.PDFoperators import *
 from Modules.pdfExtractor import *
+from Modules.TableToCSV import *
 
 
 if __name__ == "__main__":
@@ -51,11 +52,16 @@ if __name__ == "__main__":
         if response == 'n' or response == 'no':
             quit()
 
+    i = 1
     for currentFile in filesToParse:
-        print("parsing:",currentFile)
+        print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
         rtfData = PDFtoRTF(currentFile)
-        table = model.extractToTable(rtfData) 
+        table,heading = model.extractToTable(rtfData) 
+        printToCSV(table,heading,filePath=outFile)
+        i += 1
+    
+    print("Done! Output in", outFile)
 
-    print(table)
+
 
 

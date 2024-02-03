@@ -2,8 +2,11 @@
 import requests
 import csv
 import os
+from typing import *
 
-def getLongLat(searchLocation: str, API: str) -> list[int]:
+APIkey = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
+
+def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
     Also will store the type of the region, boundary of the region, and the country code in the dictionary
@@ -13,7 +16,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
     - API (str): The api value of HERE.com.
 
     Returns:
-    - list[int]: Longtitude, Latitude.
+    - list[int]: Longtitude, Latitude, Region Type, Country, boundary
     """
 
     # even before searching, change word into lowercases (for efficiency)
@@ -29,7 +32,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 
         for row in reader:
             if row and row[0] == searchLocation:
-                return [row[3], row[4], row[1]]
+                return [row[3], row[4], row[1], row[2], row[5]]
 
     url = "https://geocode.search.hereapi.com/v1/geocode"
     # first tried to use Google API, but it is clearly paid, so found another one.
@@ -75,7 +78,7 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
                     writer = csv.writer(file)
                     writer.writerow([searchLocation, regionName, countryCode, longitude, latitude, regionMap])
 
-                return [longitude, latitude, regionName]
+                return [longitude, latitude, regionName, countryCode, regionMap]
             else:
                 print("Latitude or Longitude not found in the response.")
         else:
@@ -87,9 +90,10 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 
 ### example code
 
-key = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
-name = 'colombo'
+if __name__ == '__main__':
+    name = 'colombo'
 
-long, lat, regionType = getLongLat(name, key)
+    long, lat, a, b, c = getLongLat(name)
 
-print (long, lat, regionType)
+    print (long, lat, a, b, c)
+

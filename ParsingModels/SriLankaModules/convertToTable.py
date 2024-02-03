@@ -1,54 +1,49 @@
 #Mahi
 import sys
+import csv
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets the directory of LLaMaInterface module for import
 
 from LLaMaInterface import separateCellHeaders
+from LocationInterface import getLongLat
+from DiseaseHeader import detectDiseases
 from datetime import datetime,timedelta
 from typing import *
 
 
+tableHeading = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
 
-
-
-
-latLongDict = {
-    "Colombo" : ["6.9271N","79.8612E"],
-    "Gampaha" : ["7.0840N", "80.0098E"],
-    "Kalutara" : ["6.5854N","79.9607E"],
-    "Kandy" : ["7.2906N","80.6337E"],
-    "Matale" : ["7.4675N","80.6234E"],
-    "NuwaraEliya" : ["6.9497N","80.7891E"]
-}
-
+def timeToExcelTime(time: datetime)-> str:
+    return time.strftime("%d-%b-%Y %H:%M:%S")
 
 '''
-Table format: [Disease Name][Cases][Location Name][Lattitude][Longitude][TimeStampStart][TimeStampEnd]
+Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)][Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 '''
 def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     table = []
     rows = importantText.split('\n')
-    labels = separateCellHeaders(rows[0])
-    if __name__ == '__main__': #for testing
-        labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human','Chickenpox','Meningitis','Leishmaniasis','WRCD']
+    labels = detectDiseases(rows[0])
+    # if __name__ == '__main__': #for testing
+    #     labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Rabies','Chickenpox','Meningitis','Leishmaniasis','WRCD']
     
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         locationName = data[0]
-        latLong = latLongDict.get(locationName,["Not Found","Not Found"])
+        long, lat, regionType, countryCode, regionBoundary = getLongLat(locationName)
         for j in range(1,len(data)-2,2):
             cases = data[j]
-            diseaseName = labels[j//2+1]
-            table.append([diseaseName,cases,locationName,latLong[0],latLong[1],timestamps[0].strftime("%Y-%m-%d %H:%M:%S"),timestamps[1].strftime("%Y-%m-%d %H:%M:%S")])
+            diseaseName = labels[j//2]
+            table.append([diseaseName,cases,locationName,countryCode,regionType,lat,long,regionBoundary,timeToExcelTime(timestamps[0]),timeToExcelTime(timestamps[1])])
     return table
 
 def printTable(table: List[str])-> None:
-    for heading in ['Disease Name','Cases','Location Name','Lattitude','Longitude','TimeStampStart','TimeStampEnd']:
-        print("|{:<20}".format(heading),end=" ")
+    for heading in ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']:
+        print("|{:<15}".format(heading),end=" ")
     print("|")
     for row in table:
         for col in row:
-            print("|{:<20}".format(col),end=" ")
+            print("|{:<15}".format(col),end=" ")
         print("|")
 
 
@@ -85,3 +80,5 @@ SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 56
 
     table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
     printTable(table)
+    from TableToCSV import printToCSV
+    printToCSV(table,tableHeading)
