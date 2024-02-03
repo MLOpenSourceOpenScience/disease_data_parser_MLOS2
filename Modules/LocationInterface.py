@@ -3,7 +3,9 @@ import requests
 import csv
 import os
 
-def getLongLat(searchLocation: str, API: str) -> list[int]:
+APIkey = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
+
+def getLongLat(searchLocation: str, API: str = APIkey) -> list[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
     Also will store the type of the region, boundary of the region, and the country code in the dictionary
@@ -85,11 +87,11 @@ def getLongLat(searchLocation: str, API: str) -> list[int]:
 
     return 0
 
-### example code
+### example codeWWW
+if __name__ == '__main__':
 
-key = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
-name = 'colombo'
+    name = 'colombo'
 
-long, lat, regionType = getLongLat(name, key)
+    long, lat, regionType = getLongLat(name)
 
-print (long, lat, regionType)
+    print (long, lat, regionType)
