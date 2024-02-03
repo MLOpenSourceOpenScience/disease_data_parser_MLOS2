@@ -52,21 +52,6 @@ def printTable(table: List[str])-> None:
             print("|{:<15}".format(col),end=" ")
         print("|")
 
-def printToCsv(table: List[str]) -> None:
-    headings = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
-
-    currentDirectory = os.path.dirname(os.path.realpath(__file__))
-    filePath = os.path.join(currentDirectory, '../../Out/output.csv')
-
-    with open(filePath, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(headings)
-
-    for row in table:
-
-        with open(filePath, 'a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(row)
 
 if __name__ == '__main__':
     testData = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD 
@@ -101,4 +86,6 @@ SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 56
 
     table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
     printTable(table)
-    printToCsv(table)
+    from TableToCSV import printToCsv
+    headings = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
+    printToCsv(table, headings)
