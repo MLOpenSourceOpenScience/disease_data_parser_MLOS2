@@ -1,6 +1,5 @@
 #Mahi
 import sys
-import csv
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets the directory of LLaMaInterface module for import
@@ -9,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets
 from LocationInterface import getLongLat
 from DiseaseHeader import detectDiseases
 from datetime import datetime,timedelta
-from typing import *
+from typing import List
 
 
 tableHeading = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']

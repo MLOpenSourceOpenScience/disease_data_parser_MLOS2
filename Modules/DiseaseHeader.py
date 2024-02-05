@@ -4,7 +4,7 @@ import csv
 
 def detectDiseases(line: str) -> list[str]:
     """
-    Read line, ans seprate the diseases by names.
+    Read line, and seperate the diseases by names.
 
     Parameters:
     - line (str): The list of names, seperated by space.
@@ -59,6 +59,6 @@ def detectDiseases(line: str) -> list[str]:
 #example code
 if __name__ == "__main__":
 
-    PARSE_LINE = "RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
+    PARSE_LINE = "RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi-Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
 
     print(detectDiseases(PARSE_LINE))

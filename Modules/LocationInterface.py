@@ -27,7 +27,7 @@ def getLongLat(search_location: str, api: str = API_KEY) -> List[int]:
     current_directory = os.path.dirname(os.path.realpath(__file__))
     file_path = os.path.join(current_directory, 'LongLatDict.csv')
 
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
 
         reader = csv.reader(file)
 
@@ -45,7 +45,7 @@ def getLongLat(search_location: str, api: str = API_KEY) -> List[int]:
         'apiKey': api
     }
 
-    response = requests.get(url, params=params)
+    response = requests.get(url, params= params, timeout= None)
     # parse with response.json
     # has several parameters:
     ## title, id, resultType, localityType,
@@ -78,14 +78,17 @@ def getLongLat(search_location: str, api: str = API_KEY) -> List[int]:
             longitude = position.get('lng')
             # position will hold only two value, lat and long.
 
+            row = [search_location, region_name, country_code, longitude, latitude, region_map]
+            # build row here
+
             if latitude is not None and longitude is not None:
-                with open(file_path, 'a', newline='') as file:
+                with open(file_path, 'a', newline='', encoding='utf-8') as file:
                     writer = csv.writer(file)
-                    writer.writerow([search_location, region_name, country_code, longitude, latitude, region_map])
+                    writer.writerow(row)
 
                 return [longitude, latitude, region_name, country_code, region_map]
-            else:
-                print("Latitude or Longitude not found in the response.")
+
+            print("Latitude or Longitude not found in the response.")
         else:
             print("No items found in the response.")
     else:
