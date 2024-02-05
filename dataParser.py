@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 from Modules.PDFoperators import *
 from Modules.pdfExtractor import *
-from Modules.TableToCSV import *
+from table_to_csv import *
 
 
 if __name__ == "__main__":
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     
     #Import Arguments
     inFolder = sys.argv[1]  # Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model
-    outFile = sys.argv[2]   # Arg 2: output file, in csv format
+    outFile = sys.argv[2]   # Arg 2: output file, in csv format (only the name of the file)
     modelFile = sys.argv[3] # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
 
     model = importlib.import_module(modelFile) 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
         rtfData = PDFtoRTF(currentFile)
         table,heading = model.extractToTable(rtfData) 
-        printToCSV(table,heading,filePath=outFile)
+        print_to_csv(table,heading,file_name=outFile)
         i += 1
     
     print("Done! Output in", outFile)

@@ -1,8 +1,21 @@
+"""
+Disease Header Parser
+
+Now supports parsing a given line into different
+diseases by name.
+
+Will support importing new disease into database
+using user's input (user's favor).
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.05
+"""
+
 
 import os
 import csv
 
-def detectDiseases(line: str) -> list[str]:
+def detect_diseases(line: str) -> list[str]:
     """
     Read line, and seperate the diseases by names.
 
@@ -27,7 +40,7 @@ def detectDiseases(line: str) -> list[str]:
         if double_length:
             double_length = False
         else:
-            with open(file_path, 'r') as file:
+            with open(file_path, 'r', encoding= 'utf-8') as file:
 
                 reader = csv.reader(file)
                 name_found = False
@@ -44,15 +57,17 @@ def detectDiseases(line: str) -> list[str]:
                         name_found = True
                     elif row and row[0] == names[i]:
                         if row[1] == "ignore":
-                            # such as RDHS (location column), WRCD (time and percentage column), or headers that does not have disease data in it.
+                            # such as:
+                            ## RDHS (location column), WRCD (time and percentage column),
+                            ## or headers that does not have disease data in it.
                             pass
                         else:
                             parsed_names.append(row[1])
                         name_found = True
 
                 if not name_found:
-                    # for now, append non-sence, but later I will make this to import new words into library
-                    parsed_names.append('Error detected with name: {}. Please check the dictionary'.format(names[i]))
+                    # for now append error, but later make this to import new words into library
+                    parsed_names.append(f'Error detected with name: {names[i]}. Please check the dictionary')
 
     return parsed_names
 
@@ -61,4 +76,4 @@ if __name__ == "__main__":
 
     PARSE_LINE = "RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi-Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
 
-    print(detectDiseases(PARSE_LINE))
+    print(detect_diseases(PARSE_LINE))

@@ -5,8 +5,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets the directory of LLaMaInterface module for import
 
 # from LLaMaInterface import separateCellHeaders
-from LocationInterface import getLongLat
-from DiseaseHeader import detectDiseases
+from location_interface import get_location_info
+from disease_header_parser import detect_diseases
 from datetime import datetime,timedelta
 from typing import List
 
@@ -22,14 +22,14 @@ Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(Cit
 def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     table = []
     rows = importantText.split('\n')
-    labels = detectDiseases(rows[0])
+    labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Rabies','Chickenpox','Meningitis','Leishmaniasis','WRCD']
     
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         locationName = data[0]
-        long, lat, regionType, countryCode, regionBoundary = getLongLat(locationName)
+        long, lat, regionType, countryCode, regionBoundary = get_location_info(locationName)
         for j in range(1,len(data)-2,2):
             cases = data[j]
             diseaseName = labels[j//2]
@@ -79,5 +79,5 @@ SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 56
 
     table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
     printTable(table)
-    from TableToCSV import printToCSV
-    printToCSV(table,tableHeading)
+    from table_to_csv import print_to_csv
+    print_to_csv(table,tableHeading)

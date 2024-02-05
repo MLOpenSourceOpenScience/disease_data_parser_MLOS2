@@ -1,3 +1,15 @@
+"""
+Location Interface
+
+Currentely only supports searching a location
+and return the required data to another file.
+
+Importing new data will be supported later on
+through this module.
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.05
+"""
 
 import csv
 import os
@@ -6,7 +18,7 @@ import requests
 
 API_KEY = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
 
-def getLongLat(search_location: str, api: str = API_KEY) -> List[int]:
+def get_location_info(search_location: str, api: str = API_KEY) -> List[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
     Also stores the information including type of the region,
@@ -101,6 +113,6 @@ def getLongLat(search_location: str, api: str = API_KEY) -> List[int]:
 if __name__ == '__main__':
     NAME = 'kalutara'
 
-    long, lat, a, b, c = getLongLat(NAME)
+    long, lat, a, b, c = get_location_info(NAME)
 
     print (long, lat, a, b, c)

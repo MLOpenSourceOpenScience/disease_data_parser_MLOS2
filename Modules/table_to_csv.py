@@ -1,9 +1,18 @@
+"""
+Table to CSV
+
+for now, it only supports one function:
+writing a given data into csv.
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.05
+"""
 
 import os
 import csv
 from typing import List
 
-def printToCSV(table: List[List[str]], headings: List[str] = None, file_name: str = '../Out/output.csv') -> None:
+def print_to_csv(table: List[List[str]], headings: List[str] = None, file_name: str = '../Out/output.csv') -> None:
     """
     Get the table data and headings, with the name of new output file.
     Then creates file with the name given, using header, creates csv
