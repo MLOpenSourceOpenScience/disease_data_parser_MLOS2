@@ -1,37 +1,38 @@
 
-import requests
 import csv
 import os
-from typing import *
+from typing import List
+import requests
 
-APIkey = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
+API_KEY = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
 
-def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
+def getLongLat(search_location: str, api: str = API_KEY) -> List[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
-    Also will store the type of the region, boundary of the region, and the country code in the dictionary
+    Also stores the information including type of the region,
+    boundary of the region, and the country code on the dictionary
+    LongLatDict.csv
 
     Parameters:
-    - searchLocation (str): The name of the location.
-    - API (str): The api value of HERE.com.
+    - search_location (str): The name of the location.
+    - api (str): The api value of HERE.com.
 
     Returns:
-    - list[int]: Longtitude, Latitude, Region Type, Country, boundary
+    - List[int]: Longtitude, Latitude, Region Type, Country, boundary
     """
 
     # even before searching, change word into lowercases (for efficiency)
-    
-    searchLocation = searchLocation.lower()
+    search_location = search_location.lower()
 
-    currentDirectory = os.path.dirname(os.path.realpath(__file__))
-    filePath = os.path.join(currentDirectory, 'LongLatDict.csv')
+    current_directory = os.path.dirname(os.path.realpath(__file__))
+    file_path = os.path.join(current_directory, 'LongLatDict.csv')
 
-    with open(filePath, 'r') as file:
+    with open(file_path, 'r') as file:
 
         reader = csv.reader(file)
 
         for row in reader:
-            if row and row[0] == searchLocation:
+            if row and row[0] == search_location:
                 return [row[3], row[4], row[1], row[2], row[5]]
 
     url = "https://geocode.search.hereapi.com/v1/geocode"
@@ -40,45 +41,49 @@ def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
 
     params = {
         'limit': 2,
-        'q': searchLocation,
-        'apiKey': API
+        'q': search_location,
+        'apiKey': api
     }
 
     response = requests.get(url, params=params)
     # parse with response.json
     # has several parameters:
-    ## title, id, resultType, localityType, address, position, access, distance, categories, references, contacts... (for more info, seach HERE)
+    ## title, id, resultType, localityType,
+    ## address, position, access, distance,
+    ## categories, references, contacts...
+    ## (for more info, seach HERE)
 
     if response.status_code == 200:
         data = response.json()
         # call it with json()
-        
+
         if 'items' in data and data['items']:
             location = data['items'][0]
-            
-            regionType = location.get('resultType')
-            regionName = location.get(regionType+'Type')
+            # 'item' will have only 1 data, so don't go over [1]...and so on.
+
+            region_type = location.get('resultType')
+            region_name = location.get(region_type+'Type')
             # what type of region? city, state...
 
             address = location.get('address', {})
-            countryCode = address.get('countryCode')
+            country_code = address.get('country_code')
             # code of the country
 
-            regionMap = location.get('mapView', {})
+            region_map = location.get('mapView', {})
             # will hold the value of longlat, but as a box-shaped.
             ## leftmost, rightmost, upmost, undermost longlats (4 numbers)
 
             position = location.get('position', {})
-            
             latitude = position.get('lat')
             longitude = position.get('lng')
-            
-            if latitude is not None and longitude is not None:
-                with open(filePath, 'a', newline='') as file:
-                    writer = csv.writer(file)
-                    writer.writerow([searchLocation, regionName, countryCode, longitude, latitude, regionMap])
+            # position will hold only two value, lat and long.
 
-                return [longitude, latitude, regionName, countryCode, regionMap]
+            if latitude is not None and longitude is not None:
+                with open(file_path, 'a', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow([search_location, region_name, country_code, longitude, latitude, region_map])
+
+                return [longitude, latitude, region_name, country_code, region_map]
             else:
                 print("Latitude or Longitude not found in the response.")
         else:
@@ -91,9 +96,8 @@ def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
 ### example code
 
 if __name__ == '__main__':
-    name = 'kalutara'
+    NAME = 'kalutara'
 
-    long, lat, a, b, c = getLongLat(name)
+    long, lat, a, b, c = getLongLat(NAME)
 
     print (long, lat, a, b, c)
-
