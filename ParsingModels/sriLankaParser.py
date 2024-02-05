@@ -9,9 +9,11 @@ from SriLankaModules.rtfExtractor import extractDataFromRTF
 from typing import *
 
 
-def extractToTable(rtfData: str) -> List[List[str]]:
+def extractToTable(rtfData: str) -> [List[List[str]], List[str]]:
     importantText,timestamps = extractDataFromRTF(rtfData)
-    return convertToTable(importantText,timestamps), tableHeading
+    table = convertToTable(importantText,timestamps)
+    heading = tableHeading #tableHeading imported from SriLankaModules.convertToTable
+    return table, heading
 
 if __name__ == '__main__':
     print("testing")
