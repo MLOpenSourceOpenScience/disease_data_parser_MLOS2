@@ -91,7 +91,7 @@ def getLongLat(searchLocation: str, API: str = APIkey) -> List[int]:
 ### example code
 
 if __name__ == '__main__':
-    name = 'colombo'
+    name = 'kalutara'
 
     long, lat, a, b, c = getLongLat(name)
 
