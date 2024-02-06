@@ -88,8 +88,10 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         location_name = data[0]
+        if len(location_name) < 1:
+            break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
-        for j in range(1,len(data)-2,2):
+        for j in range(1,len(data)-3,2):
             cases = data[j]
             disease_name = labels[j//2]
             table_data.append([disease_name,
