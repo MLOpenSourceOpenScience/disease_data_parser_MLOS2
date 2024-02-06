@@ -1,3 +1,7 @@
+# User defined:
+# Data from specific countries:
+Data/Sri Lanka Weekly Reports
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
