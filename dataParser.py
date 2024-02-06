@@ -4,7 +4,9 @@ from datetime import datetime
 import os
 from Modules.PDFoperators import *
 from Modules.pdfExtractor import *
-from Modules.table_to_csv import *
+sys.path.append(os.path.join(os.path.dirname(__file__), 'Modules')) # Gets the directory of LLaMaInterface module for import
+from table_to_csv import *
+
 
 
 if __name__ == "__main__":
