@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 from Modules.PDFoperators import *
 from Modules.pdfExtractor import *
-from table_to_csv import *
+from Modules.table_to_csv import *
 
 
 if __name__ == "__main__":
