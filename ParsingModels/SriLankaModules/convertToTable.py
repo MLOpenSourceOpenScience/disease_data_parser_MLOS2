@@ -46,12 +46,26 @@ def time_to_excel_time(time: datetime)-> str:
     """
     return time.strftime("%d-%b-%Y %H:%M:%S")
 
-'''
-Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)][Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
-'''
-def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
+
+# Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
+#               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
+
+def convertToTable(important_text: str,timestamps: List[datetime])-> List[str]:
+    """
+    Read text file and parse it, creating a List of string which holds
+    the same information as a table format (2D). Will get a timestaps
+    as a list of datetime seperately.
+
+    Parameters:
+    - important_text (str): Chunk of text file that will be parsed.
+    - timestapes (List[datetime]): Two timestamp value (start, end)
+
+    Returns:
+    - List[str]: Parsed text in a table format.
+    """
+    
     table = []
-    rows = importantText.split('\n')
+    rows = important_text.split('\n')
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Rabies','Chickenpox','Meningitis','Leishmaniasis','WRCD']
