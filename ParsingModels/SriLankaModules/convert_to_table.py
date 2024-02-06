@@ -2,7 +2,7 @@
 """
 Sri Lanka Convert to Table
 
-Parsing model that is compatable with Sri Lank data.
+Parsing model that is compatable with Sri Lanka data.
 It will read the full text and parse it, making the
 data readable using different modules in 'Modules'
 folder.

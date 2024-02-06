@@ -2,6 +2,7 @@ import sys
 import importlib
 from datetime import datetime
 import os
+import traceback
 from Modules.PDFoperators import *
 from Modules.pdfExtractor import *
 sys.path.append(os.path.join(os.path.dirname(__file__), 'Modules')) # Gets the directory of LLaMaInterface module for import
@@ -58,9 +59,26 @@ if __name__ == "__main__":
     i = 1
     for currentFile in filesToParse:
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
-        rtfData = PDFtoRTF(currentFile)
-        table,heading = model.extractToTable(rtfData) 
-        print_to_csv(table,heading,file_name=outFile)
+        step = 0
+        try:
+            rtfData = PDFtoRTF(currentFile)
+            step +=1
+            table,heading = model.extractToTable(rtfData) 
+            step += 1
+            print_to_csv(table,heading,file_name=outFile)
+        except Exception as error:
+            print(f"Error for file {currentFile} ", end="")
+            match step:
+                case 0:
+                    print("at PDFtoRTF(). Perhaps the file is not a proper PDF?")
+                case 1:
+                    print("at model.extractToTable(). Perhaps you chose the wrong model or have an error in the model?")
+                case 2:
+                    print("at print_to_csv")
+            traceback.print_exc()
+                    
+            
+
         i += 1
     
     print("Done! Output in", outFile)

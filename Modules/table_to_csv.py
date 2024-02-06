@@ -29,7 +29,8 @@ def print_to_csv(table: List[List[str]],
     - None
     """
 
-    file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), file_name)
+    file_path = os.path.join(os.path.dirname(os.path.join(os.path.realpath(__file__), '../../')), file_name)
+    #file_path = os.path.join('../', file_name)
     # dynamic name available by user's taste
 
     file_directory = os.path.dirname(file_path)
