@@ -1,15 +1,24 @@
 Target,"Real Name"
-rdhs,ignore
 "dengue fever","Dengue Fever"
 dysentery,Dysentery
 encephaliti,Encephalitis
+encephalitis,"Encephalitis"
 "enteric fever","Enteric Fever"
-"food poi-","Food Poisoning"
+entericfever,"Enteric Fever"
+"food poi","Food Poisoning"
+foodpoisoning,"Food Poisoning"
 leptospirosis,Leptospirosis
 typhus,"Typhus Fever"
-"viral hep-","Viral Hepatitis"
+typhusfever,"Typhus Fever"
+"viral hep","Viral Hepatitis"
+viralhepatitis,"Viral Hepatitis"
 "human","Human Rabies"
-wrcd,ignore
 chickenpox,Chickenpox
-leishmania-,Leishmaniasis
+leishmania,Leishmaniasis
 meningitis,Meningitis
+dpdhs,ignore
+/,ignore
+dhf*,ignore
+wrcd,ignore
+rdhs,ignore
+division,ignore

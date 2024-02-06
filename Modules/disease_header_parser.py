@@ -29,6 +29,10 @@ def detect_diseases(line: str) -> List[str]:
     current_directory = os.path.dirname(os.path.realpath(__file__))
     file_path = os.path.join(current_directory, 'DiseaseDict.csv')
 
+    line = line.replace("\n","")
+    line = line.replace("-","")
+    # remove both newline character and '-'
+
     names = line.lower().split()
 
     parsed_names = []
@@ -74,6 +78,5 @@ def detect_diseases(line: str) -> List[str]:
 #example code
 if __name__ == "__main__":
 
-    PARSE_LINE = "RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi-Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD"
-
+    PARSE_LINE = "DPDHS\n Division  Dengue Fe-\nver / DHF* Dysentery Encephali\ntis  Enteric\nFever Food\nPoisoning\n  Leptospiro\nsis Typhus\nFever Viral\nHepatitis"
     print(detect_diseases(PARSE_LINE))
