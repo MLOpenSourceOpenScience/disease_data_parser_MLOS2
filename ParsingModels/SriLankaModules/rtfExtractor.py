@@ -3,11 +3,108 @@ from datetime import datetime,timedelta;
 import re;
 from datetime import datetime
 
+from typing import *
+
 
 '''
 Arguments: string with rtf data
 Returns: string with rtf data relevant for tables, 2 element array with the start and end timestamp
 '''
+
+
+
+
+def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+    # Regular expression pattern to match the date format
+    pattern = r'\((\d{1,2})(?:st|nd|rd|th)?\s*[-–]\s*(\d{1,2})(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})\)'
+
+    # Search for the pattern in the text
+    match = re.search(pattern, text)
+
+    if match:
+        # Extract day, month, and year from the matched groups
+        day = match.group(2)
+        month = match.group(3)
+        year = match.group(4)
+
+        return day, month, year
+    else:
+        print("Error: Date not found")
+        return None
+
+
+#given a start and end word, extract the table between them
+def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]:
+    start_index = text.find(first_word)
+    end_index = text.find(second_word, start_index + len(first_word))
+
+    if start_index != -1 and end_index != -1:
+        result = text[start_index + len(first_word):end_index]
+        return result
+    else:
+        return None
+
+
+def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datetime]]]:
+    # months used to convert text month to datetime
+    month_dict = {
+        'January': 1,
+        'February': 2,
+        'March': 3,
+        'April': 4,
+        'May': 5,
+        'June': 6,
+        'July': 7,
+        'August': 8,
+        'September': 9,
+        'October': 10,
+        'November': 11,
+        'December': 12
+    }
+    day, month, year = extract_date_components(rtfData)
+    if(day == None or month == None or year == None):
+        print("Error: Invalid date")
+        return None, None
+
+    # Print the extracted date components
+    print("Day:", day)
+    print("Month:", month)
+    print("Year:", year)
+
+    month = month.capitalize()
+
+    # Check if the month text is a valid key in the dictionary
+    if month in month_dict:
+        month = month_dict[month]
+    else:
+        #error
+        print("Error: Invalid month")
+
+    end_date = datetime(int(year), int(month), int(day))
+    table_change_date = datetime(2013, 5, 17)
+
+    if(end_date > table_change_date):
+        table = extract_table("RDHS", "Table", rtfData)
+    else:
+        table = extract_table("DPDHS", "Source", rtfData)
+
+    #print(table)
+    #if old (by volume or date or identifying factor do this or that)
+
+    start_date = end_date - timedelta(weeks=1)
+    dates = [start_date, end_date]
+    #extract table
+    return table, dates
+
+
+
+
+
+
+
+
+
+
 
 
 testString2 = """                       WEEKLY EPIDEMIOLOGICAL REPORT
@@ -618,84 +715,6 @@ EPIDEMIOLOGY UNIT
 231, DE SARAM PLACE
 COLOMBO 10
 """
-
-def extract_date_components(text):
-    # Define the pattern to match the date format (assuming day, month, year)
-    pattern = r'refers to returns received on or before (\d{1,2})(?:st|nd|rd|th)? (\w+), (\d{4})'
-    
-    # Use re.search to find the match in the text
-    match = re.search(pattern, text)
-    
-    # Check if a match is found
-    if match:
-        # Extract the matched components
-        day, month, year = match.groups()
-        
-        return day, month, year
-    else:
-        return None, None, None
-        print("Error: No match")
-
-
-#given a start and end word, extract the table between them
-def extract_table(first_word, second_word, text):
-    start_index = text.find(first_word)
-    end_index = text.find(second_word, start_index + len(first_word))
-
-    if start_index != -1 and end_index != -1:
-        result = text[start_index + len(first_word):end_index]
-        return result
-    else:
-        return None
-
-
-def extractDataFromRTF(rtfData):
-    # months used to convert text month to datetime
-    month_dict = {
-        'January': 1,
-        'February': 2,
-        'March': 3,
-        'April': 4,
-        'May': 5,
-        'June': 6,
-        'July': 7,
-        'August': 8,
-        'September': 9,
-        'October': 10,
-        'November': 11,
-        'December': 12
-    }
-    day, month, year = extract_date_components(rtfData)
-
-    # Print the extracted date components
-    print("Day:", day)
-    print("Month:", month)
-    print("Year:", year)
-
-    month = month.capitalize()
-
-    # Check if the month text is a valid key in the dictionary
-    if month in month_dict:
-        month = month_dict[month]
-    else:
-        #error
-        print("Error: Invalid month")
-
-    end_date = datetime(int(year), int(month), int(day))
-    table_change_date = datetime(2013, 5, 17)
-
-    if(end_date > table_change_date):
-        table = extract_table("RDHS", "Table", rtfData)
-    else:
-        table = extract_table("DPDHS", "Source", rtfData)
-
-    print(table)
-    #if old (by volume or date or identifying factor do this or that)
-
-    start_date = end_date - timedelta(weeks=1)
-    dates = [start_date, end_date]
-    #extract table
-    return table, dates
 
 if __name__ == "__main__":
     extractDataFromRTF(testString2)
