@@ -12,7 +12,9 @@ import os
 import csv
 from typing import List
 
-def print_to_csv(table: List[List[str]], headings: List[str] = None, file_name: str = '../Out/output.csv') -> None:
+def print_to_csv(table: List[List[str]],
+                 headings: List[str] = None,
+                 file_name: str = '../Out/output.csv') -> None:
     """
     Get the table data and headings, with the name of new output file.
     Then creates file with the name given, using header, creates csv

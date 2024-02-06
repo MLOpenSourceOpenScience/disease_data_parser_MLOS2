@@ -13,8 +13,9 @@ Date: 2024.02.05
 
 import os
 import csv
+from typing import List
 
-def detect_diseases(line: str) -> list[str]:
+def detect_diseases(line: str) -> List[str]:
     """
     Read line, and seperate the diseases by names.
 
