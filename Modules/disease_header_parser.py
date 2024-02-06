@@ -23,7 +23,7 @@ def detect_diseases(line: str) -> List[str]:
     - line (str): The list of names, seperated by space.
 
     Returns:
-    - list[str]: names of diseases parsed
+    - List[str]: names of diseases parsed
     """
 
     current_directory = os.path.dirname(os.path.realpath(__file__))

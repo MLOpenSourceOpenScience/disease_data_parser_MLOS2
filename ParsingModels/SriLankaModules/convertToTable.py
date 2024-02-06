@@ -1,4 +1,16 @@
 #Mahi
+"""
+Sri Lanka Convert to Table
+
+Parsing model that is compatable with Sri Lank data.
+It will read the full text and parse it, making the
+data readable using different modules in 'Modules'
+folder.
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.05
+"""
+
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
@@ -11,9 +23,27 @@ from datetime import datetime,timedelta
 from typing import List
 
 
-tableHeading = ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']
+tableHeading = ['Disease Name',
+                'Cases',
+                'Location Name',
+                'Country Code',
+                'Region Type',
+                'Lattitude',
+                'Longitude',
+                'Region Boundary',
+                'TimeStampStart',
+                'TimeStampEnd']
 
-def timeToExcelTime(time: datetime)-> str:
+def time_to_excel_time(time: datetime)-> str:
+    """
+    Get time as datetime format, and return str type of that same datetime.
+
+    Parameters:
+    - time (datetime): The time given.
+
+    Returns:
+    - str: The same time writen as a string.
+    """
     return time.strftime("%d-%b-%Y %H:%M:%S")
 
 '''
@@ -28,16 +58,34 @@ def convertToTable(importantText: str,timestamps: List[datetime])-> List[str]:
     
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
-        locationName = data[0]
-        long, lat, regionType, countryCode, regionBoundary = get_location_info(locationName)
+        location_name = data[0]
+        long, lat, region_type, country_code, regionBoundary = get_location_info(location_name)
         for j in range(1,len(data)-2,2):
             cases = data[j]
-            diseaseName = labels[j//2]
-            table.append([diseaseName,cases,locationName,countryCode,regionType,lat,long,regionBoundary,timeToExcelTime(timestamps[0]),timeToExcelTime(timestamps[1])])
+            disease_name = labels[j//2]
+            table.append([disease_name,
+                          cases,
+                          location_name,
+                          country_code,
+                          region_type,
+                          lat,
+                          long,
+                          regionBoundary,
+                          time_to_excel_time(timestamps[0]),
+                          time_to_excel_time(timestamps[1])])
     return table
 
 def printTable(table: List[str])-> None:
-    for heading in ['Disease Name','Cases','Location Name','Country Code','Region Type','Lattitude','Longitude','Region Boundary','TimeStampStart','TimeStampEnd']:
+    for heading in ['Disease Name',
+                    'Cases',
+                    'Location Name',
+                    'Country Code',
+                    'Region Type',
+                    'Lattitude',
+                    'Longitude',
+                    'Region Boundary',
+                    'TimeStampStart',
+                    'TimeStampEnd']:
         print("|{:<15}".format(heading),end=" ")
     print("|")
     for row in table:
