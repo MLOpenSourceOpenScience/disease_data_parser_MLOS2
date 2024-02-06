@@ -8,20 +8,22 @@ data readable using different modules in 'Modules'
 folder.
 
 Author: MLOS^2_NLP_TEAM
-Date: 2024.02.05
+Date: 2024.02.06
 """
 
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa')) # Gets the directory of LLaMaInterface module for import
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules')) # Gets the directory of Modules for import
+from datetime import datetime,timedelta
+from typing import List
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa'))
+# Gets the directory of LLaMaInterface module for import
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules'))
+# Gets the directory of Modules for import
 
 # from LLaMaInterface import separateCellHeaders
 from location_interface import get_location_info
 from disease_header_parser import detect_diseases
-from datetime import datetime,timedelta
-from typing import List
-
 
 tableHeading = ['Disease Name',
                 'Cases',
@@ -50,7 +52,7 @@ def time_to_excel_time(time: datetime)-> str:
 # Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
-def convertToTable(important_text: str,timestamps: List[datetime])-> List[str]:
+def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]:
     """
     Read text file and parse it, creating a List of string which holds
     the same information as a table format (2D). Will get a timestaps
@@ -63,33 +65,52 @@ def convertToTable(important_text: str,timestamps: List[datetime])-> List[str]:
     Returns:
     - List[str]: Parsed text in a table format.
     """
-    
-    table = []
+
+    table_data = []
     rows = important_text.split('\n')
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
-    #     labels = ['RDHS','Dengue Fever','Dysentery','Encephalitis','Enteric Fever','Food Poisoning','Leptospirosis','Typhus','Viral Hepatitis','Human Rabies','Chickenpox','Meningitis','Leishmaniasis','WRCD']
-    
+    #     labels = ['RDHS',
+    #               'Dengue Fever',
+    #               'Dysentery',
+    #               'Encephalitis',
+    #               'Enteric Fever',
+    #               'Food Poisoning',
+    #               'Leptospirosis',
+    #               'Typhus',
+    #               'Viral Hepatitis',
+    #               'Human Rabies',
+    #               'Chickenpox',
+    #               'Meningitis',
+    #               'Leishmaniasis',
+    #               'WRCD']
+
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ")
         location_name = data[0]
-        long, lat, region_type, country_code, regionBoundary = get_location_info(location_name)
+        long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-2,2):
             cases = data[j]
             disease_name = labels[j//2]
-            table.append([disease_name,
+            table_data.append([disease_name,
                           cases,
                           location_name,
                           country_code,
                           region_type,
                           lat,
                           long,
-                          regionBoundary,
+                          region_boundary,
                           time_to_excel_time(timestamps[0]),
                           time_to_excel_time(timestamps[1])])
-    return table
+    return table_data
 
-def printTable(table: List[str])-> None:
+def print_table(tabled_text: List[str])-> None:
+    """
+    Read table and print it as formatted output
+
+    Parameters:
+    - tabled_text (List[str]): data formatted as table
+    """
     for heading in ['Disease Name',
                     'Cases',
                     'Location Name',
@@ -100,16 +121,16 @@ def printTable(table: List[str])-> None:
                     'Region Boundary',
                     'TimeStampStart',
                     'TimeStampEnd']:
-        print("|{:<15}".format(heading),end=" ")
+        print(f"|{heading:<15}",end=" ")
     print("|")
-    for row in table:
+    for row in tabled_text:
         for col in row:
-            print("|{:<15}".format(col),end=" ")
+            print(f"|{col:<15}",end=" ")
         print("|")
 
 
 if __name__ == '__main__':
-    testData = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD 
+    TEST_DATA = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD 
 A B A B A B A B A B A B A B A B A B A B A B A B T* C** 
 Colombo 412 7733 0 5 0 9 0 1 0 6 7 156 0 0 0 3 0 0 3 151 3 22 0 5 23 100
 Gampaha 351 7564 0 7 0 11 0 1 0 2 5 289 0 6 0 9 0 0 3 138 1 36 1 25 1 96 
@@ -139,7 +160,9 @@ Kegalle 91 1557 1 12 0 1 0 2 0 8 22 352 1 19 0 3 0 0 5 219 1 33 1 18 28 100
 Kalmune 29 1448 3 34 0 7 0 0 0 0 2 30 0 0 0 0 0 0 4 35 1 16 0 0 41 100
 SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 566 74 1582 33 98 '''
 
-    table = convertToTable(testData,[datetime(2023, 6, 9) +timedelta(days=-7),datetime(2023, 6, 9)])
-    printTable(table)
+    table = convert_to_table(TEST_DATA,
+                           [datetime(2023, 6, 9) +timedelta(days=-7),
+                            datetime(2023, 6, 9)])
+    print_table(table)
     from table_to_csv import print_to_csv
     print_to_csv(table,tableHeading)
