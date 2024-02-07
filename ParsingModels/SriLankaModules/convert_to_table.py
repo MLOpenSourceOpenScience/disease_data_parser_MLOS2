@@ -89,7 +89,7 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
         data = rows[i].strip().split(" ") # Splits row into data
         data = list(filter(str.strip, data)) # Removes empty entries in data (such as '')
         location_name = data[0]
-        if location_name.lower() in ["srilanka", "sri", "sri lanka"]:
+        if location_name.lower() in ["srilanka", "sri", "sri lanka"] or len(location_name) < 1:
             # for now, temporary use. Will chage the break point if pdf parser changes.
             break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
