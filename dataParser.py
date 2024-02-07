@@ -19,6 +19,10 @@ if __name__ == "__main__":
         print("Arg 2: output file, in csv format")
         print("Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data. If it is in a folder, replace / with . in the path so python can import properly")
         print("Example: dataParser.py Data Output/data.csv ParsingModels.sriLankaParser")
+        print()
+        print("Flags:")
+        print("-q: Quiet Mode. No stack trace outputs for errors")
+        print("-d: Debug Mode. Print inputs to each function")
         quit()
     if (n<4):
         print("Invalid number of arguments! Correct usage: dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
@@ -30,6 +34,10 @@ if __name__ == "__main__":
     inFolder = sys.argv[1]  # Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model
     outFile = sys.argv[2]   # Arg 2: output file, in csv format (only the name of the file)
     modelFile = sys.argv[3] # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
+    flags = sys.argv[4:]
+
+    quiet_mode = '-q' in flags
+    debug_mode = '-d' in flags
 
     model = importlib.import_module(modelFile) 
 
@@ -63,7 +71,7 @@ if __name__ == "__main__":
         try:
             rtfData = PDFtoRTF(currentFile)
             step +=1
-            table,heading = model.extractToTable(rtfData)
+            table,heading = model.extractToTable(rtfData, flags = flags)
             for n in range(len(table)):
                 table[n].append(currentFile)  # Added file source to show here the data came from
             heading.append("Source File")
@@ -77,10 +85,10 @@ if __name__ == "__main__":
                 case 1:
                     print("at model.extractToTable(). Perhaps you chose the wrong model or have an error in the model?")
                 case 2:
-                    print("at print_to_csv")
-            traceback.print_exc()
+                    print("at print_to_csv()")
+            if not quiet_mode: 
+                traceback.print_exc() # show error stack trace
                     
-            
 
         i += 1
     
