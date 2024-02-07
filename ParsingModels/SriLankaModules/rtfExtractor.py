@@ -66,10 +66,11 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
         print("Error: Invalid date")
         return None, None
 
-    # Print the extracted date components
-    print("Day:", day)
-    print("Month:", month)
-    print("Year:", year)
+    if __name__ == "__main__":
+        # Print the extracted date components
+        print("Day:", day)
+        print("Month:", month)
+        print("Year:", year)
 
     month = month.capitalize()
 
