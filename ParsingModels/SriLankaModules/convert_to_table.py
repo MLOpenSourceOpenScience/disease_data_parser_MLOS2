@@ -86,7 +86,8 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
     #               'WRCD']
 
     for i in range(2,len(rows)):
-        data = rows[i].strip().split(" ")
+        data = rows[i].strip().split(" ") # Splits row into data
+        data = list(filter(str.strip, data)) # Removes empty entries in data (such as '')
         location_name = data[0]
         if location_name.lower() == "srilanka":
             # for now, temporary use. Will chage the break point if pdf parser changes.
@@ -95,6 +96,7 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
         for j in range(1,len(data)-3,2):
             cases = data[j]
             disease_name = labels[j//2]
+            # j//2 is to skip every other value, since for Sri Lanka the tables have A and B values, B values being cummulative(not useful for us)
             table_data.append([disease_name,
                           cases,
                           location_name,
