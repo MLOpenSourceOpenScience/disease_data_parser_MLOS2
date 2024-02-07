@@ -41,7 +41,7 @@ def detect_diseases(line: str) -> List[str]:
     double_length = False
     # flag for two-combined words
 
-    for i in range(0, len(names)):
+    for name, next_name in zip(names, names[1:]):
         if double_length:
             double_length = False
         else:
@@ -55,12 +55,12 @@ def detect_diseases(line: str) -> List[str]:
 
                     if name_found:
                         break
-                    if i+1 < len(names) and row and row[0] == names[i]+' '+names[i+1]:
+                    if next_name and row and row[0] == name+' '+next_name:
                         # check whether it is two-word combination before going through
                         parsed_names.append(row[1])
                         double_length = True
                         name_found = True
-                    elif row and row[0] == names[i]:
+                    elif row and row[0] == name:
                         if row[1] == "ignore":
                             # such as:
                             ## RDHS (location column), WRCD (time and percentage column),
@@ -72,7 +72,7 @@ def detect_diseases(line: str) -> List[str]:
 
                 if not name_found:
                     # for now append error, but later make this to import new words into library
-                    parsed_names.append(f'Error detected with name: {names[i]}. Please check the dictionary')
+                    parsed_names.append(f'Error detected with name: {name}. Please check the dictionary')
 
     return parsed_names
 
