@@ -64,10 +64,8 @@ if __name__ == "__main__":
             rtfData = PDFtoRTF(currentFile)
             step +=1
             table,heading = model.extractToTable(rtfData)
-            print(table)
             for n in range(len(table)):
                 table[n].append(currentFile)  # Added file source to show here the data came from
-            print(table)
             heading.append("Source File")
             step += 1
             print_to_csv(table,heading,file_name=outFile)
