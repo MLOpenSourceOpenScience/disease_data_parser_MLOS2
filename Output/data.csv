@@ -1,0 +1,324 @@
+Disease Name,Cases,Location Name,Country Code,Region Type,Lattitude,Longitude,Region Boundary,TimeStampStart,TimeStampEnd
+Dengue Fever,,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,7321,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,5,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,9,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,6,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,149,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,0,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,3,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,148,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,19,Colombo,LKA,city,6.93243,79.84588,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,7146,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,7,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,10,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,2,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,269,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,6,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,9,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,133,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,35,Gampaha,LKA,city,6.99555,80.92297,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,2413,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,14,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,5,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,384,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,1,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,2,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,227,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,40,Kalutara,LKA,city,6.58227,79.96151,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,2331,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,18,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,0,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,4,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,12,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,124,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,34,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,2,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,135,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,11,Kandy,LKA,city,7.29497,80.63867,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,680,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,2,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,0,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,5,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,82,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,9,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,3,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,27,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,3,Matale,UGA,city,0.77848,31.15692,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,104,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,68,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,38,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,50,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,28,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,3,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,57,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,8,NuwaraEliya,LKA,city,6.97375,80.76449,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1091,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,22,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,11,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,5,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,18,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,478,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,26,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,1,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,173,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,11,Galle,DEU,city,51.4822,11.97494,"{'west': 11.85534, 'south': 51.4023, 'east': 12.08903, 'north': 51.54364}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,731,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,4,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,8,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,160,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,46,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,7,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,84,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,14,Hambantota,LKA,city,6.12845,81.12598,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,828,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,17,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,5,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,7,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,297,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,18,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,2,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,136,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,9,Matara,LKA,city,5.94464,80.55015,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1472,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,43,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,8,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,16,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,8,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,457,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,1,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,109,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,5,Jaffna,LKA,city,9.65876,80.01907,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,62,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,4,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,0,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,16,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,7,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,5,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,0,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,8,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,0,Kilinochchi,LKA,city,9.40854,80.40766,"{'west': 80.35301, 'south': 9.30657, 'east': 80.45792, 'north': 9.4388}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,62,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,6,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,0,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,0,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,24,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,5,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,0,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,1,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,3,Mannar,LKA,city,8.98508,79.90976,"{'west': 79.89545, 'south': 8.96972, 'east': 79.92752, 'north': 8.99724}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,102,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,5,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,0,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,25,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,6,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,1,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,11,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,3,Vavuniya,LKA,city,8.75888,80.49993,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,65,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,8,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,0,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,3,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,11,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,26,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,4,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,0,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,10,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,0,Mullaitivu,LKA,city,9.26533,80.8115,"{'west': 80.7902, 'south': 9.20712, 'east': 80.84548, 'north': 9.28467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1574,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,124,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,6,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,3,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,12,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,56,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,1,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,3,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,36,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,22,Batticaloa,LKA,city,7.72066,81.6955,"{'west': 81.65274, 'south': 7.70261, 'east': 81.7078, 'north': 7.76642}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,42,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,1,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,0,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,12,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,0,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,1,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,17,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,7,Ampara,LKA,city,7.29173,81.67835,"{'west': 81.62709, 'south': 7.27196, 'east': 81.71644, 'north': 7.32984}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1620,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,5,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,4,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,49,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,13,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,0,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,28,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,17,Trincomalee,LKA,city,8.57743,81.22461,"{'west': 81.20242, 'south': 8.53133, 'east': 81.24647, 'north': 8.59751}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1511,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,19,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,7,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,2,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,177,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,9,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,8,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,2,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,252,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,75,Kurunegala,LKA,city,7.48886,80.36227,"{'west': 80.32385, 'south': 7.4446, 'east': 80.38056, 'north': 7.50899}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,2429,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,7,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,0,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,24,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,7,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,1,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,67,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,28,Puttalam,LKA,city,8.02739,79.83554,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,47,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,3,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,0,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,4,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,1,Anuradhapur,LKA,city,8.33021,80.40849,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,365,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,10,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,5,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,6,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,110,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,5,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,10,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,41,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,13,Polonnaruwa,LKA,city,7.9422,81.00787,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,569,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,15,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,3,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,26,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,149,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,26,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,57,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,84,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,20,Badulla,LKA,city,6.99091,81.05319,"{'west': 81.04221, 'south': 6.97368, 'east': 81.06696, 'north': 7.01298}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,295,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,14,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,3,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,0,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,351,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,27,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,15,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,39,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,39,Monaragala,LKA,city,6.87401,81.34969,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1045,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,20,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,10,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,1,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,9,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,567,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,16,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,12,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,1,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,91,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,96,Ratnapura,LKA,city,6.67685,80.40504,"{'west': 80.39185, 'south': 6.67436, 'east': 80.41107, 'north': 6.6896}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1442,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,10,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,1,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,2,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,8,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,319,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,18,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,3,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,211,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,32,Kegalle,LKA,city,7.24909,80.35499,"{'west': 80.34374, 'south': 7.24466, 'east': 80.36349, 'north': 7.25467}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,1419,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,31,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,7,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,0,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,0,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,26,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,0,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,0,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,0,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,31,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,15,Kalmune,LKA,city,7.42081,81.82038,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dengue Fever,,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Dysentery,,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Encephalitis,482,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Enteric Fever,85,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Food Poisoning,34,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leptospirosis,212,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Typhus Fever,,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Viral Hepatitis,790,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Human Rabies,141,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Chickenpox,83,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Meningitis,,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00
+Leishmaniasis,547,SRILANKA,LKA,country,6.88398,79.90079,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}",26-May-2023 00:00:00,02-Jun-2023 00:00:00

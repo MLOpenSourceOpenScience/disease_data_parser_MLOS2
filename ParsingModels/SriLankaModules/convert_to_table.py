@@ -53,6 +53,7 @@ def time_to_excel_time(time: datetime)-> str:
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
 def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]:
+    print(important_text)
     """
     Read text file and parse it, creating a List of string which holds
     the same information as a table format (2D). Will get a timestaps
@@ -86,14 +87,18 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
     #               'WRCD']
 
     for i in range(2,len(rows)):
-        data = rows[i].strip().split(" ")
+        data = rows[i].strip().split(" ") # Splits row into data
+        data = list(filter(str.strip, data)) # Removes empty entries in data (such as '')
         location_name = data[0]
         if len(location_name) < 1:
             break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
+            print(data)
             cases = data[j]
-            disease_name = labels[j//2]
+            print(data)
+            disease_name = labels[j//2] 
+            # j//2 is to skip every other value, since for Sri Lanka the tables have A and B values, B values being cummulative(not useful for us)
             table_data.append([disease_name,
                           cases,
                           location_name,
