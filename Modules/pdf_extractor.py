@@ -29,7 +29,7 @@ def pdf_to_rtf(path: str, output_path: str = None) -> str:
     #Generate a text rendering of a PDF file in the form of a list of lines.
     full_text = ""
 
-    with open(path, 'rb') as f:
+    with open(path, 'rb', encoding= 'utf-8') as f:
         pdf = PdfReader(f)
         for page in pdf.pages:
             text = page.extract_text()
