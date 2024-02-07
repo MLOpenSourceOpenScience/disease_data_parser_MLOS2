@@ -48,18 +48,26 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
     # months used to convert text month to datetime
     ''' No longer used
     month_dict = {
+        'Jan': 1,
         'January': 1,
         'February': 2,
+        'Feb': 2,
         'March': 3,
+        'Mar': 3,
         'April': 4,
         'May': 5,
         'June': 6,
         'July': 7,
         'August': 8,
+        'Aug': 8,
         'September': 9,
+        'Sep': 9,
         'October': 10,
+        'Oct': 10,
         'November': 11,
-        'December': 12
+        'Nov': 11,
+        'December': 12,
+        'Dec': 12
     }
     '''
     day, month, year = extract_date_components(rtfData)
