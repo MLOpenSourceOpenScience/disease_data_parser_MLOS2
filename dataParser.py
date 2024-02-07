@@ -11,7 +11,7 @@ from table_to_csv import *
 
 
 if __name__ == "__main__":
-    
+
     n = len(sys.argv)
     if n == 2 and sys.argv[1] == "-h": #TODO: improve help dialogue
         print("Usage: dataParser.py <folder-to-parse/> <output-file.csv> <parsing-model>") 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         print("Example: dataParser.py Data Output/data.csv ParsingModels.sriLankaParser")
         print("run dataParser.py -h for more information")
         quit()
-    
+
     #Import Arguments
     inFolder = sys.argv[1]  # Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model
     outFile = sys.argv[2]   # Arg 2: output file, in csv format (only the name of the file)
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     else:
         print(f"ERROR: folder '{inFolder}' not found!")
         quit()
-    
+
     print("Will parse the following files: ",end="")
     for f in filesToParse:
         print(f,end=", ")
@@ -90,13 +90,8 @@ if __name__ == "__main__":
                 case 2:
                     print("at print_to_csv()")
             if not quiet_mode: 
-                traceback.print_exc() # show error stack trace
-                    
+                traceback.print_exc() # show error stack trace 
 
         i += 1
-    
+
     print("Done! Output in", outFile)
-
-
-
-
