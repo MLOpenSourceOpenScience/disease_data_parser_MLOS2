@@ -1,6 +1,6 @@
-#Eoin
-from datetime import datetime, timedelta
+from datetime import datetime,timedelta
 import re
+from dateutil.parser import parse
 
 from typing import List, Tuple, Optional
 
@@ -46,6 +46,7 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
 
 def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datetime]]]:
     # months used to convert text month to datetime
+    ''' No longer used
     month_dict = {
         'January': 1,
         'February': 2,
@@ -60,6 +61,7 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
         'November': 11,
         'December': 12
     }
+    '''
     day, month, year = extract_date_components(rtfData)
     if(day is None or month is None or year is None):
         print("Error: Invalid date")
@@ -71,16 +73,7 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
         print("Month:", month)
         print("Year:", year)
 
-    month = month.capitalize()
-
-    # Check if the month text is a valid key in the dictionary
-    if month in month_dict:
-        month = month_dict[month]
-    else:
-        #error
-        print("Error: Invalid month")
-
-    end_date = datetime(int(year), int(month), int(day))
+    end_date = parse(f"{year} {month} {day}")
     table_change_date = datetime(2013, 5, 17)
 
     if end_date > table_change_date:

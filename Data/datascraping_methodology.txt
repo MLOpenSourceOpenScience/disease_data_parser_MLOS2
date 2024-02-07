@@ -1,6 +1,6 @@
-Function to extract URLs: $('.btn').each(function() {console.log($(this).prop('href'))})
+Function to extract URLs: `$('.btn').each(function() {console.log($(this).prop('href'))})`
 
-URLs:
+URLs (download (on linux/wsl) with `wget -i - <<< "files"`):
 https://www.epid.gov.lk/storage/post/pdfs/en_65bd08ee76c62_Vol_51_no_03-english.pdf
 https://www.epid.gov.lk/storage/post/pdfs/en_65b8d4365985a_Vol_51_no_02-english.pdf
 https://www.epid.gov.lk/storage/post/pdfs/en_65b8d3689b762_Vol_51_no_01-english.pdf
