@@ -1,8 +1,31 @@
 #Alan
-from PyPDF2 import PdfReader
-import os
+"""
+PDF Extractor
 
-def PDFtoRTF(path, output_path=None):
+It reads PDF and convert it to RTF format.
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.07
+"""
+
+import os
+from PyPDF2 import PdfReader
+
+def PDFtoRTF(path: str, output_path: str = None) -> str:
+    """
+    Reads file path, and get pdf file and read through it.
+    After reading it, convert texts and write it as RTF if
+    output path exists, otherwise not write it, then return
+    the converted strings.
+
+    Parameters:
+    - path (str): File path that pdf file exsists.
+    - output_path (str): File path that rtf file will created.
+        If not given, it is None by default.
+
+    Returns:
+    - str: String that is converted from pdf file.
+    """
     #Generate a text rendering of a PDF file in the form of a list of lines.
     full_text = ""
 

@@ -72,7 +72,8 @@ def detect_diseases(line: str) -> List[str]:
 
                 if not name_found:
                     # for now append error, but later make this to import new words into library
-                    parsed_names.append(f'Error detected with name: {name}. Please check the dictionary')
+                    parsed_names.append(
+                        f'Error detected with name: {name}. Please check the dictionary')
 
     return parsed_names
 
