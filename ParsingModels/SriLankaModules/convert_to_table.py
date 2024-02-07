@@ -14,7 +14,7 @@ Date: 2024.02.06
 import sys
 import os
 from datetime import datetime,timedelta
-from typing import List
+from typing import List, Tuple
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa'))
 # Gets the directory of LLaMaInterface module for import
@@ -48,6 +48,33 @@ def time_to_excel_time(time: datetime)-> str:
     """
     return time.strftime("%d-%b-%Y %H:%M:%S")
 
+
+def calculate_average_number(number: str, weeks: int) -> str:
+    """
+    Calculate merged number and divide it into two
+
+    Parameters:
+    - number (str): merged number.
+    - weeks (int): # of week passed for cumulated data.
+
+    Returns:
+    - str: two number seperated by white space.
+    """
+
+    best = ''
+    best_diff = float("inf")
+
+    for i in range(1, len(number)):
+        a = number[:i]
+        b = number[i:]
+
+        average_value = int(b)/weeks
+        diff = abs(average_value - int(a))
+        if diff < best_diff and int(a) < average_value:
+            best_diff = abs(average_value - int(a))
+            best = a+' '+b
+
+    return best
 
 # Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
@@ -95,6 +122,15 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
             break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
+            if j+1 < len(data):
+                if int(data[j]) > int(data[j+1]):
+                    print("Something is wrong", data[j], data[j+1], data[0])
+                    month = timestamps[0].month
+                    day = timestamps[0].day+7
+                    data_a, data_b = calculate_average_number(data[j],
+                                                              (((month-1)*30)+day)//7+1).split()
+                    data[j] = data_a
+                    data.insert(j+1, data_b)
             cases = data[j]
             disease_name = labels[j//2]
             # j//2 is to skip every other value,

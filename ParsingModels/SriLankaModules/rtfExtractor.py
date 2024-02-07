@@ -92,7 +92,7 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
     #print(table)
     #if old (by volume or date or identifying factor do this or that)
 
-    start_date = end_date - timedelta(weeks=1)
+    start_date = end_date - timedelta(days=6)
     dates = [start_date, end_date]
     #extract table
     return table, dates
