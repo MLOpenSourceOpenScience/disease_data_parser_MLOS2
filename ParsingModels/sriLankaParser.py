@@ -14,7 +14,7 @@ from typing import List
 from SriLankaModules.convert_to_table import convert_to_table, tableHeading, print_table
 from SriLankaModules.rtfExtractor import extractDataFromRTF
 
-def extractToTable(rtfData: str, flags: List[str] = []) -> [List[List[str]], List[str]]:
+def extractToTable(rtfData: List[str], flags: List[str] = []) -> [List[List[str]], List[str]]:
     debug_mode = '-d' in flags
     if debug_mode:
         print("DEBUG - Raw Text Data:")
@@ -24,7 +24,7 @@ def extractToTable(rtfData: str, flags: List[str] = []) -> [List[List[str]], Lis
         print("DEBUG - Extracted Text and Timestamp:")
         print(important_text)
         print(timestamps)
-    table = convert_to_table(important_text,timestamps)
+    table = convert_to_table(important_text,timestamps, flags = flags)
     heading = tableHeading #tableHeading imported from SriLankaModules.convert_to_table
 
     if debug_mode:
