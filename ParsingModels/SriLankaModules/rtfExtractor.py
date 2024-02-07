@@ -2,7 +2,7 @@
 from datetime import datetime, timedelta
 import re
 
-from typing import List
+from typing import List, Tuple, Optional
 
 
 '''
@@ -83,7 +83,7 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
     end_date = datetime(int(year), int(month), int(day))
     table_change_date = datetime(2013, 5, 17)
 
-    if(end_date > table_change_date):
+    if end_date > table_change_date:
         table = extract_table("RDHS", "Table", rtfData)
     else:
         table = extract_table("DPDHS", "Source", rtfData)
