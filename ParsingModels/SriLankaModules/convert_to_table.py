@@ -97,7 +97,9 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
         for j in range(1,len(data)-3,2):
             cases = data[j]
             disease_name = labels[j//2]
-            # j//2 is to skip every other value, since for Sri Lanka the tables have A and B values, B values being cummulative(not useful for us)
+            # j//2 is to skip every other value,
+            # since for Sri Lanka the tables have A and B values,
+            # B values being cummulative(not useful for us)
             table_data.append([disease_name,
                           cases,
                           location_name,

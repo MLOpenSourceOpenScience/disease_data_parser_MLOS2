@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 import traceback
 from Modules.PDFoperators import *
-from Modules.pdfExtractor import *
+from Modules.pdf_extractor import pdf_to_rtf
 sys.path.append(os.path.join(os.path.dirname(__file__), 'Modules')) # Gets the directory of LLaMaInterface module for import
 from table_to_csv import *
 
@@ -69,22 +69,19 @@ if __name__ == "__main__":
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
         step = 0
         try:
-            rtfData = PDFtoRTF(currentFile)
+            rtfData = pdf_to_rtf(currentFile)
             step +=1
             table,heading = model.extractToTable(rtfData, flags = flags)
             for n in range(len(table)):
                 table[n].append(currentFile)  # Added file source to show here the data came from
             heading.append("Source File")
             step += 1
-            # if currentFile == "Data/Sri Lanka Weekly Reports/en_6450923441161_Vol_50_no_15-english_1.pdf":
-            #     print_to_csv(table,heading,file_name=outFile)
-            #     sys.exit()
             print_to_csv(table,heading,file_name=outFile)
         except Exception as error:
             print(f"Error for file {currentFile} ", end="")
             match step:
                 case 0:
-                    print("at PDFtoRTF(). Perhaps the file is not a proper PDF?")
+                    print("at pdf_to_rtf(). Perhaps the file is not a proper PDF?")
                 case 1:
                     print("at model.extractToTable(). Perhaps you chose the wrong model or have an error in the model?")
                 case 2:

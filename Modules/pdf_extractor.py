@@ -11,7 +11,7 @@ Date: 2024.02.07
 import os
 from PyPDF2 import PdfReader
 
-def PDFtoRTF(path: str, output_path: str = None) -> str:
+def pdf_to_rtf(path: str, output_path: str = None) -> str:
     """
     Reads file path, and get pdf file and read through it.
     After reading it, convert texts and write it as RTF if
@@ -43,13 +43,16 @@ def PDFtoRTF(path: str, output_path: str = None) -> str:
     return full_text
 
 def runner():
+    """
+    Testing function for main
+    """
     input_file = '../Data/Dengue/sri lanka.pdf'
     output_folder = '../Data/Dengue/RTF'
     print(input_file)
     output_file = input_file[input_file.rfind('/') + 1:input_file.rfind('.pdf')] + ".txt"
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
-    print(PDFtoRTF(input_file, f"{output_folder}/{output_file}"))
+    print(pdf_to_rtf(input_file, f"{output_folder}/{output_file}"))
 
 if __name__ == '__main__':
     runner()

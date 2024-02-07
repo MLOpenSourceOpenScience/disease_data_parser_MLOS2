@@ -4,7 +4,7 @@ kalumune,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east':
 kalumunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 colombo,city,LKA,79.84588,6.93243,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}"
 kandy,city,LKA,80.63867,7.29497,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}"
-matale,city,UGA,31.15692,0.77848,"{'west': 31.08209, 'south': 0.64878, 'east': 31.23708, 'north': 0.83519}"
+matale,city,LKA,80.62424,7.47354,"{'west': 80.60563, 'south': 7.42466, 'east': 80.63226, 'north': 7.48865}"
 nuwaraeliya,city,LKA,80.76449,6.97375,"{'west': 80.74499, 'south': 6.9247, 'east': 80.81502, 'north': 6.99217}"
 galle,city,LKA,80.21702,6.03459,"{'west': 80.17186, 'south': 6.02034, 'east': 80.24988, 'north': 6.09423}"
 hambantota,city,LKA,81.12598,6.12845,"{'west': 81.09705, 'south': 6.11608, 'east': 81.16193, 'north': 6.15419}"
@@ -36,4 +36,4 @@ kalumunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east'
 "kalutara, kalutara, sri lanka",city,LKA,79.96151,6.58227,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}"
 galle sri lanka,city,LKA,80.21702,6.03459,"{'west': 80.17186, 'south': 6.02034, 'east': 80.24988, 'north': 6.09423}"
 anuradhapura,city,LKA,80.40849,8.33021,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}"
-
+"matale, sri lanka",city,LKA,80.62424,7.47354,"{'west': 80.60563, 'south': 7.42466, 'east': 80.63226, 'north': 7.
