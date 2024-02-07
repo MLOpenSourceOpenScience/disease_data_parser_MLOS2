@@ -16,14 +16,17 @@ import os
 from datetime import datetime,timedelta
 from typing import List
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa'))
-# Gets the directory of LLaMaInterface module for import
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../Modules'))
+current_directory = os.path.dirname(__file__)
+moudlues_directory = os.path.join(current_directory, '../../Modules')
+sys.path.append(moudlues_directory)
 # Gets the directory of Modules for import
 
-# from LLaMaInterface import separateCellHeaders
 from location_interface import get_location_info
 from disease_header_parser import detect_diseases
+
+# sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa'))
+# Gets the directory of LLaMaInterface module for import
+# from LLaMaInterface import separateCellHeaders
 
 tableHeading = ['Disease Name',
                 'Cases',
@@ -138,7 +141,8 @@ def print_table(tabled_text: List[str])-> None:
 
 
 if __name__ == '__main__':
-    TEST_DATA = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi- Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD
+    TEST_DATA = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi-
+    Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD
 A B A B A B A B A B A B A B A B A B A B A B A B T* C** 
 Colombo 412 7733 0 5 0 9 0 1 0 6 7 156 0 0 0 3 0 0 3 151 3 22 0 5 23 100
 Gampaha 351 7564 0 7 0 11 0 1 0 2 5 289 0 6 0 9 0 0 3 138 1 36 1 25 1 96 
