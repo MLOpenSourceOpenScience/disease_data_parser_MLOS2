@@ -16,9 +16,21 @@ import os
 from typing import List
 import requests
 
+def parse_alpha_only(input_string: str) -> str:
+    """
+    Read string, and only remain alphanumeric characters, and delete everything else
+
+    Parameters:
+    - input_string (str): string that needs to be parsed.
+
+    Return:
+    - str: string that is parsed.
+    """
+    return ''.join(char for char in input_string if char.isalnum())
+
 API_KEY = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
 
-def get_location_info(search_location: str, api: str = API_KEY) -> List[int]:
+def get_location_info(search_location_original: str, api: str = API_KEY) -> List[int]:
     """
     get the name of the location, and returns Longtitude and Latitude
     Also stores the information including type of the region,
@@ -26,13 +38,15 @@ def get_location_info(search_location: str, api: str = API_KEY) -> List[int]:
     LongLatDict.csv
 
     Parameters:
-    - search_location (str): The name of the location.
+    - search_location_original (str): The name of the location.
     - api (str): The api value of HERE.com.
 
     Returns:
     - List[int]: Longtitude, Latitude, Region Type, Country, boundary
     """
 
+    # remove irrelevant characters
+    search_location = parse_alpha_only(search_location_original)
     # even before searching, change word into lowercases (for efficiency)
     search_location = search_location.lower()
 
