@@ -1,5 +1,7 @@
 import cv2
 import os
+import numpy as np
+import matplotlib.pyplot as plt
 from pdf2image import convert_from_path
 
 def convert_to_img(pdf_path):
@@ -11,11 +13,28 @@ def convert_to_img(pdf_path):
 def zoom(img, zoom_factor=0.5):
     return cv2.resize(img, None, fx=zoom_factor, fy=zoom_factor)
 
+
+def get_conv_function(filter):
+    return lambda row : np.convolve(row, filter, 'same')
+
+def conv(image):
+    data = np.array(image)
+
+    filter = [-1,-0.5,0,0.5,1]
+    result = np.apply_along_axis(get_conv_function(filter), 0, data)
+    threshold = 30
+    result = np.where(result < threshold, 0, result)
+
+    plt.imshow(result, interpolation='nearest')
+    plt.show()
+
 def process(image_path):
     image = cv2.imread(image_path)
     image = zoom(image, 0.5)
     cv2.imshow('original', image)
     cv2.waitKey(0)
+
+    conv(image)
 
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     adaptive_thresh = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 3)
@@ -31,8 +50,7 @@ def process(image_path):
     cv2.destroyAllWindows()
 
 def main():
-    this_path = os.getcwd()
-    input_file = this_path + '\\Data\\Dengue\\sri lanka.pdf'
+    input_file = '../Data/Dengue/sri lanka.pdf'
     print(input_file)
     images = convert_to_img(input_file)
     for i in range(images):
