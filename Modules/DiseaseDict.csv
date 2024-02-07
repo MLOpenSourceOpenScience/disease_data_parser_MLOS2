@@ -1,19 +1,37 @@
 Target,"Real Name"
 "dengue fever","Dengue Fever"
 dysentery,Dysentery
+encephali,Encephalitis
 encephalit,Encephalitis
 encephaliti,Encephalitis
 encephalitis,"Encephalitis"
+"e fever","Enteric Fever"
+"enteric f.","Enteric Fever"
 "enteric fever","Enteric Fever"
+enteric,"Enteric Fever"
 entericfever,"Enteric Fever"
 "food poi","Food Poisoning"
+"food poison","Food Poisoning"
+"f poisoning","Food Poisoning"
 foodpoisoning,"Food Poisoning"
 leptospirosis,Leptospirosis
+"t fever","Typhus Fever"
+"typhus fe","Typhus Fever"
 typhus,"Typhus Fever"
 typhusfever,"Typhus Fever"
+"v hep","Viral Hepatitis"
+"v. hep.","Viral Hepatitis"
 "viral hep","Viral Hepatitis"
+"viral hepa","Viral Hepatitis"
+"viral. hep","Viral Hepatitis"
+"v hepatitis","Viral Hepatitis"
+viral,"Viral Hepatitis"
 viralhepatitis,"Viral Hepatitis"
+"h rabies","Human Rabies"
+"h. rabi.","Human Rabies"
 "human","Human Rabies"
+leptospirosi,Leptospirosis
+leptospirosis,Leptospirosis
 chickenpox,Chickenpox
 leishmania,Leishmaniasis
 meningitis,Meningitis
@@ -23,3 +41,6 @@ dhf*,ignore
 wrcd,ignore
 rdhs,ignore
 division,ignore
+divisions:,ignore
+:,ignore
+

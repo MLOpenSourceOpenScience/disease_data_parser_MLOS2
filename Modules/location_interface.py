@@ -26,7 +26,7 @@ def parse_alpha_only(input_string: str) -> str:
     Return:
     - str: string that is parsed.
     """
-    return ''.join(char for char in input_string if char.isalnum())
+    return ''.join(char for char in input_string if char.isalnum() or char in [' ', ','])
 
 API_KEY = 'rgb1WNEXC27GO3f_n6OZzfOCOfHPGiQBPEt2TY0tRhA'
 
@@ -92,7 +92,7 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
             # what type of region? city, state...
 
             address = location.get('address', {})
-            country_code = address.get('country_code')
+            country_code = address.get('countryCode')
             # code of the country
 
             region_map = location.get('mapView', {})
@@ -125,7 +125,7 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
 ### example code
 
 if __name__ == '__main__':
-    NAME = 'kalutara'
+    NAME = 'new york'
 
     long, lat, a, b, c = get_location_info(NAME)
 

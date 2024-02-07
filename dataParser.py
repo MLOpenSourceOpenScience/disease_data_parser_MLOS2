@@ -76,6 +76,9 @@ if __name__ == "__main__":
                 table[n].append(currentFile)  # Added file source to show here the data came from
             heading.append("Source File")
             step += 1
+            # if currentFile == "Data/Sri Lanka Weekly Reports/en_6450923441161_Vol_50_no_15-english_1.pdf":
+            #     print_to_csv(table,heading,file_name=outFile)
+            #     sys.exit()
             print_to_csv(table,heading,file_name=outFile)
         except Exception as error:
             print(f"Error for file {currentFile} ", end="")

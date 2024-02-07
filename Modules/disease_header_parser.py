@@ -32,6 +32,7 @@ def detect_diseases(line: str) -> List[str]:
     line = line.replace("\n","")
     line = line.replace("-","")
     # remove both newline character and '-'
+    # also change double-space into single space
 
     names = line.lower().split()
 
