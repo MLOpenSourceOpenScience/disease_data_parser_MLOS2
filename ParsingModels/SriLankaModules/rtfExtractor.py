@@ -1,9 +1,8 @@
 #Eoin
-from datetime import datetime,timedelta;
-import re;
-from datetime import datetime
+from datetime import datetime, timedelta
+import re
 
-from typing import *
+from typing import List
 
 
 '''
@@ -62,7 +61,7 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
         'December': 12
     }
     day, month, year = extract_date_components(rtfData)
-    if(day == None or month == None or year == None):
+    if(day is None or month is None or year is None):
         print("Error: Invalid date")
         return None, None
 

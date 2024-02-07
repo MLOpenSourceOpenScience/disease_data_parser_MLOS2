@@ -16,7 +16,7 @@ def PDFtoRTF(path, output_path=None):
     if output_path is not None:
         with open(output_path, 'w', encoding='utf-8') as file:
             file.write(full_text)
-            
+
     return full_text
 
 def runner():
