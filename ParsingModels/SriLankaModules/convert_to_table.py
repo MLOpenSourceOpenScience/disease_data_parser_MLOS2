@@ -73,7 +73,7 @@ def get_table_values(first_location: str, text: str, flags: List[str] = []) -> O
     if start_index != -1:
         parsed = text[start_index:]
         parsed = re.split('\n| ', parsed)
-        parsed = list(filter(str.strip, parsed)) # Removes empty entries in data (such as '')
+        parsed = remove_blank_values(parsed) # Removes empty entries in data (such as '')
         output = []
         row = []
         for data in parsed:
@@ -97,6 +97,10 @@ def get_table_values(first_location: str, text: str, flags: List[str] = []) -> O
     else:
         return None
     
+# Removes blank values from a List
+def remove_blank_values(data: List[str])-> List[str]:
+    return list(filter(str.strip, data)) # Removes empty entries in data (such as '')
+    
 
 def convert_to_table(important_text: List[str],timestamps: List[datetime], flags: List[str] = [])-> List[str]:
     """
@@ -116,6 +120,7 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
 
     table_data = []
     rows = important_text[0].split('\n')
+    rows = remove_blank_values(rows)
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS',
@@ -134,10 +139,13 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
     #               'WRCD']
 
     pymupdf_values = []
+    if debug_mode:
+        print("DEBUG: ROWS:")
+        print(rows)
 
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ") # Splits row into data
-        data = list(filter(str.strip, data)) # Removes empty entries in data (such as '')
+        data = remove_blank_values(data) # Removes empty entries in data (such as '')
         location_name = data[0]
         if table_values == None:
             table_values = get_table_values(location_name, important_text[1], flags)
@@ -146,9 +154,6 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
                 for row in table_values:
                     print("Row Length:", len(row), row)
 
-        if location_name.lower() in ["srilanka", "sri", "sri lanka"] or len(location_name) < 1:
-            # for now, temporary use. Will chage the break point if pdf parser changes.
-            break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
             cases = table_values[i-2][j-1]
