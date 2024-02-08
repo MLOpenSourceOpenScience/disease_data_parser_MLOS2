@@ -21,6 +21,7 @@ if __name__ == "__main__":
         print("Flags:")
         print("-q: Quiet Mode. No stack trace outputs for errors")
         print("-d: Debug Mode. Print inputs to each function")
+        print("-o [Path/To/File]: Logs output to file, for debugging")
         quit()
     if n < 4:
         print("Invalid number of arguments! Correct usage: dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
@@ -34,8 +35,26 @@ if __name__ == "__main__":
     modelFile = sys.argv[3] # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
+    flag_types = ['-q','-d','-o']
+
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
+    output_mode = '-o' in flags
+    log_file_path = None
+
+    # Output Mode
+    if output_mode:
+        try:
+            log_filename = flags[flags.index('-o')+1]
+            if log_filename in flag_types: # If the value after -o is just another flag and not a log file
+                raise Exception()
+        except:
+            print("Error with -o flag: Can't find path to output file. Proper usage: -o [Path/To/File]")
+            quit()
+        log_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), log_filename)
+        log_directory = os.path.dirname(log_file_path)
+        if not os.path.exists(log_directory): # If there is no directory, make it
+            os.makedirs(log_directory)
 
     model = importlib.import_module(modelFile) 
 
@@ -64,7 +83,7 @@ if __name__ == "__main__":
 
     i = 1
     for currentFile in filesToParse:
-        print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
+        print(f"Parsing file {i}/{len(filesToParse)}:",currentFile,  file=log_file_path)
         step = 0
         try:
             rtfData = pdf_to_rtf(currentFile)
