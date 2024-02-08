@@ -56,6 +56,7 @@ def time_to_excel_time(time: datetime) -> str:
 # Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
+
 def is_number_value(input_string: str) -> bool:
     """
     Check if the input strging can tranlated into number
@@ -66,6 +67,8 @@ def is_number_value(input_string: str) -> bool:
     Returns:
     - bool: True if it is, False if it is not.
     """
+    if input_string[-1] == '%':
+        input_string = input_string[:-1]
     try:
         float(input_string) #If it can cast to float, it is a number
     except ValueError:
