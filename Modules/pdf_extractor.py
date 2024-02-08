@@ -3,14 +3,16 @@ PDF Extractor
 
 It reads PDF and convert it to RTF format.
 
+Dependancy: pip install PyMuPDF
+
 Author: MLOS^2_NLP_TEAM
 Date: 2024.02.07
 """
 
 import os
+from typing import List
 from PyPDF2 import PdfReader
 import fitz as pymupdf #pymupdf
-from typing import List
 
 def pdf_to_rtf(path: str, output_path: str = None) -> List[str]:
     """

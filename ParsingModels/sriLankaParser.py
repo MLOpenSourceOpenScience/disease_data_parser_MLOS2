@@ -12,14 +12,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../Modules')) # Gets th
 
 from typing import List
 from SriLankaModules.convert_to_table import convert_to_table, tableHeading, print_table
-from SriLankaModules.rtfExtractor import extractDataFromRTF
+from SriLankaModules.rtfExtractor import extract_data_from_rtf
 
 def extractToTable(rtfData: List[str], flags: List[str] = []) -> [List[List[str]], List[str]]:
     debug_mode = '-d' in flags
     if debug_mode:
         print("DEBUG - Raw Text Data:")
         print(rtfData)
-    important_text,timestamps = extractDataFromRTF(rtfData)
+    important_text,timestamps = extract_data_from_rtf(rtfData)
     if debug_mode:
         print("DEBUG - Extracted Text and Timestamp:")
         print(important_text)

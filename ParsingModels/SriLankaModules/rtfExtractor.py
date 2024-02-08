@@ -1,19 +1,26 @@
+
+"""
+RTF Extractor
+
+From raw data, extract necessary data and translate
+it into RTF format. This includes header, diseases,
+dates, and other data as well.
+
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.09
+"""
+
 from datetime import datetime,timedelta
 import re
+from typing import List, Tuple, Optional
 from dateutil.parser import parse
 
-from typing import List, Tuple, Optional
-
-
-'''
-Arguments: string with rtf data
-Returns: string with rtf data relevant for tables, 2 element array with the start and end timestamp
-'''
-
-
-
-
 def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+    '''
+    Arguments: string with rtf data
+    Returns: string with rtf data relevant for tables, 2 element array with the start and end timestamp
+    '''
     # Regular expression pattern to match the date format
     pattern = r'\((\d{1,2})(?:st|nd|rd|th)?\s*[-–]\s*(\d{1,2})(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})\)'
 
@@ -34,6 +41,18 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
 
 #given a start and end word, extract the table between them
 def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]:
+    """
+    Find starting word, and second-startinf word from text
+    then extract data as a line, starting from found place
+
+    Parameters:
+    - first_word (str): First word that want to be found.
+    - second_word (str): Second-starting word that want to be found.
+    - text (str): Raw data.
+
+    Returns:
+    - Optional[str]: Data that is extracted, return None if not found.
+    """
     start_index = text.find(first_word)
     end_index = text.find(second_word, start_index + len(first_word))
 
@@ -44,7 +63,7 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
         return None
 
 
-def extractDataFromRTF(rtfData: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
+def extract_data_from_rtf(rtfData: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
     # months used to convert text month to datetime
     ''' No longer used
     month_dict = {
@@ -91,12 +110,13 @@ def extractDataFromRTF(rtfData: List[str]) -> Tuple[Optional[List[str]], Optiona
         table[1] = extract_table("RDHS", "Comments", rtfData[1])
     else:
         table[0] = extract_table("DPDHS", "Source", rtfData[0])
-        table[1] = extract_table("DPDHS", "Source", rtfData[1]) #MIGHT NOT BE ACCURATE!! TEST this eventually
+        table[1] = extract_table("DPDHS", "Source", rtfData[1])
+        #MIGHT NOT BE ACCURATE!! TEST this eventually
 
     #print(table)
     #if old (by volume or date or identifying factor do this or that)
 
-    start_date = end_date - timedelta(weeks=1)
+    start_date = end_date - timedelta(days=6)
     dates = [start_date, end_date]
     #extract table
     return table, dates
@@ -722,4 +742,4 @@ COLOMBO 10
 """
 
 if __name__ == "__main__":
-    extractDataFromRTF(testString2)
+    extract_data_from_rtf(testString2)
