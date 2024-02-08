@@ -3,7 +3,9 @@ PDF Extractor
 
 It reads PDF and convert it to RTF format.
 
-Dependancy: pip install PyMuPDF
+Dependdncy:
+- pip install PyMuPDF
+- pip install PyPDF2
 
 Author: MLOS^2_NLP_TEAM
 Date: 2024.02.07

@@ -6,6 +6,8 @@ From raw data, extract necessary data and translate
 it into RTF format. This includes header, diseases,
 dates, and other data as well.
 
+Dependency:
+- pip install python-dateutil
 
 Author: MLOS^2_NLP_TEAM
 Date: 2024.02.09

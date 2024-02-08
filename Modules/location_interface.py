@@ -7,6 +7,9 @@ and return the required data to another file.
 Importing new data will be supported later on
 through this module.
 
+Dependency:
+- pip install requests
+
 Author: MLOS^2_NLP_TEAM
 Date: 2024.02.05
 """
