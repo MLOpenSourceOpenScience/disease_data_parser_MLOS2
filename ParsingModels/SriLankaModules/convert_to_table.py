@@ -60,8 +60,12 @@ def is_number_value(input: str)-> bool:
         return False
     return True
 
-def get_table_values(first_location: str, text: str) -> Optional[str]:
+
+# Assumes `text` only contains the table. if it contains more (especially at the beginning), it will give erroneous results
+# first_location should only have table values after it
+def get_table_values(first_location: str, text: str, flags: List[str] = []) -> Optional[str]:
     start_index = text.find(first_location)
+    debug_mode = '-d' in flags
 
     if start_index != -1:
         parsed = text[start_index:]
@@ -76,6 +80,16 @@ def get_table_values(first_location: str, text: str) -> Optional[str]:
                 if len(row)>0:
                     output.append(row)
                 row = []        
+        if len(row)>0:
+            output.append(row)
+        
+        # Error checking len of each row
+        row_lens = [len(row) for row in output]
+        if (len(set(row_lens)) != 1):
+            print("WARNING: inconsistent rows in convert_to_table.get_table_values():")
+            print(row_lens)
+            if not debug_mode: print("run with -d (debug mode) to see more information")
+
         return output
     else:
         return None
@@ -123,7 +137,7 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
         data = list(filter(str.strip, data)) # Removes empty entries in data (such as '')
         location_name = data[0]
         if table_values == None:
-            table_values = get_table_values(location_name, important_text[1])
+            table_values = get_table_values(location_name, important_text[1], flags)
             if debug_mode:
                 print("DEBUG: TABLE VALUES:")
                 for row in table_values:
@@ -134,7 +148,7 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
             break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
-            cases = table_values[j-1]
+            cases = table_values[i-2][j-1]
             disease_name = labels[j//2]
             # j//2 is to skip every other value,
             # since for Sri Lanka the tables have A and B values,
