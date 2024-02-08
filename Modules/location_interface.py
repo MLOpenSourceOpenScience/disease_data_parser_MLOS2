@@ -124,7 +124,8 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
         print(f"Error: {response.status_code}, {response.text}")
 
     print(f"Error: Location lookup error. Program cannot find {search_location_original}")
-    quit()
+    #quit() removed so other functions can continue
+    raise Exception
 
 ### example code
 

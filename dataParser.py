@@ -21,6 +21,7 @@ if __name__ == "__main__":
         print("Flags:")
         print("-q: Quiet Mode. No stack trace outputs for errors")
         print("-d: Debug Mode. Print inputs to each function")
+        print("-l [Path/To/File]: Logs all failed pdfs to file, for debugging")
         quit()
     if n < 4:
         print("Invalid number of arguments! Correct usage: dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
@@ -34,8 +35,26 @@ if __name__ == "__main__":
     modelFile = sys.argv[3] # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
+    flag_types = ['-q','-d','-l']
+
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
+    log_mode = '-l' in flags
+    log_file_path = None
+
+    # Output Mode
+    if log_mode:
+        try:
+            log_filename = flags[flags.index('-l')+1]
+            if log_filename in flag_types: # If the value after -o is just another flag and not a log file
+                raise Exception()
+        except:
+            print("Error with -l flag: Can't find path to log file. Proper usage: -l [Path/To/File]")
+            quit()
+        log_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), log_filename)
+        log_directory = os.path.dirname(log_file_path)
+        if not os.path.exists(log_directory): # If there is no directory, make it
+            os.makedirs(log_directory)
 
     model = importlib.import_module(modelFile) 
 
@@ -63,6 +82,7 @@ if __name__ == "__main__":
             quit()
 
     i = 1
+    num_errors = 0
     for currentFile in filesToParse:
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
         step = 0
@@ -76,17 +96,27 @@ if __name__ == "__main__":
             step += 1
             print_to_csv(table,heading,file_name=outFile)
         except Exception as error:
-            print(f"Error for file {currentFile} ", end="")
+            num_errors += 1
+            error_message = f"Error for file {currentFile} "
+            
             match step:
                 case 0:
-                    print("at pdf_to_rtf(). Perhaps the file is not a proper PDF?")
+                    error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
                 case 1:
-                    print("at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?")
+                    error_message += "at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?\n"
                 case 2:
-                    print("at print_to_csv()")
+                    error_message += "at print_to_csv()\n"
+            print(error_message)
             if not quiet_mode: 
                 traceback.print_exc() # show error stack trace 
+            if log_mode: 
+                with open(log_file_path,'a') as log_file:
+                    log_file.write(error_message)
+                    log_file.write(traceback.format_exc())
+                    log_file.write('\n')
+
 
         i += 1
 
     print("Done! Output in", outFile)
+    print(f"There were errors in {num_errors}/{len(filesToParse)} files")
