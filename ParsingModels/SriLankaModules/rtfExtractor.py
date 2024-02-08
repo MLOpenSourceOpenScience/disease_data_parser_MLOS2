@@ -44,7 +44,7 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
         return None
 
 
-def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datetime]]]:
+def extractDataFromRTF(rtfData: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
     # months used to convert text month to datetime
     ''' No longer used
     month_dict = {
@@ -70,7 +70,7 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
         'Dec': 12
     }
     '''
-    day, month, year = extract_date_components(rtfData)
+    day, month, year = extract_date_components(rtfData[0])
     if(day is None or month is None or year is None):
         print("Error: Invalid date")
         return None, None
@@ -84,10 +84,14 @@ def extractDataFromRTF(rtfData: str) -> Tuple[Optional[str], Optional[List[datet
     end_date = parse(f"{year} {month} {day}")
     table_change_date = datetime(2013, 5, 17)
 
+    table = ["",""]
+
     if end_date > table_change_date:
-        table = extract_table("RDHS", "Table", rtfData)
+        table[0] = extract_table("RDHS", "Comments", rtfData[0])
+        table[1] = extract_table("RDHS", "Comments", rtfData[1])
     else:
-        table = extract_table("DPDHS", "Source", rtfData)
+        table[0] = extract_table("DPDHS", "Source", rtfData[0])
+        table[1] = extract_table("DPDHS", "Source", rtfData[1]) #MIGHT NOT BE ACCURATE!! TEST this eventually
 
     #print(table)
     #if old (by volume or date or identifying factor do this or that)

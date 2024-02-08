@@ -1,4 +1,3 @@
-#Alan
 """
 PDF Extractor
 
@@ -10,8 +9,10 @@ Date: 2024.02.07
 
 import os
 from PyPDF2 import PdfReader
+import fitz as pymupdf #pymupdf
+from typing import List
 
-def pdf_to_rtf(path: str, output_path: str = None) -> str:
+def pdf_to_rtf(path: str, output_path: str = None) -> List[str]:
     """
     Reads file path, and get pdf file and read through it.
     After reading it, convert texts and write it as RTF if
@@ -24,23 +25,28 @@ def pdf_to_rtf(path: str, output_path: str = None) -> str:
         If not given, it is None by default.
 
     Returns:
-    - str: String that is converted from pdf file.
+    - List[str]: 2 strings that is converted from pdf file, index 0 is pypdf2, index 1 is pymupdf.
     """
     #Generate a text rendering of a PDF file in the form of a list of lines.
-    full_text = ""
+    full_text_pypdf2 = ""
+    full_text_pymupdf = ""
 
     with open(path, 'rb') as f:
         pdf = PdfReader(f)
         for page in pdf.pages:
             text = page.extract_text()
-            full_text += f"\n\n{text}"
+            full_text_pypdf2 += f"\n\n{text}"
+        doc = pymupdf.open(f) 
+        for page in doc:
+            text = page.get_text()
+            full_text_pymupdf += f"\n\n{text}"
 
-    # if output file as been specified, save it there
+    # if output file has been specified, save it there
     if output_path is not None:
         with open(output_path, 'w', encoding='utf-8') as file:
-            file.write(full_text)
+            file.write(full_text_pypdf2)
 
-    return full_text
+    return [full_text_pypdf2, full_text_pymupdf]
 
 def runner():
     """

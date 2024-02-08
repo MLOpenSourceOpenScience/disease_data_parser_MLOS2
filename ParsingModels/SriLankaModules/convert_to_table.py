@@ -14,7 +14,8 @@ Date: 2024.02.06
 import sys
 import os
 from datetime import datetime,timedelta
-from typing import List
+from typing import List, Optional
+import re
 
 current_directory = os.path.dirname(__file__)
 moudlues_directory = os.path.join(current_directory, '../../Modules')
@@ -55,7 +56,49 @@ def time_to_excel_time(time: datetime)-> str:
 # Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
-def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]:
+def is_number_value(input: str)-> bool:
+    try:
+        float(input) #If it can cast to float, it is a number
+    except:
+        return False
+    return True
+
+
+# Assumes `text` only contains the table. if it contains more (especially at the beginning), it will give erroneous results
+# first_location should only have table values after it
+def get_table_values(first_location: str, text: str, flags: List[str] = []) -> Optional[str]:
+    start_index = text.find(first_location)
+    debug_mode = '-d' in flags
+
+    if start_index != -1:
+        parsed = text[start_index:]
+        parsed = re.split('\n| ', parsed)
+        parsed = list(filter(str.strip, parsed)) # Removes empty entries in data (such as '')
+        output = []
+        row = []
+        for data in parsed:
+            if is_number_value(data):
+                row.append(data)
+            else:
+                if len(row)>0:
+                    output.append(row)
+                row = []        
+        if len(row)>0:
+            output.append(row)
+        
+        # Error checking len of each row
+        row_lens = [len(row) for row in output]
+        if (len(set(row_lens)) != 1):
+            print("WARNING: inconsistent rows in convert_to_table.get_table_values():")
+            print(row_lens)
+            if not debug_mode: print("run with -d (debug mode) to see more information")
+
+        return output
+    else:
+        return None
+    
+
+def convert_to_table(important_text: List[str],timestamps: List[datetime], flags: List[str] = [])-> List[str]:
     """
     Read text file and parse it, creating a List of string which holds
     the same information as a table format (2D). Will get a timestaps
@@ -68,9 +111,11 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
     Returns:
     - List[str]: Parsed text in a table format.
     """
+    table_values = None
+    debug_mode = '-d' in flags
 
     table_data = []
-    rows = important_text.split('\n')
+    rows = important_text[0].split('\n')
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS',
@@ -88,17 +133,25 @@ def convert_to_table(important_text: str,timestamps: List[datetime])-> List[str]
     #               'Leishmaniasis',
     #               'WRCD']
 
+    pymupdf_values = []
+
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ") # Splits row into data
         data = list(filter(str.strip, data)) # Removes empty entries in data (such as '')
         location_name = data[0]
+        if table_values == None:
+            table_values = get_table_values(location_name, important_text[1], flags)
+            if debug_mode:
+                print("DEBUG: TABLE VALUES:")
+                for row in table_values:
+                    print("Row Length:", len(row), row)
 
         if location_name.lower() in ["srilanka", "sri", "sri lanka"] or len(location_name) < 1:
             # for now, temporary use. Will chage the break point if pdf parser changes.
             break
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
-            cases = data[j]
+            cases = table_values[i-2][j-1]
             disease_name = labels[j//2]
             # j//2 is to skip every other value,
             # since for Sri Lanka the tables have A and B values,
