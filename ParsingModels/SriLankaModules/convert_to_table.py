@@ -54,6 +54,8 @@ def time_to_excel_time(time: datetime)-> str:
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
 def is_number_value(input: str)-> bool:
+    if input[-1] == '%':
+        input = input[:-1]
     try:
         float(input) #If it can cast to float, it is a number
     except:
