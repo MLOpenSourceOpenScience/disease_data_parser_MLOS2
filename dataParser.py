@@ -1,12 +1,10 @@
 import sys
 import importlib
-from datetime import datetime
 import os
 import traceback
 from Modules.PDFoperators import *
 from Modules.pdf_extractor import pdf_to_rtf
-sys.path.append(os.path.join(os.path.dirname(__file__), 'Modules')) # Gets the directory of LLaMaInterface module for import
-from table_to_csv import *
+from Modules.table_to_csv import print_to_csv
 
 
 
@@ -14,7 +12,7 @@ if __name__ == "__main__":
 
     n = len(sys.argv)
     if n == 2 and sys.argv[1] == "-h": #TODO: improve help dialogue
-        print("Usage: dataParser.py <folder-to-parse/> <output-file.csv> <parsing-model>") 
+        print("Usage: dataParser.py <folder-to-parse/> <output-file.csv> <parsing-model>")
         print("Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model")
         print("Arg 2: output file, in csv format")
         print("Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data. If it is in a folder, replace / with . in the path so python can import properly")
@@ -24,7 +22,7 @@ if __name__ == "__main__":
         print("-q: Quiet Mode. No stack trace outputs for errors")
         print("-d: Debug Mode. Print inputs to each function")
         quit()
-    if (n<4):
+    if n < 4:
         print("Invalid number of arguments! Correct usage: dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
         print("Example: dataParser.py Data Output/data.csv ParsingModels.sriLankaParser")
         print("run dataParser.py -h for more information")
@@ -71,7 +69,7 @@ if __name__ == "__main__":
         try:
             rtfData = pdf_to_rtf(currentFile)
             step +=1
-            table,heading = model.extractToTable(rtfData, flags = flags)
+            table,heading = model.extract_to_table(rtfData, flags = flags)
             for n in range(len(table)):
                 table[n].append(currentFile)  # Added file source to show here the data came from
             heading.append("Source File")
@@ -83,7 +81,7 @@ if __name__ == "__main__":
                 case 0:
                     print("at pdf_to_rtf(). Perhaps the file is not a proper PDF?")
                 case 1:
-                    print("at model.extractToTable(). Perhaps you chose the wrong model or have an error in the model?")
+                    print("at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?")
                 case 2:
                     print("at print_to_csv()")
             if not quiet_mode: 

@@ -40,7 +40,7 @@ tableHeading = ['Disease Name',
                 'TimeStampStart',
                 'TimeStampEnd']
 
-def time_to_excel_time(time: datetime)-> str:
+def time_to_excel_time(time: datetime) -> str:
     """
     Get time as datetime format, and return str type of that same datetime.
 
@@ -56,15 +56,26 @@ def time_to_excel_time(time: datetime)-> str:
 # Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
 #               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
-def is_number_value(input: str)-> bool:
+def is_number_value(input_string: str) -> bool:
+    """
+    Check if the input strging can tranlated into number
+
+    Parameters:
+    - input_string (str): String evaluated.
+
+    Returns:
+    - bool: True if it is, False if it is not.
+    """
     try:
-        float(input) #If it can cast to float, it is a number
-    except:
+        float(input_string) #If it can cast to float, it is a number
+    except ValueError:
+        # if alphabetic or special characetr
         return False
     return True
 
 
-# Assumes `text` only contains the table. if it contains more (especially at the beginning), it will give erroneous results
+# Assumes `text` only contains the table.
+## if it contains more (especially at the beginning), it will give erroneous results
 # first_location should only have table values after it
 def get_table_values(first_location: str, text: str, flags: List[str] = []) -> Optional[str]:
     start_index = text.find(first_location)
@@ -82,27 +93,30 @@ def get_table_values(first_location: str, text: str, flags: List[str] = []) -> O
             else:
                 if len(row)>0:
                     output.append(row)
-                row = []        
+                row = []
         if len(row)>0:
             output.append(row)
-        
+
         # Error checking len of each row
         row_lens = [len(row) for row in output]
-        if (len(set(row_lens)) != 1):
+        if len(set(row_lens)) != 1:
             print("WARNING: inconsistent rows in convert_to_table.get_table_values():")
             print(row_lens)
-            if not debug_mode: print("run with -d (debug mode) to see more information")
+            if not debug_mode:
+                print("run with -d (debug mode) to see more information")
 
         return output
     else:
         return None
-    
+
 # Removes blank values from a List
 def remove_blank_values(data: List[str])-> List[str]:
     return list(filter(str.strip, data)) # Removes empty entries in data (such as '')
-    
 
-def convert_to_table(important_text: List[str],timestamps: List[datetime], flags: List[str] = [])-> List[str]:
+
+def convert_to_table(important_text: List[str],
+                     timestamps: List[datetime],
+                     flags: List[str] = []) -> List[str]:
     """
     Read text file and parse it, creating a List of string which holds
     the same information as a table format (2D). Will get a timestaps
@@ -138,7 +152,6 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
     #               'Leishmaniasis',
     #               'WRCD']
 
-    pymupdf_values = []
     if debug_mode:
         print("DEBUG: ROWS:")
         print(rows)
@@ -147,7 +160,7 @@ def convert_to_table(important_text: List[str],timestamps: List[datetime], flags
         data = rows[i].strip().split(" ") # Splits row into data
         data = remove_blank_values(data) # Removes empty entries in data (such as '')
         location_name = data[0]
-        if table_values == None:
+        if table_values is None:
             table_values = get_table_values(location_name, important_text[1], flags)
             if debug_mode:
                 print("DEBUG: TABLE VALUES:")

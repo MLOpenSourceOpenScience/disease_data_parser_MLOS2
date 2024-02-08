@@ -38,7 +38,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         return day, month, year
     else:
         print("Error: Date not found")
-        return None
+        return None, None, None
 
 
 #given a start and end word, extract the table between them
