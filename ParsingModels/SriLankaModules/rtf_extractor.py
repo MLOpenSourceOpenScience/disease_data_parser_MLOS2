@@ -24,7 +24,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
     Returns: string with rtf data relevant for tables, 2 element array with the start and end timestamp
     '''
     # Regular expression pattern to match the date format
-    pattern = r'\((\d{1,2})(?:st|nd|rd|th)?\s*[-–]\s*(\d{1,2})(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})\)'
+    pattern = r'\b(\d{1,2})(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
 
     # Search for the pattern in the text
     match = re.search(pattern, text)
@@ -65,7 +65,7 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
         return None
 
 
-def extract_data_from_rtf(rtfData: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
+def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
     # months used to convert text month to datetime
     ''' No longer used
     month_dict = {
@@ -91,7 +91,7 @@ def extract_data_from_rtf(rtfData: List[str]) -> Tuple[Optional[List[str]], Opti
         'Dec': 12
     }
     '''
-    day, month, year = extract_date_components(rtfData[0])
+    day, month, year = extract_date_components(rtf_data[0])
     if(day is None or month is None or year is None):
         print("Error: Invalid date")
         return None, None
@@ -108,11 +108,11 @@ def extract_data_from_rtf(rtfData: List[str]) -> Tuple[Optional[List[str]], Opti
     table = ["",""]
 
     if end_date > table_change_date:
-        table[0] = extract_table("RDHS", "Comments", rtfData[0])
-        table[1] = extract_table("RDHS", "Comments", rtfData[1])
+        table[0] = extract_table("RDHS", "Comments", rtf_data[0])
+        table[1] = extract_table("RDHS", "Comments", rtf_data[1])
     else:
-        table[0] = extract_table("DPDHS", "Source", rtfData[0])
-        table[1] = extract_table("DPDHS", "Source", rtfData[1])
+        table[0] = extract_table("DPDHS", "Source", rtf_data[0])
+        table[1] = extract_table("DPDHS", "Source", rtf_data[1])
         #MIGHT NOT BE ACCURATE!! TEST this eventually
 
     #print(table)

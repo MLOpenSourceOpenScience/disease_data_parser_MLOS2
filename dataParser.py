@@ -1,8 +1,19 @@
+"""
+Data Parser
+
+Responsible for getting command line arguments and do the
+job as assigned. It will send correct data and command to
+whatever the fuction which handles the job.
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.02.09
+"""
+
 import sys
 import importlib
 import os
 import traceback
-from Modules.PDFoperators import *
+# from Modules.PDFoperators import *
 from Modules.pdf_extractor import pdf_to_rtf
 from Modules.table_to_csv import print_to_csv
 
@@ -40,23 +51,24 @@ if __name__ == "__main__":
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
     log_mode = '-l' in flags
-    log_file_path = None
+    LOG_FILE_PATH = None
 
     # Output Mode
     if log_mode:
         try:
             log_filename = flags[flags.index('-l')+1]
-            if log_filename in flag_types: # If the value after -o is just another flag and not a log file
+            if log_filename in flag_types:
+                # If the value after -o is just another flag and not a log file
                 raise Exception()
         except:
             print("Error with -l flag: Can't find path to log file. Proper usage: -l [Path/To/File]")
             quit()
-        log_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), log_filename)
-        log_directory = os.path.dirname(log_file_path)
+        LOG_FILE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), log_filename)
+        log_directory = os.path.dirname(LOG_FILE_PATH)
         if not os.path.exists(log_directory): # If there is no directory, make it
             os.makedirs(log_directory)
 
-    model = importlib.import_module(modelFile) 
+    model = importlib.import_module(modelFile)
 
     #process each file in input folder
     filesToParse = []
@@ -98,7 +110,7 @@ if __name__ == "__main__":
         except Exception as error:
             num_errors += 1
             error_message = f"Error for file {currentFile} "
-            
+
             match step:
                 case 0:
                     error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
@@ -107,10 +119,10 @@ if __name__ == "__main__":
                 case 2:
                     error_message += "at print_to_csv()\n"
             print(error_message)
-            if not quiet_mode: 
-                traceback.print_exc() # show error stack trace 
-            if log_mode: 
-                with open(log_file_path,'a') as log_file:
+            if not quiet_mode:
+                traceback.print_exc() # show error stack trace
+            if log_mode:
+                with open(LOG_FILE_PATH, 'a') as log_file:
                     log_file.write(error_message)
                     log_file.write(traceback.format_exc())
                     log_file.write('\n')

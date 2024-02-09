@@ -4,15 +4,10 @@ Sri Lanka Parser
 Author: MLOS^2_NLP_TEAM
 Date: 2024.02.06
 """
-import sys
-import os
-from typing import List
-sys.path.append(os.path.join(os.path.dirname(__file__), '../ParsingModels')) # Gets the directory of SriLankaModules for importing dependencies
-sys.path.append(os.path.join(os.path.dirname(__file__), '../Modules')) # Gets the directory of LLaMaInterface module for import
-# Gets the directory of SriLankaModules for importing dependencies
 
-from SriLankaModules.convert_to_table import convert_to_table, tableHeading, print_table
-from SriLankaModules.rtfExtractor import extract_data_from_rtf
+from typing import List
+from ParsingModels.SriLankaModules.convert_to_table import convert_to_table, tableHeading, print_table
+from ParsingModels.SriLankaModules.rtf_extractor import extract_data_from_rtf
 
 def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List[str]], List[str]]:
     """
