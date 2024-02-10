@@ -33,7 +33,7 @@ def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List
     important_text,timestamps = extract_data_from_rtf(rtf_data)
 
     if important_text is None or timestamps is None:
-        print("Error: timestamp recongnization error")
+        print("Error: Timestamp recongnization error")
         return None, None
 
     if debug_mode:

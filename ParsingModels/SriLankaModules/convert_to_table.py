@@ -67,8 +67,12 @@ def is_number_value(input_string: str) -> bool:
     Returns:
     - bool: True if it is, False if it is not.
     """
-    if input_string[-1] == '%':
+    if input_string[-1] in ['%']:
         input_string = input_string[:-1]
+    elif '+' in input_string:
+        index_int = input_string.find('+')
+        input_string = input_string[:index_int]
+
     try:
         float(input_string) #If it can cast to float, it is a number
     except ValueError:
@@ -94,10 +98,14 @@ def get_table_values(first_location: str, text: str, flags: List[str] = []) -> O
             if is_number_value(data):
                 row.append(data)
             else:
-                if len(row)>0:
+                if len(row) > 1:
+                    # Having number of 1 means there 'is' an error.
+                    ## Or, it might having one number such as year, or number of reports,
+                    ## or something inconsistant with the real data, so remove it.
                     output.append(row)
                 row = []
-        if len(row)>0:
+        if len(row) > 1:
+            print(row)
             output.append(row)
 
         # Error checking len of each row
@@ -113,8 +121,50 @@ def get_table_values(first_location: str, text: str, flags: List[str] = []) -> O
         return None
 
 # Removes blank values from a List
-def remove_blank_values(data: List[str])-> List[str]:
-    return list(filter(str.strip, data)) # Removes empty entries in data (such as '')
+def remove_blank_values(data: List[str]) -> List[str]:
+    """
+    Removes empty entries in data (such as '')
+    Also removes unessacary blank spaces from the strings
+    """
+
+    new_data = []
+
+    for row in data:
+        new_data.append(row.strip())
+
+    return list(filter(str.strip, new_data))
+
+def header_concatenation(data: List[str]) -> List[str]:
+    """
+    Bring strings that are supposed to be a header and make those names
+    into one line so that it could readed as a header from other funct-
+    ions.
+
+    Parameters:
+    - data (List[str]): data
+
+    Returns:
+    - List(str): Modified list of strings where consecutive headers are
+        concatenated.
+    """
+
+    i = 0
+    while i < len(data) - 1:
+        row = data[i]
+        next_row = data[i + 1]
+
+        if (row[0].isalpha() and
+            (row[-1].isalpha() or row[-1] == '-') and
+            next_row[0].isalpha() and
+            (next_row[-1].isalpha() or next_row[-1] == '-')):
+
+            data[i] = row + ' ' + next_row
+            del data[i + 1]
+        else:
+            i += 1
+
+    return data
+
 
 
 def convert_to_table(important_text: List[str],
@@ -137,7 +187,11 @@ def convert_to_table(important_text: List[str],
 
     table_data = []
     rows = important_text[0].split('\n')
+    # Sometimes, important_tex will have '\n' in the header as well
+    # Thus, there might need a function that works as concatination
+    # of those strings
     rows = remove_blank_values(rows)
+    rows = header_concatenation(rows)
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS',
@@ -169,6 +223,13 @@ def convert_to_table(important_text: List[str],
                 print("DEBUG: TABLE VALUES:")
                 for row in table_values:
                     print("Row Length:", len(row), row)
+
+        # RTF reader often can't detect where the table ends.
+        # However since it mostly ends with "Source:", set the string
+        # as a breakpoint and break if the first word of the row is that.
+        break_string = "Source:"
+        if data[0][:len(break_string)] == break_string:
+            break
 
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):

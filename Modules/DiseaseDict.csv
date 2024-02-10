@@ -13,10 +13,12 @@ entericfever,"Enteric Fever"
 "food poi","Food Poisoning"
 "food poison","Food Poisoning"
 "f poisoning","Food Poisoning"
+"food poisoning","Food Poisoning"
 foodpoisoning,"Food Poisoning"
 leptospirosis,Leptospirosis
 "t fever","Typhus Fever"
 "typhus fe","Typhus Fever"
+"typhus fever","Typhus Fever"
 typhus,"Typhus Fever"
 typhusfever,"Typhus Fever"
 "v hep","Viral Hepatitis"
@@ -25,14 +27,20 @@ typhusfever,"Typhus Fever"
 "viral hepa","Viral Hepatitis"
 "viral. hep","Viral Hepatitis"
 "v hepatitis","Viral Hepatitis"
+"viral hepatitis","Viral Hepatitis"
 viral,"Viral Hepatitis"
 viralhepatitis,"Viral Hepatitis"
 "h rabies","Human Rabies"
 "h. rabi.","Human Rabies"
-"human","Human Rabies"
+"human rabies","Human Rabies"
+human,"Human Rabies"
 leptospirosi,Leptospirosis
 leptospirosis,Leptospirosis
 chickenpox,Chickenpox
+"leishmani asis",Leishmaniasis
+"leishmani- asis",Leishmaniasis
+leishmani,Leishmaniasis
+leishmani-,Leishmaniasis
 leishmania,Leishmaniasis
 meningitis,Meningitis
 dpdhs,ignore
