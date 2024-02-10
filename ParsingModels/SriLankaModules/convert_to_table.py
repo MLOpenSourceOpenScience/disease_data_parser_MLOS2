@@ -152,11 +152,16 @@ def header_concatenation(data: List[str]) -> List[str]:
         row = data[i]
         next_row = data[i + 1]
 
-        if (row[0].isalpha() and
-            (row[-1].isalpha() or row[-1] == '-') and
-            next_row[0].isalpha() and
-            (next_row[-1].isalpha() or next_row[-1] == '-')):
+        row_state = row[0].isalpha() and (row[-1].isalpha() or row[-1] == '-')
+        next_row_state = next_row[0].isalpha() and (next_row[-1].isalpha() or next_row[-1] == '-')
 
+        ab_row = (row[-1] == 'A' and next_row[0] == 'B') or (row[-1] == 'B' and next_row[0] == 'A')
+        ad_tc = (row[-1] == 'B' and next_row == 'T*') or (row[-1] == '*' and next_row == 'C**')
+
+        if row_state and next_row_state and next_row != 'A':
+            data[i] = row + ' ' + next_row
+            del data[i + 1]
+        elif ab_row or ad_tc:
             data[i] = row + ' ' + next_row
             del data[i + 1]
         else:
@@ -185,11 +190,11 @@ def convert_to_table(important_text: List[str],
     debug_mode = '-d' in flags
 
     table_data = []
-    rows = important_text[0].split('\n')
+    rows = important_text[1].split('\n')
+    rows = remove_blank_values(rows)
     # Sometimes, important_tex will have '\n' in the header as well
     # Thus, there might need a function that works as concatination
     # of those strings
-    rows = remove_blank_values(rows)
     rows = header_concatenation(rows)
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
@@ -208,6 +213,19 @@ def convert_to_table(important_text: List[str],
     #               'Leishmaniasis',
     #               'WRCD']
 
+    new_rows = [rows[0]]
+    temp_row = rows[1]
+
+    for i in range(2, len(rows)):
+        if rows[i].strip()[0].isalpha():
+            new_rows.append(temp_row.strip())
+            temp_row = rows[i]
+        else:
+            temp_row += " " + rows[i]
+
+    new_rows.append(temp_row)
+    rows = new_rows
+
     if debug_mode:
         print("DEBUG: ROWS:")
         print(rows)
@@ -215,20 +233,29 @@ def convert_to_table(important_text: List[str],
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ") # Splits row into data
         data = remove_blank_values(data) # Removes empty entries in data (such as '')
+
         location_name = data[0]
+
+        # RTF reader often can't detect where the table ends.
+        # However since it mostly ends with "Source:", set the string
+        # as a breakpoint and break if the first word of the row is that.
+
+        stop_reading = False
+
+        break_strings = ["Source:", "WRCD", "PRINTING"]
+        for break_string in break_strings:
+            if data[0][:len(break_string)] == break_string:
+                stop_reading = True
+
+        if stop_reading:
+            break
+
         if table_values is None:
             table_values = get_table_values(location_name, important_text[1], flags)
             if debug_mode:
                 print("DEBUG: TABLE VALUES:")
                 for row in table_values:
                     print("Row Length:", len(row), row)
-
-        # RTF reader often can't detect where the table ends.
-        # However since it mostly ends with "Source:", set the string
-        # as a breakpoint and break if the first word of the row is that.
-        break_string = "Source:"
-        if data[0][:len(break_string)] == break_string:
-            break
 
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):

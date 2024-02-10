@@ -62,8 +62,8 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
     if start_index != -1 and end_index != -1:
         result = text[start_index + len(first_word):end_index]
         return result
-    else:
-        return None
+
+    return None
 
 
 def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
@@ -106,7 +106,7 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]], Opt
     if month == 'Apri':
         # Exception Handling
         month = 'April'
-    
+
     end_date = parse(f"{year} {month} {day}")
     table_change_date = datetime(2013, 5, 17)
 
