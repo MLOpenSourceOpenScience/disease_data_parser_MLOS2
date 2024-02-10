@@ -105,7 +105,6 @@ def get_table_values(first_location: str, text: str, flags: List[str] = []) -> O
                     output.append(row)
                 row = []
         if len(row) > 1:
-            print(row)
             output.append(row)
 
         # Error checking len of each row

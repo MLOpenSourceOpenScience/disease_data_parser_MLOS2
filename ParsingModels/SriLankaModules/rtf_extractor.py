@@ -24,7 +24,8 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
     Returns: string with rtf data relevant for tables, 2 element array with the start and end timestamp
     '''
     # Regular expression pattern to match the date format
-    pattern = r'\b(\d{1,2})(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
+    pattern = r'\b(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
+    # \s{0,1}\( on the end?
 
     # Search for the pattern in the text
     match = re.search(pattern, text)
@@ -102,6 +103,10 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]], Opt
         print("Month:", month)
         print("Year:", year)
 
+    if month == 'Apri':
+        # Exception Handling
+        month = 'April'
+    
     end_date = parse(f"{year} {month} {day}")
     table_change_date = datetime(2013, 5, 17)
 

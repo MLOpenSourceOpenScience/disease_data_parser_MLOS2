@@ -1,6 +1,7 @@
 Item,"Region Type","Country Code",Longitude,Latitude,"Item Boundary"
 gampaha,city,LKA,80.92297,6.99555,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}"
 kalumune,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
+kalumunei,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 kalumunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 colombo,city,LKA,79.84588,6.93243,"{'west': 79.82217, 'south': 6.86256, 'east': 79.88997, 'north': 6.98118}"
 kandy,city,LKA,80.63867,7.29497,"{'west': 80.59229, 'south': 7.24218, 'east': 80.65777, 'north': 7.3217}"
@@ -29,6 +30,14 @@ puttalam,city,LKA,79.83554,8.02739,"{'west': 79.82815, 'south': 8.01447, 'east':
 monaragala,city,LKA,81.34969,6.87401,"{'west': 81.34164, 'south': 6.86256, 'east': 81.35986, 'north': 6.88672}"
 kalutara,city,LKA,79.96151,6.58227,"{'west': 79.95693, 'south': 6.57254, 'east': 79.96688, 'north': 6.59118}"
 anuradhapura,city,LKA,80.40849,8.33021,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}"
+kalmunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
+kalmunei,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
+anuradhapu,city,LKA,80.40849,8.33021,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}"
+polonnaruw,city,LKA,81.00787,7.9422,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}"
+
+0matara,city,LKA,80.55015,5.94464,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}"
+0jaffna,city,LKA,80.01907,9.65876,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}"
+0vavuniya,city,LKA,80.49993,8.75888,"{'west': 80.40041, 'south': 8.71375, 'east': 80.55008, 'north': 8.8121}"
 
 kalumunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 "puttalam, puttalam, sri lanka",city,LKA,79.83554,8.02739,"{'west': 79.82815, 'south': 8.01447, 'east': 79.84264, 'north': 8.03154}"
@@ -39,4 +48,3 @@ anuradhapura,city,LKA,80.40849,8.33021,"{'west': 80.39065, 'south': 8.29558, 'ea
 "matale, sri lanka",city,LKA,80.62424,7.47354,"{'west': 80.60563, 'south': 7.42466, 'east': 80.63226, 'north': 7.48865}"
 
 
-source,district,FRA,2.40085,43.503,"{'west': 2.40037, 'south': 43.50283, 'east': 2.40129, 'north': 43.50326}"
