@@ -132,3 +132,7 @@ if __name__ == "__main__":
 
     print("Done! Output in", outFile)
     print(f"There were errors in {num_errors}/{len(filesToParse)} files")
+    if log_mode:
+        with open(LOG_FILE_PATH, 'a') as log_file:
+            log_file.write(f"There were errors in {num_errors}/{len(filesToParse)} files")
+
