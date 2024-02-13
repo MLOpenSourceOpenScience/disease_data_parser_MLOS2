@@ -13,6 +13,8 @@ import sys
 import importlib
 import os
 import traceback
+import shutil
+import ntpath
 # from Modules.PDFoperators import *
 from Modules.pdf_extractor import pdf_to_rtf
 from Modules.table_to_csv import print_to_csv
@@ -33,6 +35,7 @@ if __name__ == "__main__":
         print("-q: Quiet Mode. No stack trace outputs for errors")
         print("-d: Debug Mode. Print inputs to each function")
         print("-l [Path/To/File]: Logs all failed pdfs to file, for debugging")
+        print("-errordir [Path/To/Directory]: Copies all failed pdfs into directory, for debugging")
         quit()
     if n < 4:
         print("Invalid number of arguments! Correct usage: dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
@@ -46,14 +49,16 @@ if __name__ == "__main__":
     modelFile = sys.argv[3] # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
-    flag_types = ['-q','-d','-l']
+    flag_types = ['-q','-d','-l','-errordir']
 
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
     log_mode = '-l' in flags
+    error_dir_mode = '-errordir' in flags
     LOG_FILE_PATH = None
+    ERROR_DIR = None
 
-    # Output Mode
+    # Log Mode
     if log_mode:
         try:
             log_filename = flags[flags.index('-l')+1]
@@ -67,6 +72,20 @@ if __name__ == "__main__":
         log_directory = os.path.dirname(LOG_FILE_PATH)
         if not os.path.exists(log_directory): # If there is no directory, make it
             os.makedirs(log_directory)
+
+    #Error Dir Mode
+    if error_dir_mode:
+        try:
+            err_dir = flags[flags.index('-errordir')+1]
+            if err_dir in flag_types:
+                # If the value after -o is just another flag and not a log file
+                raise Exception()
+        except:
+            print("Error with -errordir flag: Can't find path to error directory. Proper usage: -errordir [Path/To/Directory]")
+            quit()
+        ERROR_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), err_dir)
+        if not os.path.exists(ERROR_DIR): # If there is no directory, make it
+            os.makedirs(ERROR_DIR)
 
     model = importlib.import_module(modelFile)
 
@@ -121,11 +140,13 @@ if __name__ == "__main__":
             print(error_message)
             if not quiet_mode:
                 traceback.print_exc() # show error stack trace
-            if log_mode:
+            if log_mode: # Log error in logfile
                 with open(LOG_FILE_PATH, 'a') as log_file:
                     log_file.write(error_message)
                     log_file.write(traceback.format_exc())
                     log_file.write('\n')
+            if error_dir_mode: # Place error files into new directory
+                shutil.copy(currentFile, os.path.join(ERROR_DIR, ntpath.basename(currentFile)))
 
 
         i += 1
