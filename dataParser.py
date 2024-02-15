@@ -155,9 +155,7 @@ if __name__ == "__main__":
                 else:
                     error_folder = error_folder[start_of_folder_name:]
                     error_folder = make_valid_filename(error_folder)
-                    print(error_folder)
                     output_dir = os.path.join(ERROR_DIR, error_folder)
-                    print(output_dir)
                     if not os.path.exists(output_dir): # If there is no directory, make it
                         os.makedirs(output_dir)
                     shutil.copy(currentFile, os.path.join(output_dir, ntpath.basename(currentFile)))
