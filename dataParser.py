@@ -18,6 +18,7 @@ import ntpath
 # from Modules.PDFoperators import *
 from Modules.pdf_extractor import pdf_to_rtf
 from Modules.table_to_csv import print_to_csv
+from Modules.file_functions import make_valid_filename
 
 
 
@@ -146,7 +147,20 @@ if __name__ == "__main__":
                     log_file.write(traceback.format_exc())
                     log_file.write('\n')
             if error_dir_mode: # Place error files into new directory
-                shutil.copy(currentFile, os.path.join(ERROR_DIR, ntpath.basename(currentFile)))
+                error_folder = traceback.format_exc().split('\n')[-4]
+                start_of_folder_name = error_folder.rfind("line")
+                if start_of_folder_name == -1: #can't find line, can't categorize error (shouldn't happen)
+                    print("can't find line in:", error_folder)
+                    shutil.copy(currentFile, os.path.join(ERROR_DIR, ntpath.basename(currentFile)))
+                else:
+                    error_folder = error_folder[start_of_folder_name:]
+                    error_folder = make_valid_filename(error_folder)
+                    print(error_folder)
+                    output_dir = os.path.join(ERROR_DIR, error_folder)
+                    print(output_dir)
+                    if not os.path.exists(output_dir): # If there is no directory, make it
+                        os.makedirs(output_dir)
+                    shutil.copy(currentFile, os.path.join(output_dir, ntpath.basename(currentFile)))
 
 
         i += 1
