@@ -14,12 +14,14 @@ dysentery,Dysentery
 "dpdhs,dhf*,wrcd,rdhs,division,divisions,eon,s,areas,around,n,ng,fever,a,b,sis,h,and,ies,is,moh,each,area",ignore
 
 
+This Gap is intentionally created, to find whatever the change was made on top
+The top row and the bottom row, SHOULD NOT BE MODIFIED BY A PROGRAM
 
 
 Target,Real Name
 "dengue fever,dengue,dengue fe",Dengue Fever
 dysentery,Dysentery
-"encephali tis,encephalitis,encephaliti s,encephalit is,encepha liti,encephal itis,encepha litis",Encephalitis
+"encephali tis,encephalitis,encephaliti s,encephalit is,encepha liti,encephal itis,encepha litis,encephaliti,encephalit,encephali",Encephalitis
 "e fever,enteric fever,entericfever,enteric",Enteric Fever
 "food poisoning,foodpoisoning,food poi,food poison,f poisoning,food,food poisoni",Food Poisoning
 "leptospirosis,leptospiros is,leptospirosi s,leptospir osis,leptospiro sis,leptospiro,leptospiros,leptospirosi",Leptospirosis
