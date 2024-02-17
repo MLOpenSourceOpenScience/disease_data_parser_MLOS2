@@ -133,6 +133,26 @@ def remove_blank_values(data: List[str]) -> List[str]:
 
     return list(filter(str.strip, new_data))
 
+
+def find_in_string_ignore_spaces(data:str, find:str) -> int:
+    """
+    Finds index of item in string, regardless of spaces in between
+    Helpful for interface between pyPDF2 strings and pyMuPDF strings (importantText[0] and importantText[1])
+    """
+    find = find.replace(' ','')
+    i = 0
+    while i < len(data):
+        if data[i] == find[0]:
+            if data[i:].replace(' ','')[:len(find)] == find:
+                return i
+        i += 1
+    return -1
+
+
+def split_into_rows(data: List[str]) -> List[str]:
+    return data.split('\n')
+
+
 def header_concatenation(data: List[str]) -> List[str]:
     """
     Bring strings that are supposed to be a header and make those names
@@ -190,7 +210,7 @@ def convert_to_table(important_text: List[str],
     debug_mode = '-d' in flags
 
     table_data = []
-    rows = important_text[1].split('\n')
+    rows = split_into_rows(important_text)
     rows = remove_blank_values(rows)
     # Sometimes, important_tex will have '\n' in the header as well
     # Thus, there might need a function that works as concatination
