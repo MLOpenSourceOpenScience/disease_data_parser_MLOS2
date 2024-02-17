@@ -54,19 +54,24 @@ def compare_two_word(str1: str, str2: str) -> int:
 
     if not is_two_word1 and not is_two_word2:
         lc = longest_common_subsequence(str1, str2)
-        temp_score = lc / max(len(str1), len(str2))
+        temp_score = lc*2 / (len(str1) + len(str2))
         # normalize so that maximum is 1.
-        ## (Portion of maximum subsequence from the maximum word)
     elif not is_two_word1 and is_two_word2:
         # since we don't hope the word to match second word, abort the second similarity
         lc1 = longest_common_subsequence(str1, str2_list[0])
-        temp_score = lc1 / max(len(str1), len(str2_list[0]))
+        if lc1 <= 1:
+            temp_score = 0
+        else:
+            lc2 = longest_common_subsequence(str1, str2_list[1])
+            length1 = (len(str1) + len(str2_list[0])) / 2
+            length2 = (len(str1) + len(str2_list[1])) /2
+            temp_score = ((lc1 / length1) + (lc2 / length2)) / 2
     elif is_two_word1 and is_two_word2:
         lc1 = longest_common_subsequence(str1_list[0], str2_list[0])
         lc2 = longest_common_subsequence(str1_list[1], str2_list[1])
-        max_length1 = max(len(str1_list[0]), len(str2_list[0]))
-        max_length2 = max(len(str1_list[1]), len(str2_list[1]))
-        temp_score = ((lc1 / max_length1) + (lc2 / max_length2)) / 2
+        length1 = (len(str1_list[0]) + len(str2_list[0])) / 2
+        length2 = (len(str1_list[1]) + len(str2_list[1])) / 2
+        temp_score = ((lc1 / length1) + (lc2 / length2)) / 2
 
     return temp_score
 
@@ -113,10 +118,13 @@ def detect_diseases(line: str) -> List[str]:
 
     line = line.replace("\n","")
     line = line.replace("-","")
-    # remove both newline character and '-'
-    # also change double-space into single space
+    line = line.replace(".","")
+    line = line.replace("/","")
+    # remove both newline character and '-', "."
 
     names = line.lower().split()
+    names.append("eon")
+    # end of name, for next_name parsing.
 
     parsed_names = []
 
@@ -127,22 +135,37 @@ def detect_diseases(line: str) -> List[str]:
         if double_length:
             double_length = False
         else:
+            full_file = []
+
+            with open(file_path, 'r', encoding= 'utf-8') as file:
+                reader = csv.reader(file)
+                full_file = list(reader)
+
             with open(file_path, 'r', encoding= 'utf-8') as file:
 
                 reader = csv.reader(file)
                 name_found = False
                 # for efficiency, if found, will break.
 
+                max_similarity = 0.0
+                most_similar_word = ""
+                target_word = ""
+
                 for row in reader:
+                    if not row:
+                        break
+                    if row[1] == "Real Name":
+                        continue
+                    name_list = row[0].split(",")
 
                     if name_found:
                         break
-                    if next_name and row and row[0] == name+' '+next_name:
+                    if next_name and name+' '+next_name in name_list:
                         # check whether it is two-word combination before going through
                         parsed_names.append(row[1])
                         double_length = True
                         name_found = True
-                    elif row and row[0] == name:
+                    elif name in name_list:
                         if row[1] == "ignore":
                             # such as:
                             ## RDHS (location column), WRCD (time and percentage column),
@@ -151,11 +174,40 @@ def detect_diseases(line: str) -> List[str]:
                         else:
                             parsed_names.append(row[1])
                         name_found = True
+                    else:
+                        if row[1] == "ignore":
+                            break
+                        temp_score = compare_two_word(name, row[1])
+                        if max_similarity < temp_score:
+                            most_similar_word = name
+                            max_similarity = temp_score
+                            target_word = row[1]
+
+                        if next_name:
+                            temp_score = compare_two_word(name+' '+next_name, row[1])
+                            if max_similarity < temp_score:
+                                most_similar_word = name+' '+next_name
+                                max_similarity = temp_score
+                                target_word = row[1]
 
                 if not name_found:
-                    # for now append error, but later make this to import new words into library
-                    parsed_names.append(
-                        f'Error detected with name: {name}. Please check the dictionary')
+                    if max_similarity >= 0.5:
+                        parsed_names.append(target_word)
+                        if len(most_similar_word.split()) == 2:
+                            double_length = True
+
+                        for row in full_file:
+                            if row and row[1] == target_word:
+                                row[0] += ","+most_similar_word
+                                break
+                    else:
+                        print(f"word '{name}' not found!")
+                        print(f"Maximum similarity detected '{max_similarity}' for '{target_word}'.")
+                        raise ValueError
+
+            with open(file_path, 'w', newline='', encoding= 'utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerows(full_file)
 
     return parsed_names
 
@@ -166,8 +218,4 @@ if __name__ == "__main__":
                   "ver / DHF* Dysentery Encephali\n"+
                   "tis  Enteric\nFever Food\nPoisoning\n"+
                   "  Leptospiro\nsis Typhus\nFever Viral\nHepatitis")
-    # print(detect_diseases(PARSE_LINE))
-
-    print(compare_two_word("Dengue", "D"))
-    print(compare_two_word("Dengue", "Dengue fever"))
-    print(compare_two_word("Dengue fever", "d fever"))
+    print(detect_diseases(PARSE_LINE))
