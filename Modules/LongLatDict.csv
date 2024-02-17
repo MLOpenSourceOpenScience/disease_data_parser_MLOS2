@@ -34,6 +34,7 @@ kalmunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east':
 kalmunei,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 anuradhapu,city,LKA,80.40849,8.33021,"{'west': 80.39065, 'south': 8.29558, 'east': 80.44005, 'north': 8.35545}"
 polonnaruw,city,LKA,81.00787,7.9422,"{'west': 81.00026, 'south': 7.93408, 'east': 81.02119, 'north': 7.94702}"
+sri,country,LKA,79.90079,6.88398,"{'west': 79.52073, 'south': 5.9187, 'east': 81.87909, 'north': 9.83574}"
 
 0matara,city,LKA,80.55015,5.94464,"{'west': 80.50298, 'south': 5.93538, 'east': 80.57139, 'north': 5.9771}"
 0jaffna,city,LKA,80.01907,9.65876,"{'west': 79.99777, 'south': 9.646, 'east': 80.05758, 'north': 9.69279}"
