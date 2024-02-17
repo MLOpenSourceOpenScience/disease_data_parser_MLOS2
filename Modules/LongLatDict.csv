@@ -162,3 +162,4 @@ kotapola,city,LKA,80.55764,6.3271,"{'west': 80.5306, 'south': 6.29452, 'east': 8
 mulatiyana,city,LKA,80.58182,6.17735,"{'west': 80.56953, 'south': 6.15835, 'east': 80.59029, 'north': 6.18164}"
 no,country,NOR,10.75,59.91234,"{'west': 4.50856, 'south': 57.95709, 'east': 31.16841, 'north': 71.18551}"
 week,district,GBR,-3.79782,50.93516,"{'west': -3.79787, 'south': 50.93436, 'east': -3.79602, 'north': 50.93518}"
+ap,state,IND,80.35992,16.57011,"{'west': 76.76153, 'south': 12.62347, 'east': 84.76758, 'north': 19.16631}"

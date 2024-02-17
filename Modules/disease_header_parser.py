@@ -71,9 +71,11 @@ def detect_diseases(line: str) -> List[str]:
                         name_found = True
 
                 if not name_found:
+                    print(f"Error: couldn't parse disease name: {name}. Please check the dictionary")
+                    raise ValueError
                     # for now append error, but later make this to import new words into library
-                    parsed_names.append(
-                        f'Error detected with name: {name}. Please check the dictionary')
+                    #parsed_names.append(
+                        #f'Error detected with name: {name}. Please check the dictionary')
 
     return parsed_names
 

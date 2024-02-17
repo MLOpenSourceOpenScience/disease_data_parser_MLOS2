@@ -1,0 +1,23 @@
+Error for file Data/Sri Lanka 2022/Vol 38 NO 29 English.pdf at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?
+Traceback (most recent call last):
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\dataParser.py", line 124, in <module>
+    table,heading = model.extract_to_table(rtfData, flags = flags)
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\ParsingModels\sriLankaParser.py", line 43, in extract_to_table
+    table = convert_to_table(important_text, timestamps, flags = flags)
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\ParsingModels\SriLankaModules\convert_to_table.py", line 262, in convert_to_table
+    cases = table_values[i-2][j-1]
+IndexError: list index out of range
+
+Error for file Data/Sri Lanka 2022/vol_49_no_07-english.pdf at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?
+Traceback (most recent call last):
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\dataParser.py", line 124, in <module>
+    table,heading = model.extract_to_table(rtfData, flags = flags)
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\ParsingModels\sriLankaParser.py", line 43, in extract_to_table
+    table = convert_to_table(important_text, timestamps, flags = flags)
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\ParsingModels\SriLankaModules\convert_to_table.py", line 260, in convert_to_table
+    long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
+  File "C:\Users\pasarm\Documents\Github\disease_data_parser_MLOS2\ParsingModels\SriLankaModules\../../Modules\location_interface.py", line 128, in get_location_info
+    raise ValueError
+ValueError
+
+There were errors in 2/53 files
