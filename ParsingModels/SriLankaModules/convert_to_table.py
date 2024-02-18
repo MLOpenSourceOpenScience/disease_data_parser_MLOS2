@@ -136,21 +136,31 @@ def remove_blank_values(data: List[str]) -> List[str]:
 
 def find_in_string_ignore_spaces(data:str, find:str) -> int:
     """
-    Finds index of item in string, regardless of spaces in between
+    Finds last index of item in string, regardless of spaces in between (to cut off text at point)
     Helpful for interface between pyPDF2 strings and pyMuPDF strings (importantText[0] and importantText[1])
     """
     find = find.replace(' ','')
     i = 0
     while i < len(data):
-        if data[i] == find[0]:
-            if data[i:].replace(' ','')[:len(find)] == find:
-                return i
+        if data[i] == find[-1]:
+            if data[:i+1].replace(' ','')[-len(find):] == find:
+                return i+1
         i += 1
     return -1
 
 
 def split_into_rows(data: List[str]) -> List[str]:
-    return data.split('\n')
+    """
+    Splits data properly into rows
+    Uses pyPDF2 strings and pyMuPDF strings (importantText[0] and importantText[1])
+    pyPDF2 strings have proper structure, but bad data (sometimes)
+    pyMuPDF strings have proper data, but bad structure (sometimes)
+    """
+    correct_structure = data[0].split('\n') 
+    print("SPLITINTOROWS:",correct_structure[0][-5:])
+    correct_data = data[1].split('\n')
+    split_data = [data[0].split('\n'), data[1].split('\n')]
+    return data[1].split('\n')
 
 
 def header_concatenation(data: List[str]) -> List[str]:
