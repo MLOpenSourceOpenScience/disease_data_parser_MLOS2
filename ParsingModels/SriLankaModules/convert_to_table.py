@@ -84,9 +84,20 @@ def is_number_value(input_string: str) -> bool:
 # Assumes `text` only contains the table.
 ## if it contains more (especially at the beginning), it will give erroneous results
 # first_location should only have table values after it
-def get_table_values(first_location: str, text: str, flags: List[str] = []) -> Optional[str]:
+def get_table_values(first_location: str, text: str, flags: List[str] = None) -> Optional[str]:
+    """
+    Format values into table format then return as a 2D array. Return None if error.
+
+    Parameters:
+    - first_location (str): 
+    - text (str): Huge line of string that has seperated with newline characters.
+    - flag (List[str]): List of flags that will sent through main
+
+    Returns:
+    - Optional[str]: Parsed list of text that contains value as table.
+    """
     start_index = text.find(first_location)
-    debug_mode = '-d' in flags
+    debug_mode = flags is not None and '-d' in flags
 
     if start_index != -1:
         parsed = text[start_index:]
@@ -173,7 +184,7 @@ def header_concatenation(data: List[str]) -> List[str]:
 
 def convert_to_table(important_text: List[str],
                      timestamps: List[datetime],
-                     flags: List[str] = []) -> List[str]:
+                     flags: List[str] = None) -> List[str]:
     """
     Read text file and parse it, creating a List of string which holds
     the same information as a table format (2D). Will get a timestaps
@@ -187,7 +198,7 @@ def convert_to_table(important_text: List[str],
     - List[str]: Parsed text in a table format.
     """
     table_values = None
-    debug_mode = '-d' in flags
+    debug_mode = flags is not None and '-d' in flags
 
     table_data = []
     rows = important_text[1].split('\n')
