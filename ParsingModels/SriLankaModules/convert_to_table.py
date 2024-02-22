@@ -134,7 +134,7 @@ def remove_blank_values(data: List[str]) -> List[str]:
     return list(filter(str.strip, new_data))
 
 
-def find_in_string_ignore_spaces(data:str, find:str) -> int:
+def find_end_in_string_ignore_spaces(data:str, find:str) -> int:
     """
     Finds last index of item in string, regardless of spaces in between (to cut off text at point)
     Helpful for interface between pyPDF2 strings and pyMuPDF strings (importantText[0] and importantText[1])
@@ -145,6 +145,20 @@ def find_in_string_ignore_spaces(data:str, find:str) -> int:
         if data[i] == find[-1]:
             if data[:i+1].replace(' ','')[-len(find):] == find:
                 return i+1
+        i += 1
+    return -1
+
+def find_in_string_ignore_spaces(data:str, find:str) -> int:
+    """
+    Finds index of item in string, regardless of spaces in between
+    Helpful for interface between pyPDF2 strings and pyMuPDF strings (importantText[0] and importantText[1])
+    """
+    find = find.replace(' ','')
+    i = 0
+    while i < len(data):
+        if data[i] == find[0]:
+            if data[i:].replace(' ','')[:len(find)] == find:
+                return i
         i += 1
     return -1
 
