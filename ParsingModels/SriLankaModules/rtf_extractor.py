@@ -21,7 +21,8 @@ from dateutil.parser import parse
 def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
     '''
     Arguments: string with rtf data
-    Returns: string with rtf data relevant for tables, 2 element array with the start and end timestamp
+    Returns: string with rtf data relevant for tables,
+        2 element array with the start and end timestamp
     '''
     # Regular expression pattern to match the date format
     pattern = r'\b(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
@@ -66,7 +67,8 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
     return None
 
 
-def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]], Optional[List[datetime]]]:
+def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
+                                                        Optional[List[datetime]]]:
     # months used to convert text month to datetime
     ''' No longer used
     month_dict = {
@@ -139,7 +141,7 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]], Opt
 
 
 
-testString2 = """                       WEEKLY EPIDEMIOLOGICAL REPORT
+TEST_STRING2 = """                       WEEKLY EPIDEMIOLOGICAL REPORT
                                A publication of the Epidemiology Unit
                         Ministry of Health, Nutrition & Indigenous Medicine
                                        231, de Saram Place, Colombo 01000, Sri Lanka
@@ -452,7 +454,7 @@ COLOMBO 10
 """
 
 #test string 3
-testString3 = """     WEEKLY EPIDEMIOLOGICAL REPORT
+TEST_STRING3 = """     WEEKLY EPIDEMIOLOGICAL REPORT
                     A publication of the Epidemiology Unit
                                Ministry of Health
                    231, de Saram Place, Colombo 01000, Sri Lanka
@@ -749,4 +751,4 @@ COLOMBO 10
 """
 
 if __name__ == "__main__":
-    extract_data_from_rtf(testString2)
+    extract_data_from_rtf(TEST_STRING2)

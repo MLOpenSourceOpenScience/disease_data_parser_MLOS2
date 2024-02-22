@@ -45,9 +45,12 @@ if __name__ == "__main__":
         quit()
 
     #Import Arguments
-    inFolder = sys.argv[1]  # Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model
-    outFile = sys.argv[2]   # Arg 2: output file, in csv format (only the name of the file)
-    modelFile = sys.argv[3] # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
+    inFolder = sys.argv[1]
+    # Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model
+    outFile = sys.argv[2]
+    # Arg 2: output file, in csv format (only the name of the file)
+    modelFile = sys.argv[3]
+    # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
     flag_types = ['-q','-d','-l','-errordir']
@@ -65,7 +68,7 @@ if __name__ == "__main__":
             log_filename = flags[flags.index('-l')+1]
             if log_filename in flag_types:
                 # If the value after -o is just another flag and not a log file
-                raise Exception()
+                raise SyntaxError
         except:
             print("Error with -l flag: Can't find path to log file. Proper usage: -l [Path/To/File]")
             quit()
@@ -80,7 +83,7 @@ if __name__ == "__main__":
             err_dir = flags[flags.index('-errordir')+1]
             if err_dir in flag_types:
                 # If the value after -o is just another flag and not a log file
-                raise Exception()
+                raise SyntaxError
         except:
             print("Error with -errordir flag: Can't find path to error directory. Proper usage: -errordir [Path/To/Directory]")
             quit()
@@ -107,31 +110,31 @@ if __name__ == "__main__":
     for f in filesToParse:
         print(f,end=", ")
     print()
-    response = ''
-    while response not in ['y','n','yes','no']:
-        response = input("Continue? press y/n ").strip().lower()
-        if response == 'n' or response == 'no':
+    RESPONSE = ''
+    while RESPONSE not in ['y','n','yes','no']:
+        RESPONSE = input("Continue? press y/n ").strip().lower()
+        if RESPONSE == 'n' or RESPONSE == 'no':
             quit()
 
     i = 1
-    num_errors = 0
+    NUM_ERRORS = 0
     for currentFile in filesToParse:
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
-        step = 0
+        STEP = 0
         try:
             rtfData = pdf_to_rtf(currentFile)
-            step +=1
+            STEP +=1
             table,heading = model.extract_to_table(rtfData, flags = flags)
             for n in range(len(table)):
                 table[n].append(currentFile)  # Added file source to show here the data came from
             heading.append("Source File")
-            step += 1
+            STEP += 1
             print_to_csv(table,heading,file_name=outFile)
         except Exception as error:
-            num_errors += 1
+            NUM_ERRORS += 1
             error_message = f"Error for file {currentFile} "
 
-            match step:
+            match STEP:
                 case 0:
                     error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
                 case 1:
@@ -142,14 +145,15 @@ if __name__ == "__main__":
             if not quiet_mode:
                 traceback.print_exc() # show error stack trace
             if log_mode: # Log error in logfile
-                with open(LOG_FILE_PATH, 'a') as log_file:
+                with open(LOG_FILE_PATH, 'a', encoding= 'utf-8') as log_file:
                     log_file.write(error_message)
                     log_file.write(traceback.format_exc())
                     log_file.write('\n')
             if error_dir_mode: # Place error files into new directory
                 error_folder = traceback.format_exc().split('\n')[-4]
                 start_of_folder_name = error_folder.rfind("line")
-                if start_of_folder_name == -1: #can't find line, can't categorize error (shouldn't happen)
+                if start_of_folder_name == -1:
+                    #can't find line, can't categorize error (shouldn't happen)
                     print("can't find line in:", error_folder)
                     shutil.copy(currentFile, os.path.join(ERROR_DIR, ntpath.basename(currentFile)))
                 else:
@@ -164,8 +168,7 @@ if __name__ == "__main__":
         i += 1
 
     print("Done! Output in", outFile)
-    print(f"There were errors in {num_errors}/{len(filesToParse)} files")
+    print(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
     if log_mode:
-        with open(LOG_FILE_PATH, 'a') as log_file:
-            log_file.write(f"There were errors in {num_errors}/{len(filesToParse)} files")
-
+        with open(LOG_FILE_PATH, 'a', encoding= 'utf-8') as log_file:
+            log_file.write(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
