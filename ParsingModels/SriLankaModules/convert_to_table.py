@@ -181,11 +181,19 @@ def split_into_rows(data: List[str]) -> List[str]:
     pyPDF2 strings have proper structure, but bad data (sometimes)
     pyMuPDF strings have proper data, but bad structure (sometimes)
     """
-    correct_structure = data[0].split('\n') 
-    print("SPLITINTOROWS:",correct_structure[0][-5:])
-    correct_data = data[1].split('\n')
-    split_data = [data[0].split('\n'), data[1].split('\n')]
-    return data[1].split('\n')
+    correct_structure = data[0].split('\n')
+    correct_structure = remove_blank_values(correct_structure)
+    pymuPDF_data = data[1].replace('\n','')
+    correct_data = []
+    last_split_index = 0
+    for i in range(1, len(correct_structure)):
+        print("SPLIT AT:",correct_structure[i][:7])
+        split_index = find_in_string_ignore_spaces(pymuPDF_data,correct_structure[i][:7])
+        print(repr(pymuPDF_data[last_split_index:split_index]))
+        correct_data += [pymuPDF_data[last_split_index:split_index]]
+        last_split_index = split_index
+    correct_data += [pymuPDF_data[last_split_index:]]
+    return correct_data
 
 
 def header_concatenation(data: List[str]) -> List[str]:
@@ -247,10 +255,12 @@ def convert_to_table(important_text: List[str],
     table_data = []
     rows = split_into_rows(important_text)
     rows = remove_blank_values(rows)
+    print("DEBUG: ROWS:")
+    print(rows)
     # Sometimes, important_tex will have '\n' in the header as well
     # Thus, there might need a function that works as concatination
     # of those strings
-    rows = header_concatenation(rows)
+    #rows = header_concatenation(rows)
     labels = detect_diseases(rows[0])
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS',

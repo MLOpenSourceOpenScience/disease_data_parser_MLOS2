@@ -1,10 +1,10 @@
 Target,Real Name
 "dengue fever,dengue,dengue fe",Dengue Fever
 dysentery,Dysentery
-"encephali tis,encephalitis,encephaliti s,encephalit is,encepha liti,encephal itis,encepha litis,encephaliti,encephalit,encephali",Encephalitis
-"e fever,enteric fever,entericfever,enteric,ver",Enteric Fever
+"encephali tis,encephalitis,encephaliti s,encephalit is,encepha liti,encephal itis,encepha litis,encephaliti,encephalit,encephali,encephalitienteric,encephalienteric",Encephalitis
+"e fever,enteric fever,entericfever,enteric,ver,encephalitenteric fever",Enteric Fever
 "food poisoning,foodpoisoning,food poi,food poison,f poisoning,food,food poisoni",Food Poisoning
-"leptospirosis,leptospiros is,leptospirosi s,leptospir osis,leptospiro sis,leptospiro,leptospiros,leptospirosi",Leptospirosis
+"leptospirosis,leptospiros is,leptospirosi s,leptospir osis,leptospiro sis,leptospiro,leptospiros,leptospirosi,leptospirostyphus,poileptospirosis",Leptospirosis
 "t fever,typhusfever,typhus fever,typhus fe,typhus,typhu s",Typhus Fever
 "viral hepatitis,viral hep,viralhepatitis,viral hepa,viral,v hepatitis,viral hepatit",Viral Hepatitis
 "h rabies,human,hu rabies*,human rabies,ra bies,human rab,huma",Human Rabies
