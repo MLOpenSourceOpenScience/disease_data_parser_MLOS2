@@ -14,6 +14,7 @@ Date: 2024.02.05
 import os
 import csv
 from typing import List
+from functools import cache
 
 def compare_two_word(str1: str, str2: str) -> int:
     """"
@@ -75,6 +76,7 @@ def compare_two_word(str1: str, str2: str) -> int:
 
     return temp_score
 
+@cache #saves time on recomputing https://docs.python.org/3/library/functools.html#functools.cache
 def longest_common_subsequence(str1: str, str2: str, index1: int = None, index2: int = None) -> int:
     """
     Input two string, then compare to have longest substring.
