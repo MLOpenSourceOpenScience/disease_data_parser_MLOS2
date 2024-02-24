@@ -32,9 +32,9 @@ def extract_from_disease_site(url: str):
     years_done = []
 
     #select each year
-    for i in range(len(years.options)-1):
+    for i in range(len(years.options)):
         years.select_by_index(i)   
-        current_year = years.first_selected_option.text
+        current_year = years.options[i].text
         years_done.append(current_year)
 
         #Show data
@@ -50,10 +50,13 @@ def extract_from_disease_site(url: str):
                     break
 
         #Extract text data  
+        print("year:",current_year)
         data = driver.find_element(By.TAG_NAME, "pre").text
-        print(data)
+        #print(data)
 
+        #switch to first tab
         driver.close()
+        driver.switch_to.window(original_window)
 
     print(years_done)
     
