@@ -7,8 +7,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 import time
+import sys
+import os
 
-def extract_from_disease_site(url: str):
+def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
+
+    out_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), output_folder)
+    if not os.path.exists(out_dir): # If there is no directory, make it
+        os.makedirs(out_dir)
+    
+    
     driver = webdriver.Chrome()
     driver.get(url)
 
@@ -54,14 +62,21 @@ def extract_from_disease_site(url: str):
         data = driver.find_element(By.TAG_NAME, "pre").text
         #print(data)
 
+        #Save data
+        output_file = os.path.join(out_dir, f'{outfile_name}{current_year}.txt')
+        with open(output_file, 'a', encoding= 'utf-8') as output:
+            output.write(current_year)
+            output.write('\n')
+            output.write(url)
+            output.write('\n')
+            output.write(data)
+
         #switch to first tab
         driver.close()
         driver.switch_to.window(original_window)
 
-    print(years_done)
+    print("Years Done:",years_done)
     
-    time.sleep(10)
-
     driver.close()
 
 
@@ -71,4 +86,13 @@ if __name__ == '__main__':
 
     dengue_2014_site = 'http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebbr.def'
 
-    extract_from_disease_site(dengue_2014_site)
+    n = len(sys.argv)
+
+    if n != 3:
+        print("Invalid number of arguments! Correct usage: brazil_scraper.py <outfile-name> <output-folder>")
+        quit()
+
+    outfile_name = sys.argv[1]
+    output_folder = sys.argv[2]   
+
+    extract_from_disease_site(dengue_2014_site, outfile_name, output_folder)
