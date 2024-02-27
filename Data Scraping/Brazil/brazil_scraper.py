@@ -32,7 +32,10 @@ def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
 
     #Set settings properly
     line.select_by_value("Município_de_residência")
-    column.select_by_value("Semana_epidem._1º_Sintomas(s)")
+    try:
+        column.select_by_value("Semana_epidem._1º_Sintomas(s)")
+    except: #if you can't find weekly data, get monthly
+        column.select_by_value("Mês_1º_Sintoma(s)")
 
     # check format to be in Colunas separadas por ";"
     line = driver.find_element(By.XPATH, "//input[@value='prn']").click()
@@ -85,14 +88,16 @@ if __name__ == '__main__':
     data_website = 'https://datasus.saude.gov.br/acesso-a-informacao/doencas-e-agravos-de-notificacao-de-2007-em-diante-sinan/'
 
     dengue_2014_site = 'http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebbr.def'
+    dengue_pre_2014 = 'http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebr.def'
 
     n = len(sys.argv)
 
-    if n != 3:
-        print("Invalid number of arguments! Correct usage: brazil_scraper.py <outfile-name> <output-folder>")
+    if n != 4:
+        print("Invalid number of arguments! Correct usage: brazil_scraper.py <data-url> <outfile-name> <output-folder>")
         quit()
 
-    outfile_name = sys.argv[1]
-    output_folder = sys.argv[2]   
+    data_url = sys.argv[1]
+    outfile_name = sys.argv[2]
+    output_folder = sys.argv[3]   
 
-    extract_from_disease_site(dengue_2014_site, outfile_name, output_folder)
+    extract_from_disease_site(data_url, outfile_name, output_folder)
