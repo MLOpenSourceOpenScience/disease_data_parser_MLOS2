@@ -1,5 +1,6 @@
 Item,"Region Type","Country Code",Longitude,Latitude,"Item Boundary"
 gampaha,city,LKA,80.92297,6.99555,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}"
+paha,city,LKA,80.92297,6.99555,"{'west': 80.92049, 'south': 6.69864, 'east': 81.05956, 'north': 7.00913}"
 kalumune,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 kalumunei,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
 kalumunai,city,LKA,81.82038,7.42081,"{'west': 81.79167, 'south': 7.39353, 'east': 81.8445, 'north': 7.45169}"
@@ -69,3 +70,5 @@ weligama,city,LKA,80.0631,6.91734,"{'west': 80.05442, 'south': 6.90703, 'east': 
 dickwella,district,LKA,81.0041,6.95238,"{'west': 81.00409, 'south': 6.95237, 'east': 81.00411, 'north': 6.95239}"
 kotapola,city,LKA,80.55764,6.3271,"{'west': 80.5306, 'south': 6.29452, 'east': 80.563, 'north': 6.33373}"
 mulatiyana,city,LKA,80.58182,6.17735,"{'west': 80.56953, 'south': 6.15835, 'east': 80.59029, 'north': 6.18164}"
+
+
