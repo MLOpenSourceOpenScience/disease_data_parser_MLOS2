@@ -100,7 +100,7 @@ if __name__ == "__main__":
         for root, dirs, files in os.walk(inFolder):
             for name in files:
                 #print(f'root: {root} dirs: {dirs} files: {files}')
-                if name[-4:] == '.pdf': # Only parse pdf files
+                if name[-4:] == '.pdf' or name[-4:] == '.txt': # Only parse pdf or txt files
                     filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
     else:
         print(f"ERROR: folder '{inFolder}' not found!")
@@ -122,7 +122,12 @@ if __name__ == "__main__":
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
         STEP = 0
         try:
-            rtfData = pdf_to_rtf(currentFile)
+            rtfData = []
+            if currentFile[-4:] == '.pdf': #if file is PDF
+                rtfData = pdf_to_rtf(currentFile)
+            elif currentFile[-4:] == '.txt': #if file is txt
+                with open(currentFile) as txt_data:
+                    rtfData = [txt_data.read()]
             STEP +=1
             table,heading = model.extract_to_table(rtfData, flags = flags)
             for n in range(len(table)):

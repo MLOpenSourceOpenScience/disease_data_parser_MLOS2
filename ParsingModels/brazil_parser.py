@@ -5,7 +5,16 @@ Author: MLOS^2_NLP_TEAM
 Date: 2024.02.26
 """
 
+import os
+import sys
+
+current_directory = os.path.dirname(__file__)
+moudlues_directory = os.path.join(current_directory, '../Modules')
+sys.path.append(moudlues_directory)
+
 from typing import List
+from ParsingModels.BrazilModules.brazil_convert_to_table import convert_to_table, tableHeading
+from table_conversion_functions import print_table
 
 
 def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List[str]], List[str]]:
@@ -29,21 +38,12 @@ def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List
     if debug_mode:
         print("DEBUG - Raw Text Data:")
         print(rtf_data)
-    important_text,timestamps = extract_data_from_rtf(rtf_data)
 
-    if important_text is None or timestamps is None:
-        print("Error: Timestamp recongnization error")
-        return None, None
-
-    if debug_mode:
-        print("DEBUG - Extracted Text and Timestamp:")
-        print(important_text)
-        print(timestamps)
-    table = convert_to_table(important_text, timestamps, flags = flags)
+    table = convert_to_table(rtf_data, flags = flags)
     heading = tableHeading #tableHeading imported from SriLankaModules.convert_to_table
 
     if debug_mode:
         print("DEBUG - Output Table:")
-        print_table(table)
+        print_table(table, heading)
 
     return table, heading
