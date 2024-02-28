@@ -203,9 +203,23 @@ def detect_diseases(line: str) -> List[str]:
                                 row[0] += ","+most_similar_word
                                 break
                     else:
-                        print(f"word '{name}' not found!")
-                        print(f"Maximum similarity detected '{max_similarity}' for '{target_word}'.")
-                        raise ValueError
+                        for row in full_file:
+                            if row and row[1] == target_word:
+                                reference_words = row[0].split(',')
+                                for word in reference_words:
+                                    if compare_two_word(most_similar_word, word) > 0.7:
+                                        parsed_names.append(target_word)
+                                        row[0] += ","+most_similar_word
+                                        name_found = True
+                                        if len(most_similar_word.split()) == 2:
+                                            double_length = True
+                                        break
+                        if not name_found:
+                            print("word '{name}' "
+                                  +f"{'or '+name+' '+next_name if next_name else ''}' not found!")
+                            print("Maximum similarity detected "
+                                +f"'{max_similarity}' for '{target_word}'.")
+                            raise ValueError
 
             with open(file_path, 'w', newline='', encoding= 'utf-8') as file:
                 writer = csv.writer(file)
