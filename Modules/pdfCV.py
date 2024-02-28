@@ -8,7 +8,7 @@ def convert_to_img(pdf_path):
     images = convert_from_path(pdf_path)
     for i, image in enumerate(images):
         image.save(pdf_path + f"page_{i}.jpg", 'JPEG')
-    return i
+    return i + 1
 
 def zoom(img, zoom_factor=0.5):
     return cv2.resize(img, None, fx=zoom_factor, fy=zoom_factor)
@@ -20,9 +20,12 @@ def get_conv_function(filter):
 def conv(image):
     data = np.array(image)
 
-    filter = [-1,-0.5,0,0.5,1]
+    filter = [-10,-1,-0.5,0,0,0.5,1,10]
     result = np.apply_along_axis(get_conv_function(filter), 0, data)
-    threshold = 30
+    # switch to 2D conv
+    
+    print(f'result {result}')
+    threshold = 5
     result = np.where(result < threshold, 0, result)
 
     plt.imshow(result, interpolation='nearest')
@@ -40,6 +43,7 @@ def process(image_path):
     adaptive_thresh = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 3)
     #ret2,th2 = cv2.threshold(gray_image,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     cv2.imshow('thresholded', adaptive_thresh)
+    conv(adaptive_thresh)
     cv2.waitKey(0)
 
     contours, _ = cv2.findContours(adaptive_thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -50,7 +54,7 @@ def process(image_path):
     cv2.destroyAllWindows()
 
 def main():
-    input_file = '../Data/Dengue/sri lanka.pdf'
+    input_file = '../Data/Dengue/sri lanka page 3.pdf'
     print(input_file)
     images = convert_to_img(input_file)
     for i in range(images):
