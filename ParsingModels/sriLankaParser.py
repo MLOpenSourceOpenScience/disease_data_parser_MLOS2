@@ -5,11 +5,12 @@ Author: MLOS^2_NLP_TEAM
 Date: 2024.02.06
 """
 
-from typing import List
+from typing import List, Tuple
 from ParsingModels.SriLankaModules.convert_to_table import convert_to_table, tableHeading, print_table
 from ParsingModels.SriLankaModules.rtf_extractor import extract_data_from_rtf
 
-def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List[str]], List[str]]:
+def extract_to_table(rtf_data: List[str],
+                     flags: List[str] = None) -> Tuple[List[List[str]], List[str]]:
     """
     Get rtf data with flag and translate into 2D array (table)
     with Header.

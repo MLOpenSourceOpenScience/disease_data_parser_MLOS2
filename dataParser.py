@@ -27,9 +27,12 @@ if __name__ == "__main__":
     n = len(sys.argv)
     if n == 2 and sys.argv[1] == "-h": #TODO: improve help dialogue
         print("Usage: dataParser.py <folder-to-parse/> <output-file.csv> <parsing-model>")
-        print("Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model")
+        print("Arg 1: folder of PDFs to parse. "
+              +"They should all be compatible with the same parsing model")
         print("Arg 2: output file, in csv format")
-        print("Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data. If it is in a folder, replace / with . in the path so python can import properly")
+        print("Arg 3: parsing model. "+
+              "PDF will be converted to text, but model will convert text to array data. "
+              +"If it is in a folder, replace / with . in the path so python can import properly")
         print("Example: dataParser.py Data Output/data.csv ParsingModels.sriLankaParser")
         print()
         print("Flags:")
@@ -39,10 +42,11 @@ if __name__ == "__main__":
         print("-errordir [Path/To/Directory]: Copies all failed pdfs into directory, for debugging")
         quit()
     if n < 4:
-        print("Invalid number of arguments! Correct usage: dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
+        print("Invalid number of arguments! Correct usage: "
+              +"dataParser.py <folder-to-parse> <output-file.csv> <parsing-model.py>")
         print("Example: dataParser.py Data Output/data.csv ParsingModels.sriLankaParser")
         print("run dataParser.py -h for more information")
-        quit()
+        sys.exit()
 
     #Import Arguments
     inFolder = sys.argv[1]
@@ -71,7 +75,7 @@ if __name__ == "__main__":
                 raise SyntaxError
         except:
             print("Error with -l flag: Can't find path to log file. Proper usage: -l [Path/To/File]")
-            quit()
+            sys.exit()
         LOG_FILE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), log_filename)
         log_directory = os.path.dirname(LOG_FILE_PATH)
         if not os.path.exists(log_directory): # If there is no directory, make it
@@ -86,7 +90,7 @@ if __name__ == "__main__":
                 raise SyntaxError
         except:
             print("Error with -errordir flag: Can't find path to error directory. Proper usage: -errordir [Path/To/Directory]")
-            quit()
+            sys.exit()
         ERROR_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), err_dir)
         if not os.path.exists(ERROR_DIR): # If there is no directory, make it
             os.makedirs(ERROR_DIR)
@@ -113,8 +117,8 @@ if __name__ == "__main__":
     RESPONSE = ''
     while RESPONSE not in ['y','n','yes','no']:
         RESPONSE = input("Continue? press y/n ").strip().lower()
-        if RESPONSE == 'n' or RESPONSE == 'no':
-            quit()
+        if RESPONSE in ['n', 'no']:
+            sys.exit()
 
     i = 1
     NUM_ERRORS = 0
@@ -138,7 +142,7 @@ if __name__ == "__main__":
                 case 0:
                     error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
                 case 1:
-                    error_message += "at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?\n"
+                    error_message += ("at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?\n")
                 case 2:
                     error_message += "at print_to_csv()\n"
             print(error_message)
