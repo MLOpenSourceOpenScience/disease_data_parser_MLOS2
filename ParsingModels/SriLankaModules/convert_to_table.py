@@ -165,8 +165,10 @@ def header_concatenation(data: List[str]) -> List[str]:
         row = data[i]
         next_row = data[i + 1]
 
-        row_state = row[0].isalpha() and (row[-1].isalpha() or row[-1] in ['-', '.'])
-        next_row_state = next_row[0].isalpha() and (next_row[-1].isalpha() or next_row[-1] in ['-', '.'])
+        row_state = row[0].isalpha() and (row[-1].isalpha() or
+                                          row[-1] in ['-', '.'])
+        next_row_state = next_row[0].isalpha() and (next_row[-1].isalpha() or
+                                                    next_row[-1] in ['-', '.'])
 
         ab_row = (row[-1] == 'A' and next_row[0] == 'B') or (row[-1] == 'B' and next_row[0] == 'A')
         ad_tc = (row[-1] == 'B' and next_row == 'T*') or (row[-1] == '*' and next_row == 'C**')
