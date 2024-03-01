@@ -74,7 +74,8 @@ if __name__ == "__main__":
                 # If the value after -o is just another flag and not a log file
                 raise SyntaxError
         except:
-            print("Error with -l flag: Can't find path to log file. Proper usage: -l [Path/To/File]")
+            print("Error with -l flag: Can't find path to log file. "
+                  +"Proper usage: -l [Path/To/File]")
             sys.exit()
         LOG_FILE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), log_filename)
         log_directory = os.path.dirname(LOG_FILE_PATH)
@@ -89,7 +90,8 @@ if __name__ == "__main__":
                 # If the value after -o is just another flag and not a log file
                 raise SyntaxError
         except:
-            print("Error with -errordir flag: Can't find path to error directory. Proper usage: -errordir [Path/To/Directory]")
+            print("Error with -errordir flag: Can't find path to error directory. "
+                  +"Proper usage: -errordir [Path/To/Directory]")
             sys.exit()
         ERROR_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), err_dir)
         if not os.path.exists(ERROR_DIR): # If there is no directory, make it
@@ -142,7 +144,9 @@ if __name__ == "__main__":
                 case 0:
                     error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
                 case 1:
-                    error_message += ("at model.extract_to_table(). Perhaps you chose the wrong model or have an error in the model?\n")
+                    error_message += ("at model.extract_to_table(). "
+                                      +"Perhaps you chose the wrong model "
+                                      +"or have an error in the model?\n")
                 case 2:
                     error_message += "at print_to_csv()\n"
             print(error_message)
