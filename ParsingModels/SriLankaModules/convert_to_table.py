@@ -72,6 +72,8 @@ def is_number_value(input_string: str) -> bool:
     elif '+' in input_string:
         index_int = input_string.find('+')
         input_string = input_string[:index_int]
+    elif input_string == 'v':
+        input_string = '0'
 
     try:
         float(input_string) #If it can cast to float, it is a number
@@ -163,8 +165,8 @@ def header_concatenation(data: List[str]) -> List[str]:
         row = data[i]
         next_row = data[i + 1]
 
-        row_state = row[0].isalpha() and (row[-1].isalpha() or row[-1] == '-')
-        next_row_state = next_row[0].isalpha() and (next_row[-1].isalpha() or next_row[-1] == '-')
+        row_state = row[0].isalpha() and (row[-1].isalpha() or row[-1] in ['-', '.'])
+        next_row_state = next_row[0].isalpha() and (next_row[-1].isalpha() or next_row[-1] in ['-', '.'])
 
         ab_row = (row[-1] == 'A' and next_row[0] == 'B') or (row[-1] == 'B' and next_row[0] == 'A')
         ad_tc = (row[-1] == 'B' and next_row == 'T*') or (row[-1] == '*' and next_row == 'C**')
@@ -228,7 +230,7 @@ def convert_to_table(important_text: List[str],
     temp_row = rows[1]
 
     for i in range(2, len(rows)):
-        if rows[i].strip()[0].isalpha():
+        if rows[i].strip()[0].isalpha() and not rows[i].strip()[0] == 'v':
             new_rows.append(temp_row.strip())
             temp_row = rows[i]
         else:

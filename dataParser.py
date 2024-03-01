@@ -87,7 +87,7 @@ if __name__ == "__main__":
         try:
             err_dir = flags[flags.index('-errordir')+1]
             if err_dir in flag_types:
-                # If the value after -o is just another flag and not a log file
+                # If the value after -errordir is just another flag and not a log file
                 raise SyntaxError
         except:
             print("Error with -errordir flag: Can't find path to error directory. "
