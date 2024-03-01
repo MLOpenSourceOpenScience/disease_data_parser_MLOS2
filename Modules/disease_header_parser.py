@@ -209,14 +209,17 @@ def detect_diseases(line: str) -> List[str]:
                                 for word in reference_words:
                                     if compare_two_word(most_similar_word, word) > 0.7:
                                         parsed_names.append(target_word)
-                                        row[0] += ","+most_similar_word
+                                        # row[0] += ","+most_similar_word
+                                        ## Disabling addition on expanded similarity detection,
+                                        ## since it might cause an error while reaching further
+                                        ## words as the time flows (or as more words added)
                                         name_found = True
                                         if len(most_similar_word.split()) == 2:
                                             double_length = True
                                         break
                         if not name_found:
-                            print("word '{name}' "
-                                  +f"{'or '+name+' '+next_name if next_name else ''}' not found!")
+                            print(f"word '{name}' "
+                                  +f"{next_name if next_name else ''}' not found!")
                             print("Maximum similarity detected "
                                 +f"'{max_similarity}' for '{target_word}'.")
                             raise ValueError
