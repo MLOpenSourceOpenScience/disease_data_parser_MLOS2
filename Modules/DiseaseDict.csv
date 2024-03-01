@@ -2,12 +2,12 @@ Target,Real Name
 "dengue fever,dengue,dengue fe",Dengue Fever
 dysentery,Dysentery
 "encephali tis,encephalitis,encephaliti s,encephalit is,encepha liti,encephal itis,encepha litis,encephaliti,encephalit,encephali",Encephalitis
-"e fever,enteric fever,entericfever,enteric,ver",Enteric Fever
+"e fever,enteric fever,entericfever,enteric,enteric f",Enteric Fever
 "food poisoning,foodpoisoning,food poi,food poison,f poisoning,food,food poisoni",Food Poisoning
 "leptospirosis,leptospiros is,leptospirosi s,leptospir osis,leptospiro sis,leptospiro,leptospiros,leptospirosi",Leptospirosis
 "t fever,typhusfever,typhus fever,typhus fe,typhus,typhu s",Typhus Fever
 "viral hepatitis,viral hep,viralhepatitis,viral hepa,viral,v hepatitis,viral hepatit,v hep",Viral Hepatitis
-"h rabies,human,hu rabies*,human rabies,ra bies,human rab,huma",Human Rabies
+"h rabies,human,hu rabies*,human rabies,ra bies,human rab,h rabi",Human Rabies
 "chickenpox,chicken",Chickenpox
 "leishmaniasis,leishmania sis,leishmani,leishmani asis,leishman iasis,leish maniasis,leishma niasis,leishmani a,leishmania",Leishmaniasis
 "meningitis,meningi tis",Meningitis
@@ -22,12 +22,12 @@ Target,Real Name
 "dengue fever,dengue,dengue fe",Dengue Fever
 dysentery,Dysentery
 "encephali tis,encephalitis,encephaliti s,encephalit is,encepha liti,encephal itis,encepha litis,encephaliti,encephalit,encephali",Encephalitis
-"e fever,enteric fever,entericfever,enteric",Enteric Fever
+"e fever,enteric fever,entericfever,enteric,enteric f",Enteric Fever
 "food poisoning,foodpoisoning,food poi,food poison,f poisoning,food,food poisoni",Food Poisoning
 "leptospirosis,leptospiros is,leptospirosi s,leptospir osis,leptospiro sis,leptospiro,leptospiros,leptospirosi",Leptospirosis
 "t fever,typhusfever,typhus fever,typhus fe,typhus,typhu s",Typhus Fever
 "viral hepatitis,viral hep,viralhepatitis,viral hepa,viral,v hepatitis,viral hepatit,v hep",Viral Hepatitis
-"h rabies,human,hu rabies*,human rabies,ra bies,human rab",Human Rabies
+"h rabies,human,hu rabies*,human rabies,ra bies,human rab,h rabi",Human Rabies
 "chickenpox,chicken",Chickenpox
 "leishmaniasis,leishmania sis,leishmani,leishmani asis,leishman iasis,leish maniasis,leishma niasis,leishmani a,leishmania",Leishmaniasis
 "meningitis,meningi tis",Meningitis
