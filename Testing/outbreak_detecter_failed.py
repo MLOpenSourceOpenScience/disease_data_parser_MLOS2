@@ -8,6 +8,7 @@ tried using average diffrence calculation but failed.
 from typing import List, Tuple
 # from functools import cache
 import numpy
+import matplotlib.pyplot as plt
 
 def outbreak_check(data: List[int]) -> List[Tuple[int, int]]:
     """
@@ -31,7 +32,7 @@ def outbreak_check(data: List[int]) -> List[Tuple[int, int]]:
             end_index = next_peak
         else:
             end_index = next_peak
-    
+
     outbreaks.append([start_index,end_index])
 
     return outbreaks
@@ -100,3 +101,12 @@ if __name__ == "__main__":
     print(peak_detection(TEST_DATA))
 
     print(outbreak_check(TEST_DATA))
+
+    plotted_data = numpy.array(TEST_DATA)
+
+    plt.plot(plotted_data)
+    plt.title("Visiual Representation")
+    plt.xlabel("Index")
+    plt.ylabel("Numbers")
+    plt.grid(False)
+    plt.show()
