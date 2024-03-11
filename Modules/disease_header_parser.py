@@ -233,8 +233,5 @@ def detect_diseases(line: str) -> List[str]:
 #example code
 if __name__ == "__main__":
 
-    PARSE_LINE = ("DPDHS\n Division  Dengue Fe-\n"+
-                  "ver / DHF* Dysentery Encephali\n"+
-                  "tis  Enteric\nFever Food\nPoisoning\n"+
-                  "  Leptospiro\nsis Typhus\nFever Viral\nHepatitis")
+    PARSE_LINE = ("Division Dengue Fever Dysentery Encephaliti s Enteric Fever Food Poisoning Leptospirosis Typhus Fe- ver Viral Hepatitis Human Rabies Chickenpox Meningitis Leishmani- asis")
     print(detect_diseases(PARSE_LINE))

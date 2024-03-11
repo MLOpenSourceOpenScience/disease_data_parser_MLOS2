@@ -210,6 +210,7 @@ def convert_to_table(important_text: List[str],
     # of those strings
     rows = header_concatenation(rows)
     labels = detect_diseases(rows[0])
+
     # if __name__ == '__main__': #for testing
     #     labels = ['RDHS',
     #               'Dengue Fever',
@@ -230,7 +231,9 @@ def convert_to_table(important_text: List[str],
     temp_row = rows[1]
 
     for i in range(2, len(rows)):
-        if rows[i].strip()[0].isalpha() and not rows[i].strip()[0] == 'v':
+        if (rows[i].strip()[0].isalpha()
+            or rows[i].strip()[-1].isalpha()) and not rows[i].strip()[0] == 'v':
+
             new_rows.append(temp_row.strip())
             temp_row = rows[i]
         else:
@@ -240,8 +243,11 @@ def convert_to_table(important_text: List[str],
     rows = new_rows
 
     if debug_mode:
+        print("DEBUG: LABELS:")
+        print(labels)
         print("DEBUG: ROWS:")
-        print(rows)
+        for row in rows:
+            print(row)
 
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ") # Splits row into data
@@ -255,7 +261,7 @@ def convert_to_table(important_text: List[str],
 
         stop_reading = False
 
-        break_strings = ["Source:", "WRCD", "PRINTING"]
+        break_strings = ["Source:", "WRCD", "PRINTING", "Table"]
         for break_string in break_strings:
             if data[0][:len(break_string)] == break_string:
                 stop_reading = True
