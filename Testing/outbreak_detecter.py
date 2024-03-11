@@ -9,13 +9,21 @@ from typing import List, Tuple
 # from functools import cache
 import numpy
 import matplotlib.pyplot as plt
-from sklearn.linear_model import RANSACRegressor
 
 
-def outbreak_check(data: List[int], sequence_length: int = 5) -> List[Tuple[int, int]]:
+def outbreak_check(data: List[int], sequence_length: int = 3) -> List[Tuple[int, int]]:
     """
     get the sequence of data and find abnormality
     """
+
+    outbreaks = abnormality_check(data, 0, sequence_length)
+
+    print("----------Possible Outbreaks----------")
+
+    for idx in range(0, len(outbreaks), 2):
+        print(data[outbreaks[idx]:outbreaks[idx+1]])
+
+    print("--------------------------------------")
 
 
 def abnormality_check(data: List[int],
@@ -27,11 +35,10 @@ def abnormality_check(data: List[int],
                       decreasing: bool = False,
                       abnormal_count: int = 0,
                       last_normal_average: float = None) -> List[int]:
-    # RANSAC?
 
     if running_size+starting_index > len(data):
         if abnormal:
-            return [len(data) - abnormal_count - 1, len(data)-1]
+            return [len(data) - abnormal_count, len(data)]
         return []
 
     average = numpy.average(data[starting_index:starting_index+running_size])
@@ -39,15 +46,16 @@ def abnormality_check(data: List[int],
     if prev_average is None:
         return abnormality_check(data, starting_index+1, running_size, average)
 
-    diff = average - prev_average
+    diff = data[starting_index+running_size-1] - prev_average
 
     if abnormal:
         if decreasing:
             if abs(average - last_normal_average) / average < 0.15:
-                return ([starting_index - abnormal_count + 1, starting_index]
-                        + abnormality_check(data, starting_index+1, running_size, last_normal_average))
+                return ([starting_index - abnormal_count + 1, starting_index+1]
+                        + abnormality_check(data, starting_index+1,
+                                            running_size, average))
 
-        if prev_diff < 0 and diff < 0:
+        if diff < 0:
             return abnormality_check(data, starting_index+1, running_size, average, diff,
                                      abnormal=True,
                                      decreasing=True,
@@ -55,22 +63,20 @@ def abnormality_check(data: List[int],
                                      last_normal_average=last_normal_average)
 
         return abnormality_check(data, starting_index+1, running_size, average, diff,
-                                 abnormal= True,
-                                 abnormal_count= abnormal_count+1,
-                                 last_normal_average= last_normal_average)
+                                 abnormal=True,
+                                 abnormal_count=abnormal_count+1,
+                                 last_normal_average=last_normal_average)
 
     if prev_diff is None:
         return abnormality_check(data, starting_index+1, running_size, average, diff)
 
-    if abs(diff - prev_diff) > average*0.2:
+    if diff - prev_diff > average*0.3:
         return abnormality_check(data, starting_index+1, running_size, average, diff,
-                                    abnormal=True,
-                                    abnormal_count=abnormal_count+1,
-                                    last_normal_average=prev_average)
+                                 abnormal=True,
+                                 abnormal_count=abnormal_count+1,
+                                 last_normal_average=prev_average)
 
     return abnormality_check(data, starting_index+1, running_size, average, diff)
-
-
 
 
 if __name__ == "__main__":
@@ -88,19 +94,41 @@ if __name__ == "__main__":
                  22, 20, 25, 12,
                  10, 15, 10, 9]
 
-    print(abnormality_check([20, 18, 16, 23, 21,
-                             26, 30, 23, 20, 22,
-                             74, 80, 65, 50, 20,
-                             30, 20, 30, 25, 20,
-                             17, 19, 20], 0))
+    TEST_DATA2 = [20, 18, 16, 23, 21,
+                  26, 30, 23, 20, 22,
+                  74, 80, 65, 50, 20,
+                  30, 20, 30, 25, 20,
+                  17, 19, 20]
 
-    # print(outbreak_check(TEST_DATA))
+    outbreak_check(TEST_DATA)
+    outbreak_check(TEST_DATA2)
+
+    outbreak_index = abnormality_check(TEST_DATA, 0)
+
+    for i in range(0, len(outbreak_index), 2):
+        for j in range(outbreak_index[i], outbreak_index[i+1]):
+            plt.scatter(j, TEST_DATA[j], color="red")
 
     plotted_data = numpy.array(TEST_DATA)
 
-    # plt.plot(plotted_data)
-    # plt.title("Visiual Representation")
-    # plt.xlabel("Index")
-    # plt.ylabel("Numbers")
-    # plt.grid(False)
-    # plt.show()
+    plt.plot(plotted_data)
+    plt.title("Visiual Representation")
+    plt.xlabel("Index")
+    plt.ylabel("Numbers")
+    plt.grid(False)
+    plt.show()
+
+    outbreak_index = abnormality_check(TEST_DATA2, 0)
+
+    for i in range(0, len(outbreak_index), 2):
+        for j in range(outbreak_index[i], outbreak_index[i+1]):
+            plt.scatter(j, TEST_DATA2[j], color="red")
+
+    plotted_data = numpy.array(TEST_DATA2)
+
+    plt.plot(plotted_data)
+    plt.title("Visiual Representation")
+    plt.xlabel("Index")
+    plt.ylabel("Numbers")
+    plt.grid(False)
+    plt.show()
