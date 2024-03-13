@@ -23,7 +23,7 @@ def outbreak_check(data: List[int], sequence_length: int = 3) -> List[Tuple[int,
     for idx in range(0, len(outbreaks), 2):
         print(data[outbreaks[idx]:outbreaks[idx+1]])
 
-    print("--------------------------------------")
+    print("--------------------------------------\n")
 
 
 def abnormality_check(data: List[int],
@@ -35,6 +35,10 @@ def abnormality_check(data: List[int],
                       decreasing: bool = False,
                       abnormal_count: int = 0,
                       last_normal_average: float = None) -> List[int]:
+
+    """
+    Recursively finds abnormalities
+    """
 
     if running_size+starting_index > len(data):
         if abnormal:
@@ -70,7 +74,7 @@ def abnormality_check(data: List[int],
     if prev_diff is None:
         return abnormality_check(data, starting_index+1, running_size, average, diff)
 
-    if diff - prev_diff > average*0.3:
+    if diff - prev_diff > average*0.25:
         return abnormality_check(data, starting_index+1, running_size, average, diff,
                                  abnormal=True,
                                  abnormal_count=abnormal_count+1,
@@ -100,8 +104,16 @@ if __name__ == "__main__":
                   30, 20, 30, 25, 20,
                   17, 19, 20]
 
+    TEST_DATA3 = [100, 100, 100, 100, 100,
+                  125, 150, 200, 200, 210,
+                  190, 175, 150, 120, 120,
+                  130, 120, 110, 100, 90,
+                  80, 90, 80, 100, 90,
+                  70, 80, 90, 80, 70]
+
     outbreak_check(TEST_DATA)
     outbreak_check(TEST_DATA2)
+    outbreak_check(TEST_DATA3, 5)
 
     outbreak_index = abnormality_check(TEST_DATA, 0)
 
@@ -125,6 +137,21 @@ if __name__ == "__main__":
             plt.scatter(j, TEST_DATA2[j], color="red")
 
     plotted_data = numpy.array(TEST_DATA2)
+
+    plt.plot(plotted_data)
+    plt.title("Visiual Representation")
+    plt.xlabel("Index")
+    plt.ylabel("Numbers")
+    plt.grid(False)
+    plt.show()
+
+    outbreak_index = abnormality_check(TEST_DATA3, 0, 5)
+
+    for i in range(0, len(outbreak_index), 2):
+        for j in range(outbreak_index[i], outbreak_index[i+1]):
+            plt.scatter(j, TEST_DATA3[j], color="red")
+
+    plotted_data = numpy.array(TEST_DATA3)
 
     plt.plot(plotted_data)
     plt.title("Visiual Representation")
