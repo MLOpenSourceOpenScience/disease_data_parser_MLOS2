@@ -229,13 +229,21 @@ def convert_to_table(important_text: List[str],
     #               'Leishmaniasis',
     #               'WRCD']
 
+    # pre-process, such as removing 0, 5, 4 in front of location names
+
+    for i in range(2, len(rows)):
+        temp = rows[i].strip()
+        if temp == "M31atale":
+            rows[i] = "Matale"
+        elif is_number_value(temp[0]) and temp[1:].isalpha() and len(temp) > 4:
+            rows[i] = temp[1:]
+
     new_rows = [rows[0]]
     temp_row = rows[1]
 
     for i in range(2, len(rows)):
-        if (rows[i].strip()[0].isalpha()
-            or rows[i].strip()[-1].isalpha()) and not rows[i].strip()[0] == 'v':
-
+        if ((rows[i].strip()[0].isalpha() or rows[i].strip()[-1].isalpha())
+            and not rows[i].strip() == 'v'):
             new_rows.append(temp_row.strip())
             temp_row = rows[i]
         else:
@@ -263,7 +271,7 @@ def convert_to_table(important_text: List[str],
 
         stop_reading = False
 
-        break_strings = ["Source:", "WRCD", "PRINTING", "Table"]
+        break_strings = ["Source:", "WRCD", "PRINTING", "Table", "Page"]
         for break_string in break_strings:
             if data[0][:len(break_string)] == break_string:
                 stop_reading = True
