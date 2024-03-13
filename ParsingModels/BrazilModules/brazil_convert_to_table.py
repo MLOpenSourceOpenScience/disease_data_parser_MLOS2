@@ -24,7 +24,7 @@ tableHeading = ['Disease Name',
                 'TimeStampEnd']
 
 
-def convert_to_table(important_text: List[str],
+def convert_to_table(important_text: List[str], disease_name: str,
                      flags: List[str] = None) -> List[str]:
     """
     Read text file and parse it, creating a List of string which holds
@@ -45,7 +45,7 @@ def convert_to_table(important_text: List[str],
 
     year = rows[0]
     source = rows[1]
-    header = rows[2]
+    header = rows[2].split(';')
     rows = rows[3:]
 
     print(year)
@@ -54,5 +54,33 @@ def convert_to_table(important_text: List[str],
     print(rows[:4])
 
     table_data = []
+
+    for r in rows:
+        cells = r.split(';')
+        location_name = cells[0]
+        #long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
+        for i in range(2, len(cells)):
+            cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
+            time_label = header[i]
+            '''
+            table_data.append([disease_name,
+                    cases,
+                    location_name,
+                    country_code,
+                    region_type,
+                    lat,
+                    long,
+                    region_boundary,
+                    time_label,
+                    time_label])
+            '''
+            table_data.append([disease_name,
+                    cases,
+                    location_name,
+                    time_label,
+                    time_label])
+
+    for i in range(4):
+        print(table_data[i])
 
     return table_data
