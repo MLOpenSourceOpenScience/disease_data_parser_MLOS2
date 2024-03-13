@@ -281,6 +281,9 @@ def convert_to_table(important_text: List[str],
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
             cases = table_values[i-2][j-1]
+            #print("data:", data)
+            #print("labels:", labels)
+            #print("j:", j)
             disease_name = labels[j//2]
             # j//2 is to skip every other value,
             # since for Sri Lanka the tables have A and B values,

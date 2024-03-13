@@ -17,6 +17,7 @@ from datetime import datetime,timedelta
 import re
 from typing import List, Tuple, Optional
 from dateutil.parser import parse
+from disease_header_parser import detect_diseases
 
 def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
     '''
@@ -44,7 +45,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
 
 
 #given a start and end word, extract the table between them
-def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]:
+def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[str]:
     """
     Find starting word, and second-startinf word from text
     then extract data as a line, starting from found place
@@ -57,14 +58,35 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
     Returns:
     - Optional[str]: Data that is extracted, return None if not found.
     """
-    start_index = text.find(first_word)
-    end_index = text.find(second_word, start_index + len(first_word))
+    subset = ""
+    found_starting_word = False
 
-    if start_index != -1 and end_index != -1:
-        result = text[start_index + len(first_word):end_index]
-        return result
+    for idx, word in enumerate(text.split()):
+        if (found_starting_word and len(subset.split())>2):
+            #print("starting word found: ",subset)
+            try:
+                detect_diseases((subset.split()[1]))
+            except ValueError:
+                subset = ""
+                found_starting_word = False
+                continue
+            try:
+                detect_diseases((subset.split()[2]))
+            except ValueError:
+                subset = ""
+                found_starting_word = False
+                continue
 
-    return None
+        if found_starting_word:
+            if word in end_words:
+                break
+            subset += word + " "
+        elif word == first_word:
+            found_starting_word = True
+            subset += word + " "
+
+    return subset.strip()
+
 
 
 def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
@@ -115,11 +137,11 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
     table = ["",""]
 
     if end_date > table_change_date:
-        table[0] = extract_table("RDHS", "Comments", rtf_data[0])
-        table[1] = extract_table("RDHS", "Comments", rtf_data[1])
+        table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[0])
+        table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[1])
     else:
-        table[0] = extract_table("DPDHS", "Source", rtf_data[0])
-        table[1] = extract_table("DPDHS", "Source", rtf_data[1])
+        table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[0])
+        table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[1])
         #MIGHT NOT BE ACCURATE!! TEST this eventually
 
     #print(table)
@@ -128,6 +150,8 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
     start_date = end_date - timedelta(days=6)
     dates = [start_date, end_date]
     #extract table
+    print("table", table)
+    print("dates", dates)
     return table, dates
 
 
