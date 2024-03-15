@@ -40,7 +40,7 @@ def abnormality_detection(data: List[int],
 
     starting_index = current - sample_length
 
-    if starting_index < -5:
+    if starting_index < -15:
         return abnormality_detection(data, current+1,
                                      abnormal_indexes= abnormal_indexes)
 
@@ -59,7 +59,7 @@ def abnormality_detection(data: List[int],
 
     standard_deviation = numpy.std(refined_data)
 
-    if sample_median + 3*standard_deviation < data[current]:
+    if sample_median + 4*standard_deviation < data[current]:
         abnormal_indexes.append(current)
         return [current] + abnormality_detection(data, current+1,
                                                  abnormal_indexes= abnormal_indexes,
