@@ -15,94 +15,122 @@ def outbreak_check(data: List[int]) -> List[Tuple[int, int]]:
     get the sequence of data and find abnormality
     """
 
-    reported_peaks = peak_detection(data)
-    reported_peaks.sort()
-
-    start_index = reported_peaks[0]
-    end_index = reported_peaks[0]
-
     outbreaks = []
-
-    for peak, next_peak in zip(reported_peaks, reported_peaks[1:]):
-        if not peak or not next_peak:
-            break
-        if next_peak - peak > 1:
-            outbreaks.append([start_index,end_index])
-            start_index = next_peak
-            end_index = next_peak
-        else:
-            end_index = next_peak
-
-    outbreaks.append([start_index,end_index])
 
     return outbreaks
 
 
-def peak_detection(data: List[int], removed: List[int] = None) -> List[int]:
+def abnormality_detection(data: List[int],
+                          current: int = 0,
+                          sample_length: int = 20,
+                          abnormal_indexes: List[int] = None,
+                          abnormal_length: int = 0) -> List[int]:
     """
-    read the data and return the peak value
+    Check outbreaks!!!!!
     """
 
-    if removed is None:
-        removed = []
-    if len(data) - len(removed) == 1:
+    if current == 0:
+        return abnormality_detection(data, current+1)
+
+    if current >= len(data):
         return []
 
-    maxima = 0
-    maxindex = 0
-    for i, num in enumerate(data):
-        if i in removed:
-            continue
-        if num >= maxima:
-            maxima = num
-            maxindex = i
+    if abnormal_indexes is None:
+        abnormal_indexes = []
 
-    percent_changed = average_differnce(data, maxindex)
-    new_removed = removed
-    new_removed = removed + [maxindex]
+    starting_index = current - sample_length
 
-    if percent_changed >= 0.05:
-        return peak_detection(data, new_removed) + [maxindex]
+    if starting_index < -5:
+        return abnormality_detection(data, current+1,
+                                     abnormal_indexes= abnormal_indexes)
 
-    return peak_detection(data, new_removed)
+    if starting_index < 0:
+        starting_index = 0
+        # at least 5 samples prior
 
+    clean_data = []
 
-def average_differnce(data: List[int], index: int) -> float:
-    """
-    get the data, then compare the diffrence in average
-    """
+    for i, value in enumerate(data):
+        if starting_index <= i and i < current and i not in abnormal_indexes:
+            clean_data.append(value)
 
-    normal_average = numpy.mean(data)
+    sample_median = numpy.median(clean_data[:len(clean_data)])
+    refined_data = [abs(x - sample_median) for x in clean_data]
 
-    peak_removed_data = data[:index] + data[index+1:]
-    deleted_average = numpy.mean(peak_removed_data)
+    standard_deviation = numpy.std(refined_data)
 
-    difference = normal_average - deleted_average
+    if sample_median + 3*standard_deviation < data[current]:
+        abnormal_indexes.append(current)
+        return [current] + abnormality_detection(data, current+1,
+                                                 abnormal_indexes= abnormal_indexes,
+                                                 abnormal_length= abnormal_length+1)
 
-    return difference / normal_average
-
+    return abnormality_detection(data, current+1,
+                                 abnormal_indexes= abnormal_indexes)
 
 if __name__ == "__main__":
-    TEST_DATA = [0, 0, 0, 0,
-                 1, 3, 2, 1,
-                 6, 12, 18, 14,
-                 0, 2, 5, 2,
-                 1, 0, 0, 1,
-                 3, 2, 4, 1,
-                 7, 9, 15, 10,
-                 9, 6, 4, 2,
-                 1, 0, 3, 0,
-                 0, 1, 2, 1,
-                 9, 12, 15, 20,
+    TEST_DATA = [10, 10, 10, 11,
+                 11, 13, 12, 11,
+                 16, 12, 18, 14,
+                 10, 12, 15, 12,
+                 11, 10, 10, 11,
+                 13, 12, 14, 11,
+                 17, 19, 25, 40,
+                 39, 36, 34, 32,
+                 21, 20, 23, 20,
+                 20, 17, 12, 11,
+                 19, 12, 15, 20,
                  22, 20, 25, 12,
-                 10, 5, 0, 0]
+                 10, 15, 10, 9]
 
-    print(average_differnce(TEST_DATA, 10))
-    print(peak_detection(TEST_DATA))
+    TEST_DATA2 = [20, 18, 16, 23, 21,
+                  26, 30, 23, 20, 22,
+                  74, 80, 65, 50, 20,
+                  30, 20, 30, 25, 20,
+                  17, 19, 20, 20, 19,
+                  30, 22, 15, 20, 21]
 
-    print(outbreak_check(TEST_DATA))
+    TEST_DATA3 = [100, 100, 100, 100, 100,
+                  125, 150, 200, 200, 210,
+                  190, 175, 150, 120, 120,
+                  130, 120, 110, 100, 90,
+                  80, 90, 80, 100, 90,
+                  70, 80, 90, 80, 70]
+
+    outbreak_index = abnormality_detection(TEST_DATA)
+
+    for idx in outbreak_index:
+        plt.scatter(idx, TEST_DATA[idx], color="red")
 
     plotted_data = numpy.array(TEST_DATA)
+
+    plt.plot(plotted_data)
+    plt.title("Visiual Representation")
+    plt.xlabel("Index")
+    plt.ylabel("Numbers")
+    plt.grid(False)
+    plt.show()
+
+    outbreak_index = abnormality_detection(TEST_DATA2)
+
+    for idx in outbreak_index:
+        plt.scatter(idx, TEST_DATA2[idx], color="red")
+
+    plotted_data = numpy.array(TEST_DATA2)
+
+    plt.plot(plotted_data)
+    plt.title("Visiual Representation")
+    plt.xlabel("Index")
+    plt.ylabel("Numbers")
+    plt.grid(False)
+    plt.show()
+
+    outbreak_index = abnormality_detection(TEST_DATA3)
+
+    for idx in outbreak_index:
+        plt.scatter(idx, TEST_DATA3[idx], color="red")
+
+    plotted_data = numpy.array(TEST_DATA3)
 
     plt.plot(plotted_data)
     plt.title("Visiual Representation")
