@@ -9,9 +9,10 @@ Date: 2024.02.06
 '''
 
 import os
+import csv
 from typing import Tuple
 
-def source_control(input_file: str, output_file: str) -> Tuple(os.path, os.path):
+def source_control(input_file: str, output_file: str) -> Tuple[str, str]:
     '''
     Reads two strgin, and creats path if it is unavailable yet.
     
@@ -22,14 +23,18 @@ def source_control(input_file: str, output_file: str) -> Tuple(os.path, os.path)
     - ouput_file (str): Location of an output file.
 
     Returns:
-    - os.path: path of an input file.
-    - os.path: path of an output file.
+    - str: path of an input file.
+    - str: path of an output file.
     '''
 
     file_path = os.path.join(
         os.path.dirname(os.path.join(os.path.dirname(__file__), '../')),
         input_file
     )
+
+    if not os.path.exists(file_path):
+        print(f"ERROR: File '{file_path}' does not exists.")
+        raise FileNotFoundError
 
     output_path = os.path.join(
         os.path.dirname(os.path.join(os.path.dirname(__file__), '../')),
@@ -41,6 +46,8 @@ def source_control(input_file: str, output_file: str) -> Tuple(os.path, os.path)
     if not os.path.exists(output_directory):
         # if there's no outputfile already, create one.
         os.makedirs(output_directory)
+
+    return file_path, output_path
 
 
 def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = None) -> None:
@@ -57,7 +64,44 @@ def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = N
                      (target string).csv'
     '''
 
-    default_location = 'Out/output_'+target+'.csv'
+    default_location = filename.split('.')[0]
+    default_location = default_location + '_' + target + '.csv'
 
     if outfile is None:
         outfile = default_location
+
+    file_path, output_path = source_control(filename, outfile)
+
+    column = None
+    new_file_data = []
+
+    target = target.lower()
+
+    with open(file_path, 'r', encoding= 'utf-8') as file:
+        reader = csv.reader(file)
+
+        for row in reader:
+            if column is not None and row and target == row[column]:
+                new_file_data.append(row)
+            elif row:
+                for i, element in enumerate(row):
+                    if element.lower() == target:
+                        column = i
+                        new_file_data.append(row)
+
+    with open(output_path, 'w', newline='', encoding='utf-8') as out_file:
+        writer = csv.writer(out_file)
+        writer.writerows(new_file_data)
+
+
+if __name__ == '__main__':
+    T = 'dengue fever'
+
+    extract_data(T)
+    extract_data("Colombo", 'Out/output_dengue fever.csv')
+    extract_data("Gampaha", 'Out/output_dengue fever.csv')
+    extract_data("Kalutara", 'Out/output_dengue fever.csv')
+    extract_data("Kandy", 'Out/output_dengue fever.csv')
+    extract_data("Matale", 'Out/output_dengue fever.csv')
+    extract_data("NuwaraEliya", 'Out/output_dengue fever.csv')
+    extract_data("SRILANKA", 'Out/output_dengue fever.csv')
