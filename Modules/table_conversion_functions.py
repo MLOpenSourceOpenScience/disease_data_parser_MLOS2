@@ -66,3 +66,7 @@ def month_to_timestamps(month: str, year: str)-> List[datetime]:
     month = dateparse(f"{year} {month}")
     print(month)
     return timestamps
+
+# Week number starts at 1
+def week_number_to_datetime(week_number: int, year: int, zeroth_week = False)-> datetime:
+    return datetime(year, 1, 1) + timedelta(days=(7 * (week_number-1)))

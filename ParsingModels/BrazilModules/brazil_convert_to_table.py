@@ -11,7 +11,7 @@ sys.path.append(moudlues_directory)
 
 from location_interface import get_location_info
 from disease_header_parser import detect_diseases
-from table_conversion_functions import time_to_excel_time, remove_quotes, remove_numbers, month_to_timestamps
+from table_conversion_functions import time_to_excel_time, remove_quotes, remove_numbers, month_to_timestamps, week_number_to_datetime
 
 tableHeading = ['Disease Name',
                 'Cases',
@@ -23,6 +23,19 @@ tableHeading = ['Disease Name',
                 'Region Boundary',
                 'TimeStampStart',
                 'TimeStampEnd']
+
+
+def get_timestamps(cell: str, year: int) -> List[datetime]:
+    if "Semana" in cell:
+        # Weekly Data
+        # Assumes format 'Semana ##' with ## being 2 digits indicating week number, including leading 0s
+        week_number = int(cell[-2:])
+        week = week_number_to_datetime(week_number, year)
+        return [week, week + timedelta(days=7)]
+    else:
+        # if not weekly, must be monthly
+        return month_to_timestamps(cell, str(year))
+
 
 
 def convert_to_table(important_text: List[str], disease_name: str,
@@ -44,7 +57,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
 
     rows = important_text[0].split('\n')
 
-    year = rows[0]
+    year = int(rows[0])
     source = rows[1]
     header = rows[2].split(';')
     rows = rows[3:]
@@ -66,7 +79,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
         for i in range(2, len(cells)):
             cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
             time_label = remove_quotes(header[i])
-            timestamps = month_to_timestamps(time_label, year)
+            timestamps = get_timestamps(time_label, year)
             table_data.append([disease_name,
                     cases,
                     location_name,
@@ -75,8 +88,8 @@ def convert_to_table(important_text: List[str], disease_name: str,
                     lat,
                     long,
                     region_boundary,
-                    time_label,
-                    time_label])
+                    time_to_excel_time(timestamps[0]),
+                    time_to_excel_time(timestamps[1])])
             print(table_data[-1])
 
     for i in range(4):
