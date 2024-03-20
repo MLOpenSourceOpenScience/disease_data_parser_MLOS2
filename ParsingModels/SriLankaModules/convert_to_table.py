@@ -231,10 +231,13 @@ def convert_to_table(important_text: List[str],
 
     # pre-process, such as removing 0, 5, 4 in front of location names
 
+    #TODO: generalize the method to fix specific errors...maybe
     for i in range(2, len(rows)):
         temp = rows[i].strip()
         if temp == "M31atale":
             rows[i] = "Matale"
+        elif temp in ["SRI LANKA", "SRI"]:
+            rows[i] = "SRILANKA"
         elif is_number_value(temp[0]) and temp[1:].isalpha() and len(temp) > 4:
             rows[i] = temp[1:]
 
