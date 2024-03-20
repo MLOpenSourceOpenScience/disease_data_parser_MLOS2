@@ -11,6 +11,7 @@ sys.path.append(moudlues_directory)
 
 from location_interface import get_location_info
 from disease_header_parser import detect_diseases
+from table_conversion_functions import time_to_excel_time, remove_quotes, remove_numbers, month_to_timestamps
 
 tableHeading = ['Disease Name',
                 'Cases',
@@ -55,14 +56,17 @@ def convert_to_table(important_text: List[str], disease_name: str,
 
     table_data = []
 
-    for r in rows:
-        cells = r.split(';')
-        location_name = cells[0]
-        #long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
+    for row in rows:
+        cells = row.split(';')
+        location_name = remove_numbers(remove_quotes(cells[0]))
+        if 'MUNICIPIO IGNORADO' in location_name.upper():
+            long, lat, region_type, country_code, region_boundary = 'N/A','N/A','N/A','N/A','N/A'
+        else:
+            long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for i in range(2, len(cells)):
             cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
-            time_label = header[i]
-            '''
+            time_label = remove_quotes(header[i])
+            timestamps = month_to_timestamps(time_label, year)
             table_data.append([disease_name,
                     cases,
                     location_name,
@@ -73,12 +77,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
                     region_boundary,
                     time_label,
                     time_label])
-            '''
-            table_data.append([disease_name,
-                    cases,
-                    location_name,
-                    time_label,
-                    time_label])
+            print(table_data[-1])
 
     for i in range(4):
         print(table_data[i])

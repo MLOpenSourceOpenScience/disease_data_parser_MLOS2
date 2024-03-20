@@ -3,6 +3,7 @@ import os
 from datetime import datetime,timedelta
 from typing import List, Optional
 import re
+from dateutil.parser import parse as dateparse
 
 
 
@@ -34,6 +35,15 @@ def remove_blank_values(data: List[str]) -> List[str]:
 
     return list(filter(str.strip, new_data))
 
+# Remove unneccessary data
+def remove_quotes(data: str):
+    return data.replace('"','').strip()
+
+# Remove numbers
+def remove_numbers(data: str):
+    data = re.sub("\d+", "", data)
+    return data.strip()
+
 
 
 def print_table(tabled_text: List[str], header: List[str])-> None:
@@ -50,3 +60,9 @@ def print_table(tabled_text: List[str], header: List[str])-> None:
         for col in row:
             print(f"|{col:<15}",end=" ")
         print("|")
+
+def month_to_timestamps(month: str, year: str)-> List[datetime]:
+    timestamps = []
+    month = dateparse(f"{year} {month}")
+    print(month)
+    return timestamps
