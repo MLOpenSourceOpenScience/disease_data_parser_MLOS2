@@ -60,31 +60,35 @@ def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[
     """
     subset = ""
     found_starting_word = False
+    temp_diseases = []
 
     for idx, word in enumerate(text.split()):
-        if (found_starting_word and len(subset.split())>2):
+        if (found_starting_word and len(subset.split())==4):
+            #print("DEBUG: checking validity of next words")
             #print("starting word found: ",subset)
             try:
-                detect_diseases((subset.split()[1]))
+                #print("DEBUG: checking", subset.split()[1])
+                temp_diseases = detect_diseases((subset))
             except ValueError:
                 subset = ""
                 found_starting_word = False
                 continue
-            try:
-                detect_diseases((subset.split()[2]))
-            except ValueError:
-                subset = ""
-                found_starting_word = False
-                continue
-
+            if temp_diseases.count("ignore") > 0 or len(temp_diseases) == 0:
+                    subset = ""
+                    found_starting_word = False
+                    continue
         if found_starting_word:
-            if word in end_words:
+            if word in end_words and len(subset.split())>300:
+                #print("DEBUG: end word found:", word)
                 break
             subset += word + " "
+            #print("DEBUG: adding", word, "to subset")
         elif word == first_word:
             found_starting_word = True
+            #print("DEBUG: starting word found")
             subset += word + " "
 
+    #print("DEBUG: subset", subset)
     return subset.strip()
 
 
@@ -113,6 +117,7 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
         'November': 11,
         'Nov': 11,
         'December': 12,
+        'Dece": 12,
         'Dec': 12
     }
     '''
@@ -137,11 +142,11 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
     table = ["",""]
 
     if end_date > table_change_date:
-        table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[0])
-        table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[1])
+        table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+        table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
     else:
-        table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[0])
-        table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source"], rtf_data[1])
+        table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+        table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
         #MIGHT NOT BE ACCURATE!! TEST this eventually
 
     #print(table)
