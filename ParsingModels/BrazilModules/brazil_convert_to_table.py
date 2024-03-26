@@ -102,7 +102,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
         if 'MUNICIPIO IGNORADO' in location_name.upper():
             long, lat, region_type, country_code, region_boundary = 'N/A','N/A','N/A','N/A','N/A'
         else:
-            long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
+            long, lat, region_type, country_code, region_boundary = get_location_info(location_name+" Brazil")
         for i in range(2, len(cells)):
             cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
             time_label = remove_quotes(header[i])
