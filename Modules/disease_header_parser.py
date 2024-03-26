@@ -203,9 +203,26 @@ def detect_diseases(line: str) -> List[str]:
                                 row[0] += ","+most_similar_word
                                 break
                     else:
-                        print(f"word '{name}' not found!")
-                        print(f"Maximum similarity detected '{max_similarity}' for '{target_word}'.")
-                        raise ValueError
+                        for row in full_file:
+                            if row and row[1] == target_word:
+                                reference_words = row[0].split(',')
+                                for word in reference_words:
+                                    if compare_two_word(most_similar_word, word) > 0.7:
+                                        parsed_names.append(target_word)
+                                        # row[0] += "addition on expanded similarity detection,
+                                        ## since it m,"+most_similar_word
+                                        ## Disabling ight cause an error while reaching further
+                                        ## words as the time flows (or as more words added)
+                                        name_found = True
+                                        if len(most_similar_word.split()) == 2:
+                                            double_length = True
+                                        break
+                        if not name_found:
+                            print(f"word {name}"
+                                  +f" {next_name if next_name else ''} not found!")
+                            print("Maximum similarity detected "
+                                +f"'{max_similarity}' for '{target_word}'.")
+                            raise ValueError
 
             with open(file_path, 'w', newline='', encoding= 'utf-8') as file:
                 writer = csv.writer(file)
@@ -216,8 +233,5 @@ def detect_diseases(line: str) -> List[str]:
 #example code
 if __name__ == "__main__":
 
-    PARSE_LINE = ("DPDHS\n Division  Dengue Fe-\n"+
-                  "ver / DHF* Dysentery Encephali\n"+
-                  "tis  Enteric\nFever Food\nPoisoning\n"+
-                  "  Leptospiro\nsis Typhus\nFever Viral\nHepatitis")
+    PARSE_LINE = ("Division Dengue Fever Dysentery Encephaliti s Enteric Fever Food Poisoning Leptospirosis Typhus Fe- ver Viral Hepatitis Human Rabies Chickenpox Meningitis Leishmani- asis")
     print(detect_diseases(PARSE_LINE))

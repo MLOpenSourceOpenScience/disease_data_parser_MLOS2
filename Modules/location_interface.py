@@ -48,6 +48,8 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
     - List[int]: Longtitude, Latitude, Region Type, Country, boundary
     """
 
+    country_consistency = ""
+
     # remove irrelevant characters
     search_location = parse_alpha_only(search_location_original)
     # even before searching, change word into lowercases (for efficiency)
@@ -62,6 +64,13 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
 
         for row in reader:
             if row and row[0] == search_location:
+                if country_consistency == "":
+                    country_consistency = row[2]
+                elif not country_consistency == row[2]:
+                    print("Error: country inconsistency detected."
+                          +f"{search_location_original} not found in {country_consistency}")
+                    raise ValueError
+
                 return [row[3], row[4], row[1], row[2], row[5]]
 
     url = "https://geocode.search.hereapi.com/v1/geocode"
@@ -97,6 +106,12 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
             address = location.get('address', {})
             country_code = address.get('countryCode')
             # code of the country
+
+            if country_consistency == "":
+                country_consistency = country_code
+            elif not country_consistency == country_code:
+                print("Error: country inconsistency detected."
+                      +f"{search_location_original} not found in {country_consistency}")
 
             region_map = location.get('mapView', {})
             # will hold the value of longlat, but as a box-shaped.

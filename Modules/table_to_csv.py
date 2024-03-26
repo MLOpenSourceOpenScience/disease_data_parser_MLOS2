@@ -14,7 +14,7 @@ from typing import List
 
 def print_to_csv(table: List[List[str]],
                  headings: List[str] = None,
-                 file_name: str = '../Out/output.csv') -> None:
+                 file_name: str = 'Out/output.csv') -> None:
     """
     Get the table data and headings, with the name of new output file.
     Then creates file with the name given, using header, creates csv
@@ -30,8 +30,8 @@ def print_to_csv(table: List[List[str]],
     """
 
     file_path = os.path.join(os.path.dirname(
-        os.path.join(os.path.realpath(__file__), '../../')), file_name)
-    #file_path = os.path.join('../', file_name)
+        os.path.join(os.path.dirname(__file__), '../')), file_name)
+    # file_path = os.path.join('../', file_name)
     # dynamic name available by user's taste
 
     file_directory = os.path.dirname(file_path)
