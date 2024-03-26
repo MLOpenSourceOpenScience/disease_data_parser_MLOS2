@@ -61,11 +61,16 @@ def print_table(tabled_text: List[str], header: List[str])-> None:
             print(f"|{col:<15}",end=" ")
         print("|")
 
+def last_day_of_month(date: datetime)-> datetime:
+    # The day 28 exists in every month. 4 days later, it's always next month
+    next_month = date.replace(day=28) + timedelta(days=4)
+    # subtracting the number of the current day brings us back one month
+    return next_month - timedelta(days=next_month.day)
+
 def month_to_timestamps(month: str, year: str)-> List[datetime]:
-    timestamps = []
-    month = dateparse(f"{year} {month}")
-    print(month)
-    return timestamps
+    #Get start of month to end of month
+    month = dateparse(f"{year} {month} 1")
+    return [month, last_day_of_month(month)] 
 
 # Week number starts at 1
 def week_number_to_datetime(week_number: int, year: int, zeroth_week = False)-> datetime:
