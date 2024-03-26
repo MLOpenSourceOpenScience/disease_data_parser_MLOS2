@@ -26,15 +26,42 @@ tableHeading = ['Disease Name',
 
 
 def get_timestamps(cell: str, year: int) -> List[datetime]:
-    if "Semana" in cell:
+    if "Total" in cell: #Total, so return the year
+        return [datetime(year, 1, 1), datetime(year + 1, 1, 1)]
+    elif "Semana" in cell:
         # Weekly Data
         # Assumes format 'Semana ##' with ## being 2 digits indicating week number, including leading 0s
-        week_number = int(cell[-2:])
+        week_number = int(cell[-2:]) # Gets last 2 characters of header
         week = week_number_to_datetime(week_number, year)
         return [week, week + timedelta(days=7)]
     else:
         # if not weekly, must be monthly
-        return month_to_timestamps(cell, str(year))
+        translated_month = translate_month(cell)
+        return month_to_timestamps(translated_month, str(year))
+
+
+def translate_month(month: str) -> str:
+    """
+    Translates Months from Portugeuse to English
+    """
+    months = {"jan":"January",
+              "fev":"February",
+              "mar":"March",
+              "abr":"April",
+              "mai":"May",
+              "jun":"June",
+              "jul":"July",
+              "ago":"August",
+              "set":"September",
+              "out":"October",
+              "nov":"November",
+              "dez":"December"}
+    formatted_month = month.lower().strip()
+    if formatted_month in months:
+        return months[formatted_month]
+    else:
+        print("ERROR: Could not find month:",formatted_month)
+        raise ValueError
 
 
 
@@ -60,7 +87,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
     year = int(rows[0])
     source = rows[1]
     header = rows[2].split(';')
-    rows = rows[3:]
+    rows = rows[3:-1]
 
     print(year)
     print(source)
@@ -90,7 +117,6 @@ def convert_to_table(important_text: List[str], disease_name: str,
                     region_boundary,
                     time_to_excel_time(timestamps[0]),
                     time_to_excel_time(timestamps[1])])
-            print(table_data[-1])
 
     for i in range(4):
         print(table_data[i])
