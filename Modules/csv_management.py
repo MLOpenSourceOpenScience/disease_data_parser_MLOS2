@@ -1,5 +1,5 @@
 '''
-Extract target data from csv file
+Extract target data from csv file / order, and manage file data
 
 This model will be responsible for extracting the data for user's need,
 such as data of a single diseases, or single location.
@@ -92,6 +92,17 @@ def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = N
     with open(output_path, 'w', newline='', encoding='utf-8') as out_file:
         writer = csv.writer(out_file)
         writer.writerows(new_file_data)
+
+def order_by_time(filename: str = 'Out/output.csv', outfile: str = None, asc: bool = True) -> None:
+    '''
+    order the csv file by timestamp
+    '''
+
+    if outfile is None:
+        outfile = filename
+
+    file_path, output_path = source_control(filename, outfile)
+
 
 
 if __name__ == '__main__':
