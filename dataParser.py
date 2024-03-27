@@ -140,14 +140,13 @@ if __name__ == "__main__":
             NUM_ERRORS += 1
             error_message = f"Error for file {currentFile} "
 
-            match STEP:
-                case 0:
+            if STEP == 0:
                     error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
-                case 1:
+            elif STEP == 1:
                     error_message += ("at model.extract_to_table(). "
                                       +"Perhaps you chose the wrong model "
                                       +"or have an error in the model?\n")
-                case 2:
+            elif STEP == 2:
                     error_message += "at print_to_csv()\n"
             print(error_message)
             if not quiet_mode:
