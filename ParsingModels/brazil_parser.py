@@ -17,7 +17,7 @@ from ParsingModels.BrazilModules.brazil_convert_to_table import convert_to_table
 from table_conversion_functions import print_table
 
 
-def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> List[List[List[str]], List[str]]:
+def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List[str]], List[str]]:
     """
     Get rtf data with flag and translate into 2D array (table)
     with Header.
