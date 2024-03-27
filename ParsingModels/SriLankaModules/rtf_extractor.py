@@ -159,13 +159,15 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
 
     #Hardcode fix for "T* C** " ending up in table
     if "T* C** " in table[1]:
-        table[1] = table[1].replace("T* C** ", "\n")
+        table[1] = table[1].replace("T* C** ", "")
     if "T* C** " in table[0]:
-        table[0] = table[0].replace("T* C** ", "\n")
+        table[0] = table[0].replace("T* C** ", "")
 
-    print("table", table)
-    print("dates", dates)
+    #print("table", table)
+    #print("dates", dates)
 
+    table[0] = table[0].replace(" ", "\n")
+    table[1] = table[1].replace(" ", "\n")
     return table, dates
 
 

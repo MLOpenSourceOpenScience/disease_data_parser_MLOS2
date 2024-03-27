@@ -249,7 +249,7 @@ def convert_to_table(important_text: List[str],
         print(labels)
         print("DEBUG: ROWS:")
         for row in rows:
-            print(row)
+            print("row: ",row)
 
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ") # Splits row into data
