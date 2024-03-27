@@ -25,7 +25,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         2 element array with the start and end timestamp
     '''
     # Regular expression pattern to match the date format
-    pattern = r'\b(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
+    pattern = r'(?s:.*)\b(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
     # \s{0,1}\( on the end?
 
     # Search for the pattern in the text
