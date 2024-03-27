@@ -145,7 +145,7 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
 ### example code
 
 if __name__ == '__main__':
-    NAME = 'matale, sri lanka'
+    NAME = 'buritis, Brazil'
 
     long, lat, a, b, c = get_location_info(NAME)
 

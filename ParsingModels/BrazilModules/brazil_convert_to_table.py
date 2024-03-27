@@ -1,9 +1,16 @@
+'''
+convert to table, brazil version.
+
+Responsible for dealing data from brzil and convert into readable (or managable) table.
+
+Author: MLOS^2_NLP_TEAM
+Date: 2024.03.26
+'''
+
 import sys
 import os
 from datetime import datetime,timedelta
-from typing import List, Optional
-import re
-
+from typing import List
 current_directory = os.path.dirname(__file__)
 moudlues_directory = os.path.join(current_directory, '../../Modules')
 sys.path.append(moudlues_directory)
@@ -102,7 +109,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
         if 'MUNICIPIO IGNORADO' in location_name.upper():
             long, lat, region_type, country_code, region_boundary = 'N/A','N/A','N/A','N/A','N/A'
         else:
-            long, lat, region_type, country_code, region_boundary = get_location_info(location_name+" Brazil")
+            long, lat, region_type, country_code, region_boundary = get_location_info(location_name+", Brazil")
         for i in range(2, len(cells)):
             cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
             time_label = remove_quotes(header[i])
