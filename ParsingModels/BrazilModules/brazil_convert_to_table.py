@@ -33,6 +33,9 @@ tableHeading = ['Disease Name',
 
 
 def get_timestamps(cell: str, year: int) -> List[datetime]:
+    '''
+    Converts string and int value into datetime format
+    '''
     if "Total" in cell: #Total, so return the year
         return [datetime(year, 1, 1), datetime(year + 1, 1, 1)]
     elif "Semana" in cell:
@@ -86,8 +89,8 @@ def convert_to_table(important_text: List[str], disease_name: str,
     Returns:
     - List[str]: Parsed text in a table format.
     """
-    table_values = None
-    debug_mode = flags is not None and '-d' in flags
+    # table_values = None
+    # debug_mode = flags is not None and '-d' in flags
 
     rows = important_text[0].split('\n')
 
