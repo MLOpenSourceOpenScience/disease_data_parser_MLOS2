@@ -25,7 +25,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         2 element array with the start and end timestamp
     '''
     # Regular expression pattern to match the date format
-    pattern = r'(?s:.*)\b(\d{1,2})\s*(?:st|nd|rd|th)\s*\w{0,4}?\s*[-–—]+\s*(\d{1,2})\s*(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})?\s*\('
+    pattern = r'(?s:.*)\b(\d{1,2})\s*(?:st|nd|rd|th)\s*\w{0,9}\s*[-–—]+\s*(\d{1,2})\s*(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})?\s*\('
     # \s{0,1}\( on the end?
 
     # Search for the pattern in the text
@@ -37,7 +37,12 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         month = match.group(3)
         year = match.group(4)
 
-        if year is None:
+        if year is None and month[-1].isdigit():
+            # handles 26th Mar2021
+            year = month[-4:]
+            month = month[:-4]
+        elif year is None:
+            # handels 26thMar 2021
             pattern_year = r'(?s:.*)\b(\d{1,2})\s*(?:st|nd|rd|th)\s*\w{0,4}?[-–—]+\s*(\d{1,2})\s*(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
             year_match = re.search(pattern_year, text)
 

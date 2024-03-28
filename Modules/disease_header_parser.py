@@ -133,6 +133,14 @@ def detect_diseases(line: str) -> List[str]:
     double_length = False
     # flag for two-combined words
 
+    itr = 0
+    while itr < len(names) - 1:
+        if names[itr] == 'huma' and names[itr+1] == 'n':
+            names[itr] = 'human'
+            del names[itr+1]
+        else:
+            itr+=1
+
     for name, next_name in zip(names, names[1:]):
         if double_length:
             double_length = False
