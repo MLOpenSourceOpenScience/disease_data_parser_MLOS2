@@ -10,6 +10,7 @@ Date: 2024.02.06
 
 import os
 import csv
+import re
 from typing import Tuple
 
 def source_control(input_file: str, output_file: str) -> Tuple[str, str]:
@@ -77,11 +78,15 @@ def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = N
 
     target = target.lower()
 
+    first_row = None
+
     with open(file_path, 'r', encoding= 'utf-8') as file:
         reader = csv.reader(file)
 
         for row in reader:
-            if column is not None and row and target == row[column]:
+            if first_row is None:
+                first_row = row
+            elif column is not None and row and target == row[column]:
                 new_file_data.append(row)
             elif row:
                 for i, element in enumerate(row):
@@ -91,7 +96,51 @@ def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = N
 
     with open(output_path, 'w', newline='', encoding='utf-8') as out_file:
         writer = csv.writer(out_file)
+        writer.writerow(first_row)
         writer.writerows(new_file_data)
+
+def time_numeric_conversion(given: str, direction: bool = True) -> str:
+    '''
+    convert time -> nemeric time or vice versa,
+    prior to sorting the data.
+    '''
+
+    month_mapping = {
+        'Jan': '01',
+        'Feb': '02',
+        'Mar': '03',
+        'Apr': '04',
+        'May': '05',
+        'Jun': '06',
+        'Jul': '07',
+        'Aug': '08',
+        'Sep': '09',
+        'Oct': '10',
+        'Nov': '11',
+        'Dec': '12'
+    }
+
+    if direction:
+        pattern = r'(\d{2})-(\w{3,8})-(\d{4})'
+
+        match = re.search(pattern, given)
+
+        if match:
+            day = match.group(1)
+            month = match.group(2)
+            year = match.group(3)
+
+            month = month_mapping.get(month, month)
+
+            return_string = year+month+day
+            return return_string
+
+    month_mapping_reverse = {v: k for k, v in month_mapping.items()}
+    month = month_mapping_reverse.get(given[4:6],given[4:6])
+
+    return_string = given[6:]+'-'+month+'-'+given[:4]+ ' 00:00:00'
+    return return_string
+
 
 def order_by_time(filename: str = 'Out/output.csv', outfile: str = None, asc: bool = True) -> None:
     '''
@@ -103,7 +152,23 @@ def order_by_time(filename: str = 'Out/output.csv', outfile: str = None, asc: bo
 
     file_path, output_path = source_control(filename, outfile)
 
+    data = []
+    with open(file_path, 'r', encoding= 'utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            row['TimeStampStart'] = time_numeric_conversion(row['TimeStampStart'])
+            data.append(row)
 
+    sorted_data = sorted(data, key=lambda x: x['TimeStampStart'], reverse= False if asc else True)
+
+    with open(output_path, 'w', newline='', encoding= 'utf-8') as file:
+        fieldnames = sorted_data[0].keys()
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for row in sorted_data:
+            row['TimeStampStart'] = time_numeric_conversion(row['TimeStampStart'], False)
+            writer.writerow(row)
 
 if __name__ == '__main__':
     T = 'dengue fever'
@@ -116,3 +181,5 @@ if __name__ == '__main__':
     # extract_data("Matale", 'Out/output_dengue fever.csv')
     # extract_data("NuwaraEliya", 'Out/output_dengue fever.csv')
     # extract_data("SRILANKA", 'Out/output_dengue fever.csv')
+
+    order_by_time("Out/output_dengue fever.csv")
