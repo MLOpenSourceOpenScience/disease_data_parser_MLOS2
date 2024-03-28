@@ -217,7 +217,7 @@ def convert_to_table(important_text: List[str],
 
     for i in range(2, len(rows)):
         if ((rows[i].strip()[0].isalpha() or rows[i].strip()[-1].isalpha())
-            and not rows[i].strip() == 'v'):
+            and not rows[i].strip() == 'v' and not rows[i][-1] == 'Q'):
             new_rows.append(temp_row.strip())
             temp_row = rows[i]
         else:
