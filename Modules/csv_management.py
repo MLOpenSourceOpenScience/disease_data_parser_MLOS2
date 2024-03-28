@@ -109,10 +109,10 @@ if __name__ == '__main__':
     T = 'dengue fever'
 
     extract_data(T)
-    extract_data("Colombo", 'Out/output_dengue fever.csv')
-    extract_data("Gampaha", 'Out/output_dengue fever.csv')
-    extract_data("Kalutara", 'Out/output_dengue fever.csv')
-    extract_data("Kandy", 'Out/output_dengue fever.csv')
-    extract_data("Matale", 'Out/output_dengue fever.csv')
-    extract_data("NuwaraEliya", 'Out/output_dengue fever.csv')
-    extract_data("SRILANKA", 'Out/output_dengue fever.csv')
+    # extract_data("Colombo", 'Out/output_dengue fever.csv')
+    # extract_data("Gampaha", 'Out/output_dengue fever.csv')
+    # extract_data("Kalutara", 'Out/output_dengue fever.csv')
+    # extract_data("Kandy", 'Out/output_dengue fever.csv')
+    # extract_data("Matale", 'Out/output_dengue fever.csv')
+    # extract_data("NuwaraEliya", 'Out/output_dengue fever.csv')
+    # extract_data("SRILANKA", 'Out/output_dengue fever.csv')
