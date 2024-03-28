@@ -170,13 +170,11 @@ def order_by_time(filename: str = 'Out/output.csv', outfile: str = None, asc: bo
             row['TimeStampStart'] = time_numeric_conversion(row['TimeStampStart'], False)
             writer.writerow(row)
 
-
-
 if __name__ == '__main__':
     T = 'dengue fever'
 
-    extract_data(T, 'Out/data.csv')
-    extract_data("Colombo", 'Out/data_dengue fever.csv')
+    extract_data(T)
+    # extract_data("Colombo", 'Out/output_dengue fever.csv')
     # extract_data("Gampaha", 'Out/output_dengue fever.csv')
     # extract_data("Kalutara", 'Out/output_dengue fever.csv')
     # extract_data("Kandy", 'Out/output_dengue fever.csv')
@@ -184,4 +182,4 @@ if __name__ == '__main__':
     # extract_data("NuwaraEliya", 'Out/output_dengue fever.csv')
     # extract_data("SRILANKA", 'Out/output_dengue fever.csv')
 
-    order_by_time("Out/data_dengue fever_Colombo.csv")
+    order_by_time("Out/output_dengue fever.csv")
