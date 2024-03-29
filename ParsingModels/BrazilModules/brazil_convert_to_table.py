@@ -109,7 +109,7 @@ def convert_to_table(important_text: List[str], disease_name: str,
     for row in rows:
         cells = row.split(';')
         location_name = remove_numbers(remove_quotes(cells[0]))
-        if 'MUNICIPIO IGNORADO' in location_name.upper():
+        if 'IGNORADO' in location_name.upper():
             long, lat, region_type, country_code, region_boundary = 'N/A','N/A','N/A','N/A','N/A'
         else:
             long, lat, region_type, country_code, region_boundary = get_location_info(location_name+", Brazil")
