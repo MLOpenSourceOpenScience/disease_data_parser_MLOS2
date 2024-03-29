@@ -6579,3 +6579,6 @@ brazil,country,BRA,-47.9291,-15.7783,"{'west': -73.98318, 'south': -33.75118, 'e
 "westfalia, brazil",city,BRA,-51.76405,-29.4248,"{'west': -51.78381, 'south': -29.46304, 'east': -51.69009, 'north': -29.36257}"
 "anhanguera, brazil",city,BRA,-48.21955,-18.33329,"{'west': -48.27215, 'south': -18.34624, 'east': -48.1697, 'north': -18.26916}"
 "mambai, brazil",city,BRA,-46.1096,-14.49941,"{'west': -46.20262, 'south': -14.66474, 'east': -45.90697, 'north': -14.23263}"
+
+"oliveira, brazil",city,BRA,-44.82269,-20.69816,"{'west': -44.9417, 'south': -20.90358, 'east': -44.44883, 'north': -20.60456}"
+

@@ -31,7 +31,9 @@ def parse_alpha_only(input_string: str) -> str:
     """
     return ''.join(char for char in input_string if char.isalnum() or char in [' ', ','])
 
-API_KEY = 'ZGIjiMgMbVIArCsYuZJvYWj09a4lLp4cOB-30O4sOBs'
+
+API_KEY = '9uLI4ucj1ewn3FcWCG2F_9zGUoy44mX6RBMibioZkzc'
+
 
 def get_location_info(search_location_original: str, api: str = API_KEY) -> List[int]:
     """
@@ -145,7 +147,7 @@ def get_location_info(search_location_original: str, api: str = API_KEY) -> List
 ### example code
 
 if __name__ == '__main__':
-    NAME = 'buritis, Brazil'
+    NAME = 'Oliveira, Minas Gerais'
 
     long, lat, a, b, c = get_location_info(NAME)
 
