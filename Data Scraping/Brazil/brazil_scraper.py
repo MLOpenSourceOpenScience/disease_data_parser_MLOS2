@@ -31,7 +31,11 @@ def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
     years = Select(driver.find_element(By.ID, "A"))
 
     #Set settings properly
-    line.select_by_value("Município_de_residência")
+
+    # pick one of the lines, notification municipality or residence municipality
+    #line.select_by_value("Município_de_residência") # Select by municipality of residence
+    line.select_by_value("Município_de_notificação") # Select by municipality of notification
+
     try:
         column.select_by_value("Semana_epidem._1º_Sintomas(s)")
     except: #if you can't find weekly data, get monthly
@@ -94,6 +98,7 @@ if __name__ == '__main__':
 
     if n != 4:
         print("Invalid number of arguments! Correct usage: brazil_scraper.py <data-url> <outfile-name> <output-folder>")
+        print("Example: brazil_scraper.py http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebr.def BrazilDengue Data\BrazilDengue")
         quit()
 
     data_url = sys.argv[1]
