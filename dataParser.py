@@ -58,13 +58,14 @@ if __name__ == "__main__":
     # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
-    flag_types = ['-q','-d','-l','-s','-errordir']
+    flag_types = ['-q','-d','-l','-s','-asc','-desc','-errordir']
 
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
     log_mode = '-l' in flags
     extract_mode = '-s' in flags
     error_dir_mode = '-errordir' in flags
+    sort_mode = '-asc' in flags or '-desc' in flags
     LOG_FILE_PATH = None
     ERROR_DIR = None
 
@@ -188,6 +189,14 @@ if __name__ == "__main__":
         with open(LOG_FILE_PATH, 'a', encoding= 'utf-8') as log_file:
             log_file.write(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
 
+    if sort_mode:
+        from Modules.csv_management import order_by_time
+
+        if '-asc' in flags:
+            order_by_time(outFile)
+        elif '-desc' in flags:
+            order_by_time(outFile, asc= False)
+
     if extract_mode:
         try:
             target_keyword = flags[flags.index('-s') + 1]
@@ -211,7 +220,6 @@ if __name__ == "__main__":
             OUTPUT_PATH = outFile.split('.')[0] + '_' + target_keyword + '.csv'
 
         from Modules.csv_management import extract_data
-        from Modules.csv_management import order_by_time
 
         extract_data(target_keyword, outFile, OUTPUT_PATH)
-        order_by_time(OUTPUT_PATH)
+
