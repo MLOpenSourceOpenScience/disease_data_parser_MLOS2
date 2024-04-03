@@ -42,8 +42,7 @@ def extract_to_table(rtf_data: List[str], flags: List[str] = None) -> [List[List
     #Hard coded, can be made to be an argument
     disease_name = "Dengue Fever"
 
-    table = convert_to_table(rtf_data, disease_name = disease_name, flags = flags)
-    heading = tableHeading #tableHeading imported from SriLankaModules.convert_to_table
+    table, heading = convert_to_table(rtf_data, disease_name = disease_name, flags = flags)
 
     if debug_mode:
         print("DEBUG - Output Table:")

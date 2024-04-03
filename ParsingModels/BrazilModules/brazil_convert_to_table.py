@@ -99,12 +99,9 @@ def convert_to_table(important_text: List[str], disease_name: str,
     header = rows[2].split(';')
     rows = rows[3:-1]
 
-    print(year)
-    print(source)
-    print(header)
-    print(rows[:4])
-
     table_data = []
+    location_type = remove_quotes(header[0])
+    tableHeading[2] = location_type
 
     for row in rows:
         cells = row.split(';')
@@ -116,10 +113,14 @@ def convert_to_table(important_text: List[str], disease_name: str,
             long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         else:
             long, lat, region_type, country_code, region_boundary = get_location_info(location_name+", Brazil")
+        time_header = [[0,0],[0,0]]
         for i in range(2, len(cells)):
-            cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
             time_label = remove_quotes(header[i])
             timestamps = get_timestamps(time_label, year)
+            time_header.append(timestamps)
+        for i in range(2, len(cells)):
+            cases = 0 if cells[i] == '-' else cells[i] #if data is -, it is actually zero
+            timestamps = time_header[i]
             table_data.append([disease_name,
                     cases,
                     location_name,
@@ -131,7 +132,4 @@ def convert_to_table(important_text: List[str], disease_name: str,
                     time_to_excel_time(timestamps[0]),
                     time_to_excel_time(timestamps[1])])
 
-    for i in range(4):
-        print(table_data[i])
-
-    return table_data
+    return table_data, tableHeading
