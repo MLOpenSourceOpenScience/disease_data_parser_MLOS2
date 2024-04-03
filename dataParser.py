@@ -222,4 +222,3 @@ if __name__ == "__main__":
         from Modules.csv_management import extract_data
 
         extract_data(target_keyword, outFile, OUTPUT_PATH)
-
