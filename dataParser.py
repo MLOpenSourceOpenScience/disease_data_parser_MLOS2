@@ -39,6 +39,7 @@ if __name__ == "__main__":
         print("-q: Quiet Mode. No stack trace outputs for errors")
         print("-d: Debug Mode. Print inputs to each function")
         print("-l [Path/To/File]: Logs all failed pdfs to file, for debugging")
+        print("-s keyword [Path/To/File]: Extracts data that contains keywords.")
         print("-errordir [Path/To/Directory]: Copies all failed pdfs into directory, for debugging")
         quit()
     if n < 4:
@@ -57,12 +58,14 @@ if __name__ == "__main__":
     # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
-    flag_types = ['-q','-d','-l','-errordir']
+    flag_types = ['-q','-d','-l','-s','-asc','-desc','-errordir']
 
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
     log_mode = '-l' in flags
+    extract_mode = '-s' in flags
     error_dir_mode = '-errordir' in flags
+    sort_mode = '-asc' in flags or '-desc' in flags
     LOG_FILE_PATH = None
     ERROR_DIR = None
 
@@ -106,7 +109,7 @@ if __name__ == "__main__":
         for root, dirs, files in os.walk(inFolder):
             for name in files:
                 #print(f'root: {root} dirs: {dirs} files: {files}')
-                if name[-4:] == '.pdf': # Only parse pdf files
+                if name[-4:] == '.pdf' or name[-4:] == '.txt': # Only parse pdf or txt files
                     filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
     else:
         print(f"ERROR: folder '{inFolder}' not found!")
@@ -128,7 +131,12 @@ if __name__ == "__main__":
         print(f"Parsing file {i}/{len(filesToParse)}:",currentFile)
         STEP = 0
         try:
-            rtfData = pdf_to_rtf(currentFile)
+            rtfData = []
+            if currentFile[-4:] == '.pdf': #if file is PDF
+                rtfData = pdf_to_rtf(currentFile)
+            elif currentFile[-4:] == '.txt': #if file is txt
+                with open(currentFile) as txt_data:
+                    rtfData = [txt_data.read()]
             STEP +=1
             table,heading = model.extract_to_table(rtfData, flags = flags)
             for n in range(len(table)):
@@ -177,3 +185,38 @@ if __name__ == "__main__":
     if log_mode:
         with open(LOG_FILE_PATH, 'a', encoding= 'utf-8') as log_file:
             log_file.write(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
+
+    if sort_mode:
+        from Modules.csv_management import order_by_time
+
+        if '-asc' in flags:
+            order_by_time(outFile)
+        elif '-desc' in flags:
+            order_by_time(outFile, asc= False)
+
+    if extract_mode:
+        try:
+            target_keyword = flags[flags.index('-s') + 1]
+            if target_keyword in flag_types:
+                raise SyntaxError
+        except SyntaxError:
+            print("Error with -s flag: Can't find proper keyword"
+                  +"Proper usage: -s keyword [Path/To/File]")
+            sys.exit()
+
+        OUTPUT_PATH = None
+
+        path_index = flags.index('-s') + 2
+
+        if path_index < len(flags):
+            temp_path = flags[path_index]
+            if temp_path not in flag_types:
+                OUTPUT_PATH = temp_path
+
+        if OUTPUT_PATH is None:
+            OUTPUT_PATH = outFile.split('.')[0] + '_' + target_keyword + '.csv'
+
+        from Modules.csv_management import extract_data
+
+        extract_data(target_keyword, outFile, OUTPUT_PATH)
+

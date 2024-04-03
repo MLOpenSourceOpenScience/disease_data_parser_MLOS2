@@ -24,6 +24,7 @@ sys.path.append(moudlues_directory)
 
 from location_interface import get_location_info
 from disease_header_parser import detect_diseases
+from table_conversion_functions import time_to_excel_time, remove_blank_values, print_table
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa'))
 # Gets the directory of LLaMaInterface module for import
@@ -39,22 +40,6 @@ tableHeading = ['Disease Name',
                 'Region Boundary',
                 'TimeStampStart',
                 'TimeStampEnd']
-
-def time_to_excel_time(time: datetime) -> str:
-    """
-    Get time as datetime format, and return str type of that same datetime.
-
-    Parameters:
-    - time (datetime): The time given.
-
-    Returns:
-    - str: The same time writen as a string.
-    """
-    return time.strftime("%d-%b-%Y %H:%M:%S")
-
-
-# Table format: [Disease Name][Cases][Location Name][Country Code][Region Type(City/County/Country)]
-#               [Lattitude][Longitude][Region Boundary][TimeStampStart][TimeStampEnd]
 
 
 def is_number_value(input_string: str) -> bool:
@@ -131,20 +116,6 @@ def get_table_values(first_location: str, text: str, flags: List[str] = None) ->
         return output
     else:
         return None
-
-# Removes blank values from a List
-def remove_blank_values(data: List[str]) -> List[str]:
-    """
-    Removes empty entries in data (such as '')
-    Also removes unessacary blank spaces from the strings
-    """
-
-    new_data = []
-
-    for row in data:
-        new_data.append(row.strip())
-
-    return list(filter(str.strip, new_data))
 
 def header_concatenation(data: List[str]) -> List[str]:
     """
@@ -229,13 +200,24 @@ def convert_to_table(important_text: List[str],
     #               'Leishmaniasis',
     #               'WRCD']
 
+    # pre-process, such as removing 0, 5, 4 in front of location names
+
+    #TODO: generalize the method to fix specific errors...maybe
+    for i in range(2, len(rows)):
+        temp = rows[i].strip()
+        if temp == "M31atale":
+            rows[i] = "Matale"
+        elif temp in ["SRI LANKA", "SRI"]:
+            rows[i] = "SRILANKA"
+        elif is_number_value(temp[0]) and temp[1:].isalpha() and len(temp) > 4:
+            rows[i] = temp[1:]
+
     new_rows = [rows[0]]
     temp_row = rows[1]
 
     for i in range(2, len(rows)):
-        if (rows[i].strip()[0].isalpha()
-            or rows[i].strip()[-1].isalpha()) and not rows[i].strip()[0] == 'v':
-
+        if ((rows[i].strip()[0].isalpha() or rows[i].strip()[-1].isalpha())
+            and not rows[i].strip() == 'v' and not rows[i][-1] == 'Q'):
             new_rows.append(temp_row.strip())
             temp_row = rows[i]
         else:
@@ -263,7 +245,7 @@ def convert_to_table(important_text: List[str],
 
         stop_reading = False
 
-        break_strings = ["Source:", "WRCD", "PRINTING", "Table"]
+        break_strings = ["Source:", "WRCD", "PRINTING", "Table", "Page"]
         for break_string in break_strings:
             if data[0][:len(break_string)] == break_string:
                 stop_reading = True
@@ -300,31 +282,6 @@ def convert_to_table(important_text: List[str],
                           time_to_excel_time(timestamps[1])])
     return table_data
 
-def print_table(tabled_text: List[str])-> None:
-    """
-    Read table and print it as formatted output
-
-    Parameters:
-    - tabled_text (List[str]): data formatted as table
-    """
-    for heading in ['Disease Name',
-                    'Cases',
-                    'Location Name',
-                    'Country Code',
-                    'Region Type',
-                    'Lattitude',
-                    'Longitude',
-                    'Region Boundary',
-                    'TimeStampStart',
-                    'TimeStampEnd']:
-        print(f"|{heading:<15}",end=" ")
-    print("|")
-    for row in tabled_text:
-        for col in row:
-            print(f"|{col:<15}",end=" ")
-        print("|")
-
-
 if __name__ == '__main__':
     TEST_DATA = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi-
     Leptospirosis Typhus Viral Hep- Human Chickenpox Meningitis Leishmania- WRCD
@@ -360,6 +317,6 @@ SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 56
     table = convert_to_table(TEST_DATA,
                            [datetime(2023, 6, 9) +timedelta(days=-7),
                             datetime(2023, 6, 9)])
-    print_table(table)
+    print_table(table, tableHeading)
     from table_to_csv import print_to_csv
     print_to_csv(table,tableHeading)
