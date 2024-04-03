@@ -73,6 +73,7 @@ def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[
     found_starting_word = False
     temp_diseases = []
 
+    print("DEBUG: looking for starting word")
     for idx, word in enumerate(text.split()):
         if (found_starting_word and len(subset.split())==4):
             #print("DEBUG: checking validity of next words")
@@ -83,20 +84,26 @@ def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[
             except ValueError:
                 subset = ""
                 found_starting_word = False
+                print("DEBUG: non disease detected, start word invalid")
                 continue
             if temp_diseases.count("ignore") > 0 or len(temp_diseases) == 0:
                     subset = ""
                     found_starting_word = False
+                    print("DEBUG: non disease detected, start word invalid")
                     continue
         if found_starting_word:
             if word in end_words and len(subset.split())>300:
-                #print("DEBUG: end word found:", word)
+                print("DEBUG: end word found:", word)
                 break
             subset += word + " "
             #print("DEBUG: adding", word, "to subset")
         elif word == first_word:
             found_starting_word = True
-            #print("DEBUG: starting word found")
+            print("DEBUG: starting word found")
+            subset += word + " "
+        elif word in first_word:
+            print("DEBUG: starting word found kinda wack tho")
+            found_starting_word = True
             subset += word + " "
 
     #print("DEBUG: subset", subset)

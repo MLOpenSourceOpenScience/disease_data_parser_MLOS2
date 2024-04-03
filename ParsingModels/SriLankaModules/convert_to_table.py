@@ -182,6 +182,8 @@ def convert_to_table(important_text: List[str],
     # Thus, there might need a function that works as concatination
     # of those strings
     rows = header_concatenation(rows)
+    if(len(rows) == 0):
+        print("\n\n\nNo rows found\n\n\n")
     labels = detect_diseases(rows[0])
 
     # if __name__ == '__main__': #for testing
