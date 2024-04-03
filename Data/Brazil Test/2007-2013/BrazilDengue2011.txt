@@ -1,5 +1,6 @@
 2011
 http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebr.def
+Dengue Fever
 "Município de residência";"Ign/Em Branco";"Jan";"Fev";"Mar";"Abr";"Mai";"Jun";"Jul";"Ago";"Set";"Out";"Nov";"Dez";"Total"
 " MUNICIPIO IGNORADO - RO";-;-;3;3;2;-;-;-;-;-;1;-;-;9
 "110001 ALTA FLORESTA D'OESTE";-;80;53;23;10;5;1;12;18;8;9;28;14;261

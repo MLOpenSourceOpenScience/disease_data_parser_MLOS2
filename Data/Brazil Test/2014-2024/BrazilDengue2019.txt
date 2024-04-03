@@ -1,5 +1,6 @@
 2019
 http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebbr.def
+Dengue Fever
 "Município de residência";"Em Branco/ign";"Semana 01";"Semana 02";"Semana 03";"Semana 04";"Semana 05";"Semana 06";"Semana 07";"Semana 08";"Semana 09";"Semana 10";"Semana 11";"Semana 12";"Semana 13";"Semana 14";"Semana 15";"Semana 16";"Semana 17";"Semana 18";"Semana 19";"Semana 20";"Semana 21";"Semana 22";"Semana 23";"Semana 24";"Semana 25";"Semana 26";"Semana 27";"Semana 28";"Semana 29";"Semana 30";"Semana 31";"Semana 32";"Semana 33";"Semana 34";"Semana 35";"Semana 36";"Semana 37";"Semana 38";"Semana 39";"Semana 40";"Semana 41";"Semana 42";"Semana 43";"Semana 44";"Semana 45";"Semana 46";"Semana 47";"Semana 48";"Semana 49";"Semana 50";"Semana 51";"Semana 52";"Semana 53";"Total"
 " MUNICIPIO IGNORADO - RO";-;-;-;-;-;-;-;-;-;-;-;-;-;-;1;-;-;-;-;1;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;2
 "110001 ALTA FLORESTA D'OESTE";-;45;56;70;65;42;32;4;11;7;10;10;3;4;16;11;7;7;15;27;28;18;26;11;29;30;17;26;30;20;35;29;15;12;11;12;5;12;18;10;11;13;10;16;16;18;25;31;34;53;45;55;51;-;1214

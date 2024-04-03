@@ -10,7 +10,7 @@ import time
 import sys
 import os
 
-def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
+def extract_from_disease_site(disease_name: str, url: str, outfile_name: str, output_folder: str):
 
     out_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), output_folder)
     if not os.path.exists(out_dir): # If there is no directory, make it
@@ -72,6 +72,8 @@ def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
             output.write('\n')
             output.write(url)
             output.write('\n')
+            output.write(disease_name)
+            output.write('\n')
             output.write(data)
 
         #switch to first tab
@@ -92,12 +94,13 @@ if __name__ == '__main__':
 
     n = len(sys.argv)
 
-    if n != 4:
-        print("Invalid number of arguments! Correct usage: brazil_scraper.py <data-url> <outfile-name> <output-folder>")
+    if n != 5:
+        print("Invalid number of arguments! Correct usage: brazil_scraper.py <disease-name> <data-url> <outfile-name> <output-folder>")
         quit()
 
-    data_url = sys.argv[1]
-    outfile_name = sys.argv[2]
-    output_folder = sys.argv[3]   
+    disease_name = sys.argv[1]
+    data_url = sys.argv[2]
+    outfile_name = sys.argv[3]
+    output_folder = sys.argv[4]   
 
-    extract_from_disease_site(data_url, outfile_name, output_folder)
+    extract_from_disease_site(disease_name, data_url, outfile_name, output_folder)

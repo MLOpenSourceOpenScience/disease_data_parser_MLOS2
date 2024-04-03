@@ -75,7 +75,7 @@ def translate_month(month: str) -> str:
 
 
 
-def convert_to_table(important_text: List[str], disease_name: str,
+def convert_to_table(important_text: List[str],
                      flags: List[str] = None) -> List[str]:
     """
     Read text file and parse it, creating a List of string which holds
@@ -96,8 +96,9 @@ def convert_to_table(important_text: List[str], disease_name: str,
 
     year = int(rows[0])
     source = rows[1]
-    header = rows[2].split(';')
-    rows = rows[3:-1]
+    disease_name = rows[2]
+    header = rows[3].split(';')
+    rows = rows[4:-1]
 
     table_data = []
     location_type = remove_quotes(header[0])
