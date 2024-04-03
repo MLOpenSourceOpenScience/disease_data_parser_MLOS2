@@ -6582,6 +6582,27 @@ brazil,country,BRA,-47.9291,-15.7783,"{'west': -73.98318, 'south': -33.75118, 'e
 
 "oliveira, brazil",city,BRA,-44.82269,-20.69816,"{'west': -44.9417, 'south': -20.90358, 'east': -44.44883, 'north': -20.60456}"
 
+
+"maraja do sena, brazil",city,BRA,-45.45349,-4.62145,"{'west': -45.923, 'south': -4.94428, 'east': -45.34516, 'north': -4.55862}"
+"serrano do maranhao, brazil",city,BRA,-45.11584,-1.85715,"{'west': -45.19342, 'south': -2.17114, 'east': -44.65124, 'north': -1.26477}"
+"sao bento abade, brazil",city,BRA,-45.07646,-21.58222,"{'west': -45.11425, 'south': -21.63382, 'east': -45.02764, 'north': -21.49794}"
+"carlos gomes, brazil",city,BRA,-51.91468,-27.71601,"{'west': -51.98543, 'south': -27.75635, 'east': -51.8745, 'north': -27.64762}"
+"terra de areia, brazil",city,BRA,-50.06452,-29.57733,"{'west': -50.16307, 'south': -29.65285, 'east': -49.9648, 'north': -29.52818}"
+"santa cruz do arari, brazil",city,BRA,-49.17498,-0.66154,"{'west': -49.48926, 'south': -0.7719, 'east': -49.13565, 'north': -0.3371}"
+"celso ramos, brazil",city,BRA,-51.33738,-27.63332,"{'west': -51.4573, 'south': -27.73966, 'east': -51.19281, 'north': -27.56633}"
+"erval velho, brazil",city,BRA,-51.4434,-27.27619,"{'west': -51.55478, 'south': -27.34742, 'east': -51.28832, 'north': -27.22154}"
+"lebon regis, brazil",city,BRA,-50.69086,-26.92618,"{'west': -50.85331, 'south': -27.10098, 'east': -50.48792, 'north': -26.65639}"
+"matos costa, brazil",city,BRA,-51.15033,-26.4734,"{'west': -51.30066, 'south': -26.609, 'east': -50.97081, 'north': -26.38673}"
+"presidente nereu, brazil",city,BRA,-49.39284,-27.28043,"{'west': -49.49119, 'south': -27.35761, 'east': -49.18709, 'north': -27.15855}"
+"campos borges, brazil",city,BRA,-53.001,-28.88969,"{'west': -53.18285, 'south': -28.98723, 'east': -52.91958, 'north': -28.83032}"
+"chui, brazil",city,BRA,-53.45544,-33.69045,"{'west': -53.52309, 'south': -33.74289, 'east': -53.30154, 'north': -33.55597}"
+"david canabarro, brazil",city,BRA,-51.84808,-28.38685,"{'west': -51.91432, 'south': -28.47556, 'east': -51.70265, 'north': -28.35434}"
+"itacurubi, brazil",city,BRA,-55.23487,-28.79889,"{'west': -55.5501, 'south': -28.98247, 'east': -54.96054, 'north': -28.64856}"
+"jacuizinho, brazil",city,BRA,-53.06073,-29.03517,"{'west': -53.14699, 'south': -29.15595, 'east': -52.85537, 'north': -28.94755}"
+"morro redondo, brazil",city,BRA,-52.62645,-31.59362,"{'west': -52.73659, 'south': -31.74072, 'east': -52.54767, 'north': -31.50254}"
+"muliterno, brazil",city,BRA,-51.76839,-28.32842,"{'west': -51.85796, 'south': -28.3817, 'east': -51.69654, 'north': -28.24212}"
+"sao jose dos ausentes, brazil",city,BRA,-50.06498,-28.74753,"{'west': -50.21765, 'south': -28.90252, 'east': -49.69158, 'north': -28.4386}"
+"tres forquilhas, brazil",city,BRA,-50.06282,-29.53819,"{'west': -50.18274, 'south': -29.5523, 'east': -50.00265, 'north': -29.33846}"
 "rondon do para, brazil",city,BRA,-48.06939,-4.77498,"{'west': -49.01823, 'south': -4.94617, 'east': -47.81609, 'north': -4.01744}"
 "ruropolis, brazil",city,BRA,-54.91171,-4.09557,"{'west': -55.89732, 'south': -4.67835, 'east': -54.69506, 'north': -3.72203}"
 "salinopolis, brazil",city,BRA,-47.32952,-0.64733,"{'west': -47.42986, 'south': -0.82258, 'east': -47.25607, 'north': -0.58944}"
@@ -7584,3 +7605,4 @@ brazil,country,BRA,-47.9291,-15.7783,"{'west': -73.98318, 'south': -33.75118, 'e
 "boa ventura, brazil",city,BRA,-38.21725,-7.42065,"{'west': -38.26186, 'south': -7.48723, 'east': -38.09505, 'north': -7.36854}"
 "bom sucesso, brazil",city,BRA,-44.75455,-21.03316,"{'west': -44.97966, 'south': -21.18228, 'east': -44.61967, 'north': -20.84895}"
 "bonito de santa fe, brazil",city,BRA,-38.51349,-7.31144,"{'west': -38.55492, 'south': -7.38203, 'east': -38.40352, 'north': -7.19291}"
+
