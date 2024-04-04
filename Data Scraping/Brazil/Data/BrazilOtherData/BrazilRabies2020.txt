@@ -1,0 +1,9 @@
+2020
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/raivabr.def
+Human Rabies
+"Município de residência";"Fev";"Jun";"Set";"Total"
+"210320 CHAPADINHA";-;-;1;1
+"251280 RIACHO DOS CAVALOS";-;1;-;1
+"330010 ANGRA DOS REIS";1;-;-;1
+"Total";1;1;1;3
+&
