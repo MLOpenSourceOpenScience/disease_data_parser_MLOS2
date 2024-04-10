@@ -111,7 +111,7 @@ def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[
 
 
 
-def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
+def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optional[List[str]],
                                                         Optional[List[datetime]]]:
     # months used to convert text month to datetime
     ''' No longer used
@@ -139,72 +139,86 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
         'Dec': 12
     }
     '''
-    day, month, year = extract_date_components(rtf_data[0])
-    if(day is None or month is None or year is None):
-        print("Error: Invalid date")
-        return None, None
+    if manual_mode:
+        print("manual input mode enabled")
+        print("raw text: ", rtf_data[0])
 
-    if __name__ == "__main__":
-        # Print the extracted date components
-        print("Day:", day)
-        print("Month:", month)
-        print("Year:", year)
+        day = input("Enter the day: ")
+        month = input("Enter the month: ")
+        year = input("Enter the year: ")
 
-    if month == 'Janu':
-    # Exception Handling
-        month = 'January'
-    elif month == 'Febr':
-        month = 'February'
-    elif month == 'Marc':
-        month = 'March'
-    elif month == 'Apri':
-        month = 'April'
-    elif month == 'May':
-        month = 'May'
-    elif month == 'June':
-        month = 'June'
-    elif month == 'July':
-        month = 'July'
-    elif month == 'Augu':
-        month = 'August'
-    elif month == 'Sept':
-        month = 'September'
-    elif month == 'Octo':
-        month = 'October'
-    elif month == 'Nove':
-        month = 'November'
-    elif month == 'Dece':
-        month = 'December'
+        table[1] = input("Enter the table: ")
 
-    end_date = parse(f"{year} {month} {day}")
-    table_change_date = datetime(2013, 5, 17)
-
-    table = ["",""]
-
-    if end_date > table_change_date:
-        table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
-        table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
     else:
-        table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
-        table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
-        #MIGHT NOT BE ACCURATE!! TEST this eventually
 
-    #print(table)
-    #if old (by volume or date or identifying factor do this or that)
 
-    start_date = end_date - timedelta(days=6)
-    dates = [start_date, end_date]
-    #extract table
-    
 
-    #Hardcode fix for "T* C** " ending up in table
-    if "T* C** " in table[1]:
-        table[1] = table[1].replace("T* C** ", "")
-    if "T* C** " in table[0]:
-        table[0] = table[0].replace("T* C** ", "")
+        day, month, year = extract_date_components(rtf_data[0])
+        if(day is None or month is None or year is None):
+            print("Error: Invalid date")
+            return None, None
 
-    #print("table", table)
-    #print("dates", dates)
+        if __name__ == "__main__":
+            # Print the extracted date components
+            print("Day:", day)
+            print("Month:", month)
+            print("Year:", year)
+
+        if month == 'Janu':
+        # Exception Handling
+            month = 'January'
+        elif month == 'Febr':
+            month = 'February'
+        elif month == 'Marc':
+            month = 'March'
+        elif month == 'Apri':
+            month = 'April'
+        elif month == 'May':
+            month = 'May'
+        elif month == 'June':
+            month = 'June'
+        elif month == 'July':
+            month = 'July'
+        elif month == 'Augu':
+            month = 'August'
+        elif month == 'Sept':
+            month = 'September'
+        elif month == 'Octo':
+            month = 'October'
+        elif month == 'Nove':
+            month = 'November'
+        elif month == 'Dece':
+            month = 'December'
+
+        end_date = parse(f"{year} {month} {day}")
+        table_change_date = datetime(2013, 5, 17)
+
+        table = ["",""]
+
+        if end_date > table_change_date:
+            table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+            table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
+        else:
+            table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+            table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
+            #MIGHT NOT BE ACCURATE!! TEST this eventually
+
+        #print(table)
+        #if old (by volume or date or identifying factor do this or that)
+
+        start_date = end_date - timedelta(days=6)
+        dates = [start_date, end_date]
+        #extract table
+        
+
+        #Hardcode fix for "T* C** " ending up in table
+        if "T* C** " in table[1]:
+            table[1] = table[1].replace("T* C** ", "")
+        if "T* C** " in table[0]:
+            table[0] = table[0].replace("T* C** ", "")
+
+        #print("table", table)
+        #print("dates", dates)
 
     table[0] = table[0].replace(" ", "\n")
     table[1] = table[1].replace(" ", "\n")

@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
-    flag_types = ['-q','-d','-l','-s','-asc','-desc','-errordir']
+    flag_types = ['-q','-d','-l','-s','-asc','-desc','-errordir', '-manual']
 
     quiet_mode = '-q' in flags
     debug_mode = '-d' in flags
@@ -66,6 +66,7 @@ if __name__ == "__main__":
     extract_mode = '-s' in flags
     error_dir_mode = '-errordir' in flags
     sort_mode = '-asc' in flags or '-desc' in flags
+    manual_mode = '-manual' in flags
     LOG_FILE_PATH = None
     ERROR_DIR = None
 
