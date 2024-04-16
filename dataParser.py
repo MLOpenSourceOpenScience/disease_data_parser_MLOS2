@@ -194,8 +194,7 @@ if __name__ == "__main__":
     print(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
     if log_mode:
         with open(LOG_FILE_PATH, 'a', encoding='utf-8') as log_file:
-            log_file.write(f"There were errors in {
-                           NUM_ERRORS}/{len(filesToParse)} files")
+            log_file.write(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
 
     if sort_mode:
         from Modules.csv_management import order_by_time
