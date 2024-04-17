@@ -189,7 +189,6 @@ if __name__ == "__main__":
                 if not r[2] in regions:
                     regions.append(r[2])
 
-        print(regions)
         for reg in regions:
             new_temp_file = temp_file.split('.')[0] + '_temp.csv'
 
