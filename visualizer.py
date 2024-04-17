@@ -13,7 +13,7 @@ import csv
 import matplotlib.pyplot as plt
 
 
-def save_to_png(region: str, disease: str, time_base: str, filename: str) -> int:
+def save_to_png(region: str, disease: str, time_base: str, filename: str, timeblock: str) -> int:
     """
     function that converts specified csv into png file.
     """
@@ -34,7 +34,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str) -> int
         for key, datas in year_slot.items():
             plt.figure()
             plt.title(key+' '+region+' '+disease)
-            plt.xlabel('Weeks')
+            plt.xlabel(timeblock)
             plt.ylabel('# of diseases')
 
             plt.plot(range(1, len(datas)+1), datas)
@@ -59,7 +59,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str) -> int
         for key, datas in year_month_slot.items():
             plt.figure()
             plt.title(key+' '+region+' '+disease)
-            plt.xlabel('Weeks')
+            plt.xlabel(timeblock)
             plt.ylabel('# of diseases')
 
             plt.plot(range(1, len(datas)+1), datas)
@@ -74,11 +74,12 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str) -> int
             next(reader)
 
             for row in reader:
-                data.append(int(row[1]))
+                sv = row[1].replace('.','')
+                data.append(int(sv))
 
         plt.figure()
         plt.title(region+' '+disease)
-        plt.xlabel('Weeks')
+        plt.xlabel(timeblock)
         plt.ylabel('# of diseases')
         plt.plot(range(1, len(data)+1), data)
         plt.savefig('Out/'+region + '_' + disease + '.png')
@@ -208,7 +209,7 @@ if __name__ == "__main__":
         extract_data(region_long, temp_file, temp_file)
 
     if REGION != 'all' and DISEASE != 'all':
-        SUCCESS = save_to_png(REGION, DISEASE, TIME_BASE, temp_file)
+        SUCCESS = save_to_png(REGION, DISEASE, TIME_BASE, temp_file, DATA_SIZE)
         if SUCCESS == 0:
             print("File extracted successfully, saved under 'Out/'")
     elif REGION == 'all' and DISEASE != 'all':
@@ -225,10 +226,27 @@ if __name__ == "__main__":
             new_temp_file = temp_file.split('.')[0] + '_temp.csv'
 
             extract_data(reg, temp_file, new_temp_file)
-            SUCCESS = save_to_png(reg, DISEASE, TIME_BASE, new_temp_file)
+            SUCCESS = save_to_png(reg, DISEASE, TIME_BASE, new_temp_file, DATA_SIZE)
 
             if SUCCESS != 0:
                 print("Error Occured")
                 sys.exit()
+    elif REGION != 'all' and DISEASE == 'all':
+        diseases = []
+        with open(temp_file, 'r', encoding='utf-8') as target_file:
+            readers = csv.reader(target_file)
+            next(readers)
 
-    sys.exit()
+            for r in readers:
+                if not r[0] in diseases:
+                    diseases.append(r[0])
+
+        for dis in diseases:
+            new_temp_file = temp_file.split('.')[0] + '_temp.csv'
+
+            extract_data(dis, temp_file, new_temp_file)
+            SUCCESS = save_to_png(REGION, dis, TIME_BASE, new_temp_file, DATA_SIZE)
+
+            if SUCCESS != 0:
+                print("Error Occured")
+                sys.exit()
