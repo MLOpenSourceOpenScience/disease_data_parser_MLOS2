@@ -2,6 +2,7 @@
 Data Parser
 
 Responsible for visualizing the data.
+works for weekly as default.
 
 Author: MLOS^2_NLP_TEAM
 Date: 2024.04.02
@@ -108,40 +109,68 @@ if __name__ == "__main__":
         print("\t-t: -t <year/yearly/month/monthly/full/fully> (default is yearly)")
         print("\t-d: -d <name-of-disease> (default is 'all')")
         print("\t-r: -r <name-of-region> (default is 'all')")
+        print("\t-b: -b <day/daily/week/weekly> (default is 'week')")
+        print("For more specific info, please do -flag -h.")
         sys.exit()
 
-    flag_types = ['-t', '-d', '-r', '-c']
+    flag_types = ['-t', '-d', '-r', '-c',' -b']
     # -t: time base, 'yearly', 'monthly'
     # -d: DISEASE name
     # -r: region name
     # -c: country code
+    # -b: given data block
 
     country_mode = '-c' in flags
     region_mode = '-r' in flags
     disease_mode = '-d' in flags
+
+    DATA_SIZE = 'Weeks'
 
     TIME_BASE = 'yearly'
     if '-t' in flags:
         temp_index = flags.index('-t') + 1
         if temp_index < len(flags) and flags[temp_index] not in flag_types:
             TIME_BASE = flags[temp_index]
+            if TIME_BASE == '-h':
+                print("-t defines the time series of the graph will be.")
+                print("If you want to see your data as a yearly scale, then input <-t yearly>.")
+                sys.exit()
+            elif TIME_BASE == 'year':
+                TIME_BASE = 'yearly'
+            elif TIME_BASE == 'month':
+                TIME_BASE = 'monthly'
+            elif TIME_BASE == 'full':
+                TIME_BASE = 'fully'
         else:
             print("Invalid usage of flag '-t'!")
             print("Correct usage: <arguments> -t <year/yearly/month/monthly/full/fully>")
             sys.exit()
 
-    if TIME_BASE == 'year':
-        TIME_BASE = 'yearly'
-    elif TIME_BASE == 'month':
-        TIME_BASE = 'monthly'
-    elif TIME_BASE == 'full':
-        TIME_BASE = 'fully'
+    if '-b' in flags:
+        temp_index = flags.index('-b') + 1
+        if temp_index < len(flags) and flags[temp_index] not in flag_types:
+            if flags[temp_index] == '-h':
+                print("-b defines what data block is inputed.")
+                print("If *.csv's data is given weekly, then do <-b week>.")
+                sys.exit()
+            if flags[temp_index] in ['week', 'weekly']:
+                DATA_SIZE = 'Weeks'
+            elif flags[temp_index] in ['day', 'daily']:
+                DATA_SIZE = 'Days'
+        else:
+            print("Invalid usage of flag '-b'!")
+            print("Correct usage: <arguments> -t <week/weekly/day/daily>")
+            sys.exit()
 
     DISEASE = 'all'
     if disease_mode:
         temp_index = flags.index('-d') + 1
         if temp_index < len(flags) and flags[temp_index] not in flag_types:
             DISEASE = flags[temp_index]
+            if DISEASE == '-h':
+                print("-d defines the specific disease that you are interested to see.")
+                print("If you want to see Dengue, please input <-d Dengue>.")
+                sys.exit()
         else:
             print("Invalid usage of flag '-d'!")
             print("Correct usage: <arguments> -d <name of diseases>")
@@ -164,6 +193,9 @@ if __name__ == "__main__":
         temp_index = flags.index('-r') + 1
         if temp_index < len(flags) and flags[temp_index] not in flag_types:
             REGION = flags[temp_index]
+            if REGION == '-h':
+                print("-r defines the region that you want to see.")
+                print("If you want to see 'Trincomalee', then input <-r trincomalee>.")
         else:
             print("Invalid usage of flag '-r'!")
             print("Correct usage: <arguments> -d <name of the region>")
