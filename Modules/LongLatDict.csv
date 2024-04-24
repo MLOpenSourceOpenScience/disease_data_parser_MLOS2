@@ -9689,3 +9689,4 @@ all,city,SWE,12.04683,57.89532,"{'west': 12.00754, 'south': 57.80618, 'east': 12
 "abadiânia, brazil",city,BRA,-48.71193,-16.18897,"{'west': -48.95936, 'south': -16.34638, 'east': -48.40987, 'north': -15.98947}"
 "itauçu, brazil",city,BRA,-49.60347,-16.20227,"{'west': -49.75807, 'south': -16.33106, 'east': -49.4046, 'north': -16.10351}"
 "moiporá, brazil",city,BRA,-50.73827,-16.54494,"{'west': -50.98072, 'south': -16.6209, 'east': -50.59439, 'north': -16.39609}"
+nuwara,district,NPL,81.37294,29.43862,"{'west': 81.37263, 'south': 29.43786, 'east': 81.37325, 'north': 29.43938}"

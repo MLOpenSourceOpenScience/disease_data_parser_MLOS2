@@ -104,7 +104,7 @@ def longest_common_subsequence(str1: str, str2: str, index1: int = None, index2:
     return max(longest_common_subsequence(str1, str2, index1, index2-1),
                 longest_common_subsequence(str1, str2, index1-1, index2))
 
-def detect_diseases(line: str) -> List[str]:
+def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
     """
     Read line, and seperate the diseases by names.
 
@@ -226,10 +226,11 @@ def detect_diseases(line: str) -> List[str]:
                                             double_length = True
                                         break
                         if not name_found:
-                            print(f"word {name}"
-                                  +f" {next_name if next_name else ''} not found!")
-                            print("Maximum similarity detected "
-                                +f"'{max_similarity}' for '{target_word}'.")
+                            if not supress_error:
+                                print(f"word {name}"
+                                    +f" {next_name if next_name else ''} not found!")
+                                print("Maximum similarity detected "
+                                    +f"'{max_similarity}' for '{target_word}'.")
                             raise ValueError
 
             with open(file_path, 'w', newline='', encoding= 'utf-8') as file:

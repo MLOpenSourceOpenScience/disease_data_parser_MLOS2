@@ -34,7 +34,9 @@ def print_to_csv(table: List[List[str]],
     """
 
     file_path = os.path.join(os.path.dirname(
-        os.path.join(os.path.realpath(__file__), '../../')), file_name)
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')), file_name)
+        ## Don't change the format, we need absolute path of directory holding a file not the filepath!!!!!
+
     #file_path = os.path.join('../', file_name)
     # dynamic name available by user's taste
 
