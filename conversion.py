@@ -42,7 +42,7 @@ def split_all_data():
         print("Locating files...")
         for root, dirs, files in os.walk(inFolder):
             for name in files:
-                if name[-4:] == '.pdf': # Only parse pdf files
+                if name[-4:] == '.csv': # Only parse csv files
                     filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
     print(f'files to parse: {filesToParse[:5]}')
 
