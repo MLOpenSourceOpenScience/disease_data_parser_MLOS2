@@ -48,12 +48,12 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
 
             plt.plot(range(1, len(datas)+1), datas)
             if not merge:
-                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png')
+                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png', dpi= 300)
                 plt.close()
 
         if merge:
             plt.legend(year_slot.keys(), loc="center left", bbox_to_anchor=(1,0.5))
-            plt.savefig('Out/'+region+'_'+disease+'.png', bbox_inches="tight")
+            plt.savefig('Out/'+region+'_'+disease+'.png', bbox_inches="tight", dpi=300)
             plt.close()
     elif time_base == 'monthly':
         processed = []
@@ -83,11 +83,11 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
 
             plt.plot(range(1, len(datas)+1), datas)
             if not merge:
-                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png')
+                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png', dpi=300)
                 plt.close()
         
         if merge:
-            plt.savefig('Out/'+region+'_'+disease+'.png')
+            plt.savefig('Out/'+region+'_'+disease+'.png', dpi=300)
             plt.close()
 
     elif time_base == 'fully':
@@ -106,7 +106,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
         plt.xlabel(timeblock)
         plt.ylabel('# of cases')
         plt.plot(range(1, len(data)+1), data)
-        plt.savefig('Out/'+region + '_' + disease + '.png')
+        plt.savefig('Out/'+region + '_' + disease + '.png', dpi=300)
         plt.close()
 
     return 0
