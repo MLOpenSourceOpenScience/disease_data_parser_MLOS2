@@ -34,7 +34,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
                     elif row[1] == 'v':
                         row[1] = '0'
                     year_slot[row[8][7:11]].append(int(row[1]))
-        
+
         if merge:
             plt.figure()
             plt.title(region+' '+disease)
@@ -48,12 +48,15 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
 
             plt.plot(range(1, len(datas)+1), datas)
             if not merge:
-                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png', dpi= 300)
+                plt.savefig('Out/'+key + '_' + region +
+                            '_' + disease + '.png', dpi=300)
                 plt.close()
 
         if merge:
-            plt.legend(year_slot.keys(), loc="center left", bbox_to_anchor=(1,0.5))
-            plt.savefig('Out/'+region+'_'+disease+'.png', bbox_inches="tight", dpi=300)
+            plt.legend(year_slot.keys(), loc="center left",
+                       bbox_to_anchor=(1, 0.5))
+            plt.savefig('Out/'+region+'_'+disease+'.png',
+                        bbox_inches="tight", dpi=300)
             plt.close()
     elif time_base == 'monthly':
         processed = []
@@ -83,9 +86,10 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
 
             plt.plot(range(1, len(datas)+1), datas)
             if not merge:
-                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png', dpi=300)
+                plt.savefig('Out/'+key + '_' + region +
+                            '_' + disease + '.png', dpi=300)
                 plt.close()
-        
+
         if merge:
             plt.savefig('Out/'+region+'_'+disease+'.png', dpi=300)
             plt.close()
@@ -239,7 +243,8 @@ if __name__ == "__main__":
         extract_data(region_long, temp_file, temp_file)
 
     if REGION != 'all' and DISEASE != 'all':
-        SUCCESS = save_to_png(REGION, DISEASE, TIME_BASE, temp_file, DATA_SIZE, merge=merge_mode)
+        SUCCESS = save_to_png(REGION, DISEASE, TIME_BASE,
+                              temp_file, DATA_SIZE, merge=merge_mode)
         if SUCCESS == 0:
             print("File extracted successfully, saved under 'Out/'")
     elif REGION == 'all' and DISEASE != 'all':
