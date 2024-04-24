@@ -29,6 +29,10 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
                     processed.append(row[8][7:11])
                     year_slot[row[8][7:11]] = [int(row[1])]
                 else:
+                    if row[1] == '1+Q':
+                        row[1] = '1'
+                    elif row[1] == 'v':
+                        row[1] = '0'
                     year_slot[row[8][7:11]].append(int(row[1]))
         
         if merge:
@@ -40,7 +44,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
                 plt.figure()
                 plt.title(key+' '+region+' '+disease)
             plt.xlabel(timeblock)
-            plt.ylabel('# of diseases')
+            plt.ylabel('# of cases')
 
             plt.plot(range(1, len(datas)+1), datas)
             if not merge:
@@ -75,7 +79,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
                 plt.figure()
                 plt.title(key+' '+region+' '+disease)
             plt.xlabel(timeblock)
-            plt.ylabel('# of diseases')
+            plt.ylabel('# of cases')
 
             plt.plot(range(1, len(datas)+1), datas)
             if not merge:
@@ -100,7 +104,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
         plt.figure()
         plt.title(region+' '+disease)
         plt.xlabel(timeblock)
-        plt.ylabel('# of diseases')
+        plt.ylabel('# of cases')
         plt.plot(range(1, len(data)+1), data)
         plt.savefig('Out/'+region + '_' + disease + '.png')
         plt.close()
