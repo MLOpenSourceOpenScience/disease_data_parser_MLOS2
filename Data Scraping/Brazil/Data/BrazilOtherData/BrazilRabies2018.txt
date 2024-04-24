@@ -1,0 +1,12 @@
+2018
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/raivabr.def
+Human Rabies
+"Município de residência";"Jan";"Fev";"Abr";"Mai";"Jun";"Set";"Total"
+"150450 MELGACO";-;-;6;4;-;-;10
+"210320 CHAPADINHA";-;-;-;-;-;1;1
+"251280 RIACHO DOS CAVALOS";-;-;-;-;1;-;1
+"330010 ANGRA DOS REIS";-;1;-;-;-;-;1
+"410580 COLOMBO";1;-;-;-;-;-;1
+"420620 GRAVATAL";-;1;-;-;-;-;1
+"Total";1;2;6;4;1;1;15
+&

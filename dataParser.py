@@ -141,8 +141,8 @@ if __name__ == "__main__":
             rtfData = []
             if currentFile[-4:] == '.pdf':  # if file is PDF
                 rtfData = pdf_to_rtf(currentFile)
-            elif currentFile[-4:] == '.txt':  # if file is txt
-                with open(currentFile) as txt_data:
+            elif currentFile[-4:] == '.txt': #if file is txt
+                with open(currentFile, encoding="utf8") as txt_data:
                     rtfData = [txt_data.read()]
             STEP += 1
             table, heading = model.extract_to_table(rtfData, flags=flags)

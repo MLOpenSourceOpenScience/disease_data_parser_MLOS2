@@ -1,0 +1,16 @@
+2023
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/febretifoidebr.def
+Typhoid Fever
+"Município de residência";"Jan";"Mar";"Mai";"Jun";"Jul";"Ago";"Dez";"Total"
+"120010 BRASILEIA";-;-;-;-;3;-;-;3
+"120042 RODRIGUES ALVES";1;-;-;-;-;-;-;1
+"150140 BELEM";1;-;-;-;-;-;2;3
+"150150 BENEVIDES";-;-;-;1;-;-;-;1
+"150797 TERRA SANTA";1;-;-;-;-;-;-;1
+"150810 TUCURUI";-;-;-;-;2;-;-;2
+"160027 LARANJAL DO JARI";-;1;2;-;-;-;-;3
+"351380 DIADEMA";-;-;-;-;-;1;-;1
+"355030 SAO PAULO";-;1;1;-;1;-;-;3
+"355670 VINHEDO";-;-;1;-;-;-;-;1
+"Total";3;2;4;1;6;1;2;19
+&
