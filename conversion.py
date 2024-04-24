@@ -16,12 +16,14 @@ def split_file(in_csv_path:str, out_csv_path=None):
     for disease_name, rows in disease.items():
         if out_csv_path is None:
             in_csv_path = in_csv_path.replace('\\', '/')
-            path = "/".join(in_csv_path.split('/')[:-1])
-            path = "SeparatedData/" + path
+
+            path_folders = '/'.join(in_csv_path.split('/')[:-1])
+            path_file = in_csv_path.split('/')[-1][:-4]
+
+            path = f"SeparatedData/{path_folders}/{path_file}/"
 
             if not os.path.exists(path):
                 os.makedirs(path)
-            path = path + "/"
 
             output_path = f"{path}{disease_name}.csv"
         else:
@@ -36,6 +38,7 @@ def split_file(in_csv_path:str, out_csv_path=None):
 def split_all_data():
     if len(sys.argv) < 2:
         print(f'please include an argument of where the folder is located')
+        return
     inFolder = sys.argv[1]
     filesToParse = []
     if os.path.exists(inFolder):
@@ -44,7 +47,7 @@ def split_all_data():
             for name in files:
                 if name[-4:] == '.csv': # Only parse csv files
                     filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
-    print(f'files to parse: {filesToParse[:5]}')
+    print(f'files to separate: {filesToParse[:5]}')
 
     for file in filesToParse:
         split_file(file)
