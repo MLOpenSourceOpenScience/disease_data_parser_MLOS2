@@ -33,7 +33,7 @@ def extract_from_disease_site(disease_name: str, url: str, outfile_name: str, ou
     #Set settings properly
     line.select_by_value("Município_de_residência")
     #in column values, first try weekly data then monthly
-    column_values = ["Semana_epidem._1º_Sintomas(s)", "Mês_1º_Sintoma(s)", "Mes_da_Notific", "Mês_acidente_", "Mês_Diag/sintomas", "Mês_Diagnóstico","Mês_notificação","Mês_da_Notific"]
+    column_values = ["Semana_epidem._1º_Sintomas(s)", "Mês_1º_Sintoma(s)", "Mes_da_Notific", "Mês_acidente_", "Mês_Diag/sintomas", "Mês_Diagnóstico","Mês_notificação","Mês_da_Notific","Mês_Notificação","Mes_Notificação","Mês_de_Diagnóstico"]
     for value in column_values:
         try:
             column.select_by_value(value)
