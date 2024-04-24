@@ -3,7 +3,6 @@
 
 ### Dependencies
 - python (earliest version confirmed supported: 3.9.62)
-- llama-cpp-python `pip3 install llama-cpp-python`
 - PyPDF2 `pip3 install PyPDF2`
 - pymupdf `pip3 install PyMuPDF`
 

@@ -1,0 +1,17 @@
+2021
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/botubr.def
+Botulism
+"Município de residência";"Jan";"Abr";"Mai";"Jun";"Out";"Nov";"Dez";"Total"
+"310620 BELO HORIZONTE";-;1;-;-;-;-;-;1
+"310670 BETIM";-;-;-;1;-;-;-;1
+"311450 CARMOPOLIS DE MINAS";-;-;1;-;-;-;-;1
+"317020 UBERLANDIA";-;1;-;-;-;-;-;1
+"330320 NILOPOLIS";-;-;-;-;1;-;-;1
+"330455 RIO DE JANEIRO";1;-;1;-;-;-;-;2
+"354340 RIBEIRAO PRETO";-;1;-;-;-;-;-;1
+"354850 SANTOS";1;2;-;-;-;-;-;3
+"355030 SAO PAULO";-;-;1;-;-;2;-;3
+"510710 SAO JOSE DOS QUATRO MARCOS";-;-;-;-;-;-;2;2
+"530010 BRASILIA";1;-;-;-;-;-;-;1
+"Total";3;5;3;1;1;2;2;17
+&

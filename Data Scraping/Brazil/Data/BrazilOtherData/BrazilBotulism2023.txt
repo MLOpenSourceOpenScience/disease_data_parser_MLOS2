@@ -1,0 +1,10 @@
+2023
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/botubr.def
+Botulism
+"Município de residência";"Jan";"Abr";"Mai";"Jun";"Total"
+"310620 BELO HORIZONTE";-;1;-;-;1
+"310670 BETIM";-;-;-;1;1
+"311450 CARMOPOLIS DE MINAS";-;-;1;-;1
+"354850 SANTOS";1;-;-;-;1
+"Total";1;1;1;1;4
+&

@@ -1,0 +1,7 @@
+2024
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/botubr.def
+Botulism
+"Município de residência";"Jan";"Total"
+"354850 SANTOS";1;1
+"Total";1;1
+&

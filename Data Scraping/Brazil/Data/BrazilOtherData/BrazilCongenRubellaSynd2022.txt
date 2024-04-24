@@ -1,0 +1,11 @@
+2022
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/srubeolacbr.def
+Congenital Rubella Syndrome
+"Município de residência";"Fev";"Mar";"Jul";"Ago";"Nov";"Total"
+"230350 CASCAVEL";1;-;-;-;-;1
+"270690 PILAR";-;-;-;1;-;1
+"292570 PRESIDENTE JANIO QUADROS";-;-;1;-;-;1
+"292700 RIO REAL";-;1;-;-;-;1
+"510682 PORTO ESPERIDIAO";-;-;-;-;1;1
+"Total";1;1;1;1;1;5
+&

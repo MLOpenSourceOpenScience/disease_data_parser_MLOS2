@@ -1,0 +1,25 @@
+2013
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/raivabr.def
+Human Rabies
+"Município de residência";"Jan";"Fev";"Abr";"Mai";"Jun";"Ago";"Set";"Out";"Nov";"Total"
+"130040 BARCELOS";-;-;-;-;-;-;-;-;3;3
+"140010 BOA VISTA";-;-;-;1;-;-;-;-;-;1
+"150450 MELGACO";-;-;6;4;-;-;-;-;-;10
+"171790 PONTE ALTA DO TOCANTINS";1;-;-;-;-;-;-;-;-;1
+"210320 CHAPADINHA";-;-;-;-;-;-;1;-;-;1
+"210500 HUMBERTO DE CAMPOS";1;-;-;-;-;-;-;-;-;1
+"210680 MIRINZAL";-;-;-;-;-;-;-;-;1;1
+"211120 SAO JOSE DE RIBAMAR";1;-;-;-;-;-;-;-;-;1
+"220770 PARNAIBA";1;-;-;-;-;-;-;-;-;1
+"220820 PIO IX";-;-;-;-;-;-;-;1;-;1
+"230600 IRACEMA";-;-;-;-;-;-;-;1;-;1
+"250730 JACARAU";-;-;-;-;-;1;-;-;-;1
+"251280 RIACHO DOS CAVALOS";-;-;-;-;1;-;-;-;-;1
+"261160 RECIFE";-;-;-;-;1;-;-;-;-;1
+"292360 PARAMIRIM";-;1;-;-;-;-;-;-;-;1
+"330010 ANGRA DOS REIS";-;1;-;-;-;-;-;-;-;1
+"410580 COLOMBO";1;-;-;-;-;-;-;-;-;1
+"420620 GRAVATAL";-;1;-;-;-;-;-;-;-;1
+"500320 CORUMBA";-;-;1;-;-;-;-;-;-;1
+"Total";5;3;7;5;2;1;1;2;4;30
+&

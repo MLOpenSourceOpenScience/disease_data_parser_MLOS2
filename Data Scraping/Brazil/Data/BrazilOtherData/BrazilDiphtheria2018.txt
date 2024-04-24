@@ -1,0 +1,17 @@
+2018
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/difteribr.def
+Diphtheria
+"Município de residência";"Jan";"Fev";"Abr";"Jun";"Jul";"Ago";"Set";"Out";"Nov";"Total"
+"110004 CACOAL";-;-;-;-;-;1;-;-;-;1
+"230430 FARIAS BRITO";-;-;-;-;-;1;-;-;-;1
+"260960 OLINDA";-;-;-;-;-;-;-;-;1;1
+"261220 SALGUEIRO";-;-;-;1;-;-;-;-;-;1
+"310670 BETIM";-;-;-;-;-;-;1;-;-;1
+"354880 SAO CAETANO DO SUL";-;-;-;-;-;-;-;1;-;1
+"355030 SAO PAULO";1;-;-;-;-;-;-;-;-;1
+"410690 CURITIBA";-;-;-;-;1;-;-;-;-;1
+"432240 URUGUAIANA";-;1;-;-;-;-;-;-;-;1
+"510025 ALTA FLORESTA";-;-;1;-;-;-;-;-;-;1
+"521930 SANTA HELENA DE GOIAS";-;-;1;-;-;-;-;-;-;1
+"Total";1;1;2;1;1;2;1;1;1;11
+&
