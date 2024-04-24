@@ -13,7 +13,7 @@ import csv
 import matplotlib.pyplot as plt
 
 
-def save_to_png(region: str, disease: str, time_base: str, filename: str, timeblock: str) -> int:
+def save_to_png(region: str, disease: str, time_base: str, filename: str, timeblock: str, merge: bool = False) -> int:
     """
     function that converts specified csv into png file.
     """
@@ -30,17 +30,27 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
                     year_slot[row[8][7:11]] = [int(row[1])]
                 else:
                     year_slot[row[8][7:11]].append(int(row[1]))
+        
+        if merge:
+            plt.figure()
+            plt.title(region+' '+disease)
 
         for key, datas in year_slot.items():
-            plt.figure()
-            plt.title(key+' '+region+' '+disease)
+            if not merge:
+                plt.figure()
+                plt.title(key+' '+region+' '+disease)
             plt.xlabel(timeblock)
             plt.ylabel('# of diseases')
 
             plt.plot(range(1, len(datas)+1), datas)
-            plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png')
-            plt.close()
+            if not merge:
+                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png')
+                plt.close()
 
+        if merge:
+            plt.legend(year_slot.keys(), loc="center left", bbox_to_anchor=(1,0.5))
+            plt.savefig('Out/'+region+'_'+disease+'.png', bbox_inches="tight")
+            plt.close()
     elif time_base == 'monthly':
         processed = []
         year_month_slot = {}
@@ -54,16 +64,26 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
                     processed.append(row[8][7:11]+row[8][3:6])
                     year_month_slot[row[8][7:11]+row[8][3:6]] = [int(row[1])]
                 else:
-                    year_month_slot[row[8][7:11]+row[8][3:6]].append(int(row[1]))
+                    year_month_slot[row[8][7:11]+row[8]
+                                    [3:6]].append(int(row[1]))
+        if merge:
+            plt.figure()
+            plt.title(region+' '+disease)
 
         for key, datas in year_month_slot.items():
-            plt.figure()
-            plt.title(key+' '+region+' '+disease)
+            if not merge:
+                plt.figure()
+                plt.title(key+' '+region+' '+disease)
             plt.xlabel(timeblock)
             plt.ylabel('# of diseases')
 
             plt.plot(range(1, len(datas)+1), datas)
-            plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png')
+            if not merge:
+                plt.savefig('Out/'+key + '_' + region + '_' + disease + '.png')
+                plt.close()
+        
+        if merge:
+            plt.savefig('Out/'+region+'_'+disease+'.png')
             plt.close()
 
     elif time_base == 'fully':
@@ -74,7 +94,7 @@ def save_to_png(region: str, disease: str, time_base: str, filename: str, timebl
             next(reader)
 
             for row in reader:
-                sv = row[1].replace('.','')
+                sv = row[1].replace('.', '')
                 data.append(int(sv))
 
         plt.figure()
@@ -114,16 +134,18 @@ if __name__ == "__main__":
         print("For more specific info, please do -flag -h.")
         sys.exit()
 
-    flag_types = ['-t', '-d', '-r', '-c',' -b']
+    flag_types = ['-t', '-d', '-r', '-c', ' -b', '-m']
     # -t: time base, 'yearly', 'monthly'
     # -d: DISEASE name
     # -r: region name
     # -c: country code
     # -b: given data block
+    # -m: merge into one
 
     country_mode = '-c' in flags
     region_mode = '-r' in flags
     disease_mode = '-d' in flags
+    merge_mode = '-m' in flags
 
     DATA_SIZE = 'Weeks'
 
@@ -134,7 +156,8 @@ if __name__ == "__main__":
             TIME_BASE = flags[temp_index]
             if TIME_BASE == '-h':
                 print("-t defines the time series of the graph will be.")
-                print("If you want to see your data as a yearly scale, then input <-t yearly>.")
+                print(
+                    "If you want to see your data as a yearly scale, then input <-t yearly>.")
                 sys.exit()
             elif TIME_BASE == 'year':
                 TIME_BASE = 'yearly'
@@ -142,6 +165,9 @@ if __name__ == "__main__":
                 TIME_BASE = 'monthly'
             elif TIME_BASE == 'full':
                 TIME_BASE = 'fully'
+                if merge_mode:
+                    print("-m not working on full mode")
+                    sys.exit()
         else:
             print("Invalid usage of flag '-t'!")
             print("Correct usage: <arguments> -t <year/yearly/month/monthly/full/fully>")
@@ -209,7 +235,7 @@ if __name__ == "__main__":
         extract_data(region_long, temp_file, temp_file)
 
     if REGION != 'all' and DISEASE != 'all':
-        SUCCESS = save_to_png(REGION, DISEASE, TIME_BASE, temp_file, DATA_SIZE)
+        SUCCESS = save_to_png(REGION, DISEASE, TIME_BASE, temp_file, DATA_SIZE, merge=merge_mode)
         if SUCCESS == 0:
             print("File extracted successfully, saved under 'Out/'")
     elif REGION == 'all' and DISEASE != 'all':
@@ -226,7 +252,8 @@ if __name__ == "__main__":
             new_temp_file = temp_file.split('.')[0] + '_temp.csv'
 
             extract_data(reg, temp_file, new_temp_file)
-            SUCCESS = save_to_png(reg, DISEASE, TIME_BASE, new_temp_file, DATA_SIZE)
+            SUCCESS = save_to_png(reg, DISEASE, TIME_BASE,
+                                  new_temp_file, DATA_SIZE, merge=merge_mode)
 
             if SUCCESS != 0:
                 print("Error Occured")
@@ -245,7 +272,8 @@ if __name__ == "__main__":
             new_temp_file = temp_file.split('.')[0] + '_temp.csv'
 
             extract_data(dis, temp_file, new_temp_file)
-            SUCCESS = save_to_png(REGION, dis, TIME_BASE, new_temp_file, DATA_SIZE)
+            SUCCESS = save_to_png(REGION, dis, TIME_BASE,
+                                  new_temp_file, DATA_SIZE, merge=merge_mode)
 
             if SUCCESS != 0:
                 print("Error Occured")
