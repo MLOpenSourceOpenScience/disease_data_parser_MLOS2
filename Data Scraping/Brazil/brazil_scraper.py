@@ -10,7 +10,7 @@ import time
 import sys
 import os
 
-def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
+def extract_from_disease_site(disease_name: str, url: str, outfile_name: str, output_folder: str):
 
     out_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), output_folder)
     if not os.path.exists(out_dir): # If there is no directory, make it
@@ -32,10 +32,13 @@ def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
 
     #Set settings properly
     line.select_by_value("Município_de_residência")
-    try:
-        column.select_by_value("Semana_epidem._1º_Sintomas(s)")
-    except: #if you can't find weekly data, get monthly
-        column.select_by_value("Mês_1º_Sintoma(s)")
+    #in column values, first try weekly data then monthly
+    column_values = ["Semana_epidem._1º_Sintomas(s)", "Mês_1º_Sintoma(s)", "Mes_da_Notific", "Mês_acidente_", "Mês_Diag/sintomas", "Mês_Diagnóstico","Mês_notificação","Mês_da_Notific","Mês_Notificação","Mes_Notificação","Mês_de_Diagnóstico"]
+    for value in column_values:
+        try:
+            column.select_by_value(value)
+        except: #if you can't find weekly data, get monthly
+            pass
 
     # check format to be in Colunas separadas por ";"
     line = driver.find_element(By.XPATH, "//input[@value='prn']").click()
@@ -72,6 +75,8 @@ def extract_from_disease_site(url: str, outfile_name: str, output_folder: str):
             output.write('\n')
             output.write(url)
             output.write('\n')
+            output.write(disease_name)
+            output.write('\n')
             output.write(data)
 
         #switch to first tab
@@ -92,12 +97,13 @@ if __name__ == '__main__':
 
     n = len(sys.argv)
 
-    if n != 4:
-        print("Invalid number of arguments! Correct usage: brazil_scraper.py <data-url> <outfile-name> <output-folder>")
+    if n != 5:
+        print("Invalid number of arguments! Correct usage: brazil_scraper.py <disease-name> <data-url> <outfile-name> <output-folder>")
         quit()
 
-    data_url = sys.argv[1]
-    outfile_name = sys.argv[2]
-    output_folder = sys.argv[3]   
+    disease_name = sys.argv[1]
+    data_url = sys.argv[2]
+    outfile_name = sys.argv[3]
+    output_folder = sys.argv[4]   
 
-    extract_from_disease_site(data_url, outfile_name, output_folder)
+    extract_from_disease_site(disease_name, data_url, outfile_name, output_folder)

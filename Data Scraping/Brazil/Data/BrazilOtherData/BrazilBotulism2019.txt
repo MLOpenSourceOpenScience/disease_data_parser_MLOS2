@@ -1,0 +1,25 @@
+2019
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/botubr.def
+Botulism
+"Município de residência";"Jan";"Fev";"Abr";"Mai";"Jun";"Jul";"Out";"Nov";"Dez";"Total"
+"110032 SAO MIGUEL DO GUAPORE";-;5;-;-;-;-;-;-;-;5
+"130380 SAO GABRIEL DA CACHOEIRA";-;1;-;-;-;-;-;-;-;1
+"231330 TAUA";-;-;-;-;-;-;-;1;-;1
+"291170 GUANAMBI";1;-;-;-;-;-;-;-;-;1
+"310620 BELO HORIZONTE";-;-;1;-;-;-;-;-;-;1
+"310670 BETIM";-;-;-;-;1;-;-;-;-;1
+"311180 CANAPOLIS";3;-;-;-;-;-;-;-;-;3
+"311450 CARMOPOLIS DE MINAS";-;-;-;1;-;-;-;-;-;1
+"317020 UBERLANDIA";-;-;1;-;-;-;-;-;-;1
+"330090 CAMBUCI";-;-;-;-;-;1;-;-;-;1
+"330320 NILOPOLIS";-;-;-;-;-;-;1;-;-;1
+"330455 RIO DE JANEIRO";1;-;-;1;-;-;-;-;-;2
+"354340 RIBEIRAO PRETO";-;-;1;-;-;-;-;-;-;1
+"354850 SANTOS";1;-;2;-;-;-;-;-;-;3
+"355030 SAO PAULO";-;-;-;1;-;-;-;2;-;3
+"410690 CURITIBA";-;-;-;-;-;-;1;-;-;1
+"430510 CAXIAS DO SUL";-;-;-;-;-;-;-;-;1;1
+"510710 SAO JOSE DOS QUATRO MARCOS";-;-;-;-;-;-;-;-;2;2
+"530010 BRASILIA";1;-;-;-;-;-;-;-;-;1
+"Total";7;6;5;3;1;1;2;3;3;31
+&

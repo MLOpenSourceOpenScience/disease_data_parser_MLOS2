@@ -1,0 +1,9 @@
+2022
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/difteribr.def
+Diphtheria
+"Município de residência";"Jan";"Abr";"Jul";"Total"
+"355030 SAO PAULO";1;-;-;1
+"410690 CURITIBA";-;-;1;1
+"521930 SANTA HELENA DE GOIAS";-;1;-;1
+"Total";1;1;1;3
+&

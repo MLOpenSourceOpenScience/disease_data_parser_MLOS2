@@ -17,6 +17,7 @@ from datetime import datetime,timedelta
 import re
 from typing import List, Tuple, Optional
 from dateutil.parser import parse
+from disease_header_parser import detect_diseases
 
 def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
     '''
@@ -25,7 +26,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         2 element array with the start and end timestamp
     '''
     # Regular expression pattern to match the date format
-    pattern = r'\b(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*[-–—]+\s*(\d{1,2})\s{0,1}(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
+    pattern = r'(?s:.*)\b(\d{1,2})\s*(?:st|nd|rd|th)\s*\w{0,9}\s*[-–—]+\s*(\d{1,2})\s*(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})?\s*\('
     # \s{0,1}\( on the end?
 
     # Search for the pattern in the text
@@ -37,6 +38,17 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         month = match.group(3)
         year = match.group(4)
 
+        if year is None and month[-1].isdigit():
+            # handles 26th Mar2021
+            year = month[-4:]
+            month = month[:-4]
+        elif year is None:
+            # handels 26thMar 2021
+            pattern_year = r'(?s:.*)\b(\d{1,2})\s*(?:st|nd|rd|th)\s*\w{0,4}?[-–—]+\s*(\d{1,2})\s*(?:st|nd|rd|th)?\s*(\w+)\s*(\d{4})'
+            year_match = re.search(pattern_year, text)
+
+            year = year_match.group(4)
+
         return day, month, year
     else:
         print("Error: Date not found")
@@ -44,7 +56,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
 
 
 #given a start and end word, extract the table between them
-def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]:
+def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[str]:
     """
     Find starting word, and second-startinf word from text
     then extract data as a line, starting from found place
@@ -57,18 +69,52 @@ def extract_table(first_word: str, second_word: str, text: str) -> Optional[str]
     Returns:
     - Optional[str]: Data that is extracted, return None if not found.
     """
-    start_index = text.find(first_word)
-    end_index = text.find(second_word, start_index + len(first_word))
+    subset = ""
+    found_starting_word = False
+    temp_diseases = []
 
-    if start_index != -1 and end_index != -1:
-        result = text[start_index + len(first_word):end_index]
-        return result
+    #print("DEBUG: looking for starting word")
+    for idx, word in enumerate(text.split()):
+        if (found_starting_word and len(subset.split())==4):
+            #print("DEBUG: checking validity of next words")
+            #print("starting word found: ",subset)
+            try:
+                #print("DEBUG: checking", subset.split()[1])
+                temp_diseases = detect_diseases((subset))
+            except ValueError:
+                subset = ""
+                found_starting_word = False
+                #print("DEBUG: non disease detected, start word invalid")
+                continue
+            if temp_diseases.count("ignore") > 0 or len(temp_diseases) == 0:
+                    subset = ""
+                    found_starting_word = False
+                    #print("DEBUG: non disease detected, start word invalid")
+                    continue
+        if found_starting_word:
+            if word in end_words and len(subset.split())>300:
+                #print("DEBUG: end word found:", word)
+                break
+            subset += word + " "
+            #print("DEBUG: adding", word, "to subset")
+        elif word == first_word:
+            found_starting_word = True
+            #print("DEBUG: starting word found")
+            subset += word + " "
+        elif word in first_word:
+            #print("DEBUG: starting word found kinda wack tho")
+            found_starting_word = True
+            subset += word + " "
 
-    return None
+    #print("DEBUG: subset", subset)
+    return subset.strip()
 
 
-def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
+
+def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optional[List[str]],
                                                         Optional[List[datetime]]]:
+    
+    table = ["",""]
     # months used to convert text month to datetime
     ''' No longer used
     month_dict = {
@@ -91,43 +137,97 @@ def extract_data_from_rtf(rtf_data: List[str]) -> Tuple[Optional[List[str]],
         'November': 11,
         'Nov': 11,
         'December': 12,
+        'Dece": 12,
         'Dec': 12
     }
     '''
-    day, month, year = extract_date_components(rtf_data[0])
-    if(day is None or month is None or year is None):
-        print("Error: Invalid date")
-        return None, None
+    if manual_mode:
+        print("manual input mode enabled")
+        print("raw text: ", rtf_data[0])
 
-    if __name__ == "__main__":
-        # Print the extracted date components
-        print("Day:", day)
-        print("Month:", month)
-        print("Year:", year)
+        day = input("Enter the day: ")
+        month = input("Enter the month: ")
+        year = input("Enter the year: ")
 
-    if month == 'Apri':
+        table[1] = input("Enter the table: ")
+        table[0] = table[1]
+
+    else:
+
+
+
+        day, month, year = extract_date_components(rtf_data[0])
+        if(day is None or month is None or year is None):
+            print("Error: Invalid date")
+            return None, None
+
+        if __name__ == "__main__":
+            # Print the extracted date components
+            print("Day:", day)
+            print("Month:", month)
+            print("Year:", year)
+
+        if month == 'Janu':
         # Exception Handling
-        month = 'April'
+            month = 'January'
+        elif month == 'Febr':
+            month = 'February'
+        elif month == 'Marc':
+            month = 'March'
+        elif month == 'Apri':
+            month = 'April'
+        elif month == 'May':
+            month = 'May'
+        elif month == 'June':
+            month = 'June'
+        elif month == 'July':
+            month = 'July'
+        elif month == 'Augu':
+            month = 'August'
+        elif month == 'Sept':
+            month = 'September'
+        elif month == 'Octo':
+            month = 'October'
+        elif month == 'Nove':
+            month = 'November'
+        elif month == 'Dece':
+            month = 'December'
+
+        end_date = parse(f"{year} {month} {day}")
+        table_change_date = datetime(2013, 5, 17)
+
+        
+
+        if end_date > table_change_date:
+            table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+            table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
+        else:
+            table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+            table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
+            #MIGHT NOT BE ACCURATE!! TEST this eventually
+
+        #print(table)
+        #if old (by volume or date or identifying factor do this or that)
+
+        
+        #extract table
+        
+
+        #Hardcode fix for "T* C** " ending up in table
+        if "T* C** " in table[1]:
+            table[1] = table[1].replace("T* C** ", "")
+        if "T* C** " in table[0]:
+            table[0] = table[0].replace("T* C** ", "")
+
+        #print("table", table)
+        #print("dates", dates)
 
     end_date = parse(f"{year} {month} {day}")
-    table_change_date = datetime(2013, 5, 17)
-
-    table = ["",""]
-
-    if end_date > table_change_date:
-        table[0] = extract_table("RDHS", "Comments", rtf_data[0])
-        table[1] = extract_table("RDHS", "Comments", rtf_data[1])
-    else:
-        table[0] = extract_table("DPDHS", "Source", rtf_data[0])
-        table[1] = extract_table("DPDHS", "Source", rtf_data[1])
-        #MIGHT NOT BE ACCURATE!! TEST this eventually
-
-    #print(table)
-    #if old (by volume or date or identifying factor do this or that)
-
     start_date = end_date - timedelta(days=6)
     dates = [start_date, end_date]
-    #extract table
+
+    table[0] = table[0].replace(" ", "\n")
+    table[1] = table[1].replace(" ", "\n")
     return table, dates
 
 
