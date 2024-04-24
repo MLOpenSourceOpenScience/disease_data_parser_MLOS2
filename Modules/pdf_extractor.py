@@ -38,7 +38,10 @@ def pdf_to_rtf(path: str, output_path: str = None) -> List[str]:
     with open(path, 'rb') as f:
         pdf = PdfReader(f)
         for page in pdf.pages:
-            text = page.extract_text()
+            try:
+                text = page.extract_text()
+            except:
+                text = ""
             full_text_pypdf2 += f"\n\n{text}"
         doc = pymupdf.open(f)
         for page in doc:

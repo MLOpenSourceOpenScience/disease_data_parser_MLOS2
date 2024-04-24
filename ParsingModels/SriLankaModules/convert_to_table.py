@@ -182,6 +182,8 @@ def convert_to_table(important_text: List[str],
     # Thus, there might need a function that works as concatination
     # of those strings
     rows = header_concatenation(rows)
+    if(len(rows) == 0):
+        print("\n\n\nNo rows found\n\n\n")
     labels = detect_diseases(rows[0])
 
     # if __name__ == '__main__': #for testing
@@ -231,7 +233,7 @@ def convert_to_table(important_text: List[str],
         print(labels)
         print("DEBUG: ROWS:")
         for row in rows:
-            print(row)
+            print("row: ",row)
 
     for i in range(2,len(rows)):
         data = rows[i].strip().split(" ") # Splits row into data
@@ -263,6 +265,9 @@ def convert_to_table(important_text: List[str],
         long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
         for j in range(1,len(data)-3,2):
             cases = table_values[i-2][j-1]
+            #print("data:", data)
+            #print("labels:", labels)
+            #print("j:", j)
             disease_name = labels[j//2]
             # j//2 is to skip every other value,
             # since for Sri Lanka the tables have A and B values,

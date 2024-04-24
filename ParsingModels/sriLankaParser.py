@@ -38,7 +38,11 @@ def extract_to_table(rtf_data: List[str],
     if debug_mode:
         print("DEBUG - Raw Text Data:")
         print(rtf_data)
-    important_text,timestamps = extract_data_from_rtf(rtf_data)
+
+    if "-manual" in flags:
+        important_text,timestamps = extract_data_from_rtf(rtf_data, True)
+    else:
+        important_text,timestamps = extract_data_from_rtf(rtf_data, False)
 
     if important_text is None or timestamps is None:
         print("Error: Timestamp recongnization error")

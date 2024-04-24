@@ -7606,6 +7606,9 @@ brazil,country,BRA,-47.9291,-15.7783,"{'west': -73.98318, 'south': -33.75118, 'e
 "bom sucesso, brazil",city,BRA,-44.75455,-21.03316,"{'west': -44.97966, 'south': -21.18228, 'east': -44.61967, 'north': -20.84895}"
 "bonito de santa fe, brazil",city,BRA,-38.51349,-7.31144,"{'west': -38.55492, 'south': -7.38203, 'east': -38.40352, 'north': -7.19291}"
 
+all,city,SWE,12.04683,57.89532,"{'west': 12.00754, 'south': 57.80618, 'east': 12.43443, 'north': 58.11789}"
+
+
 "calmon, brazil",city,BRA,-51.09886,-26.60135,"{'west': -51.23919, 'south': -26.76716, 'east': -50.78353, 'north': -26.49443}"
 "timbo grande, brazil",city,BRA,-50.67381,-26.61712,"{'west': -50.85859, 'south': -26.78134, 'east': -50.48766, 'north': -26.49762}"
 "zortea, brazil",city,BRA,-51.55519,-27.45389,"{'west': -51.63304, 'south': -27.58417, 'east': -51.43992, 'north': -27.38818}"
