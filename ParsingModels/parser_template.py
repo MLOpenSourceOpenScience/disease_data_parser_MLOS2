@@ -83,6 +83,8 @@ def extract_to_table(rtf_data: List[str],
     # or somewhat similar.
     # you can see the exact format as an output using print_table() function.
 
+    # refer Template Modules folder for reference.
+
     heading = tableHeading
 
     # header of your desire.
