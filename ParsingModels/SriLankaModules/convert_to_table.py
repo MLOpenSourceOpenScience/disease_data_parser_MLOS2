@@ -30,7 +30,7 @@ from table_conversion_functions import time_to_excel_time, remove_blank_values, 
 # Gets the directory of LLaMaInterface module for import
 # from LLaMaInterface import separateCellHeaders
 
-tableHeading = ['Disease Name',
+table_heading = ['Disease Name',
                 'Cases',
                 'Location Name',
                 'Country Code',
@@ -319,6 +319,6 @@ SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 56
     table = convert_to_table(TEST_DATA,
                            [datetime(2023, 6, 9) +timedelta(days=-7),
                             datetime(2023, 6, 9)])
-    print_table(table, tableHeading)
+    print_table(table, table_heading)
     from table_to_csv import print_to_csv
-    print_to_csv(table,tableHeading)
+    print_to_csv(table,table_heading)

@@ -13,7 +13,7 @@ current_directory = os.path.dirname(__file__)
 moudlues_directory = os.path.join(current_directory, '../Modules')
 sys.path.append(moudlues_directory)
 
-from ParsingModels.BrazilModules.brazil_convert_to_table import convert_to_table, tableHeading
+from ParsingModels.BrazilModules.brazil_convert_to_table import convert_to_table, table_heading
 from table_conversion_functions import print_table
 
 

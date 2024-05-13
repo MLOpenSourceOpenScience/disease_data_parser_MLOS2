@@ -12,7 +12,7 @@ moudlues_directory = os.path.join(current_directory, '../Modules')
 sys.path.append(moudlues_directory)
 
 from typing import List, Tuple
-from ParsingModels.SriLankaModules.convert_to_table import convert_to_table, tableHeading, print_table
+from ParsingModels.SriLankaModules.convert_to_table import convert_to_table, table_heading, print_table
 from ParsingModels.SriLankaModules.rtf_extractor import extract_data_from_rtf
 from table_conversion_functions import print_table
 
@@ -53,7 +53,7 @@ def extract_to_table(rtf_data: List[str],
         print(important_text)
         print(timestamps)
     table = convert_to_table(important_text, timestamps, flags = flags)
-    heading = tableHeading #tableHeading imported from SriLankaModules.convert_to_table
+    heading = table_heading #tableHeading imported from SriLankaModules.convert_to_table
 
     if debug_mode:
         print("DEBUG - Output Table:")

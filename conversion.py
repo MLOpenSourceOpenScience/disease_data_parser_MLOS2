@@ -36,17 +36,17 @@ def split_file(in_csv_path:str, out_csv_path=None):
 def split_all_data():
     if len(sys.argv) < 2:
         print(f'please include an argument of where the folder is located')
-    inFolder = sys.argv[1]
-    filesToParse = []
-    if os.path.exists(inFolder):
+    in_folder = sys.argv[1]
+    files_to_parse = []
+    if os.path.exists(in_folder):
         print("Locating files...")
-        for root, dirs, files in os.walk(inFolder):
+        for root, dirs, files in os.walk(in_folder):
             for name in files:
                 if name[-4:] == '.csv': # Only parse csv files
-                    filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
-    print(f'files to parse: {filesToParse[:5]}')
+                    files_to_parse.append(f'{root}/{name}'.replace('\\', '/'))
+    print(f'files to parse: {files_to_parse[:5]}')
 
-    for file in filesToParse:
+    for file in files_to_parse:
         split_file(file)
 
 
