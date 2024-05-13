@@ -144,7 +144,7 @@ def header_concatenation(data: List[str]) -> List[str]:
         ab_row = (row[-1] == 'A' and next_row[0] == 'B') or (row[-1] == 'B' and next_row[0] == 'A')
         ad_tc = (row[-1] == 'B' and next_row == 'T*') or (row[-1] == '*' and next_row == 'C**')
 
-        if row_state and next_row_state and next_row != 'A':
+        if row_state and next_row_state and next_row != 'A' and next_row[0:2] != 'Co':
             data[i] = row + ' ' + next_row
             del data[i + 1]
         elif ab_row or ad_tc:

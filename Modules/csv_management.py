@@ -13,10 +13,11 @@ import csv
 import re
 from typing import Tuple
 
+
 def source_control(input_file: str, output_file: str) -> Tuple[str, str]:
     '''
     Reads two strgin, and creats path if it is unavailable yet.
-    
+
     Then, return two paths.
 
     Parameters:
@@ -80,7 +81,7 @@ def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = N
 
     first_row = None
 
-    with open(file_path, 'r', encoding= 'utf-8') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
 
         for row in reader:
@@ -98,6 +99,7 @@ def extract_data(target: str, filename: str = 'Out/output.csv', outfile: str = N
         writer = csv.writer(out_file)
         writer.writerow(first_row)
         writer.writerows(new_file_data)
+
 
 def time_numeric_conversion(given: str, direction: bool = True) -> str:
     '''
@@ -136,9 +138,9 @@ def time_numeric_conversion(given: str, direction: bool = True) -> str:
             return return_string
 
     month_mapping_reverse = {v: k for k, v in month_mapping.items()}
-    month = month_mapping_reverse.get(given[4:6],given[4:6])
+    month = month_mapping_reverse.get(given[4:6], given[4:6])
 
-    return_string = given[6:]+'-'+month+'-'+given[:4]+ ' 00:00:00'
+    return_string = given[6:]+'-'+month+'-'+given[:4] + ' 00:00:00'
     return return_string
 
 
@@ -153,27 +155,33 @@ def order_by_time(filename: str = 'Out/output.csv', outfile: str = None, asc: bo
     file_path, output_path = source_control(filename, outfile)
 
     data = []
-    with open(file_path, 'r', encoding= 'utf-8') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         for row in reader:
-            row['TimeStampStart'] = time_numeric_conversion(row['TimeStampStart'])
+            row['TimeStampStart'] = time_numeric_conversion(
+                row['TimeStampStart'])
             data.append(row)
 
-    sorted_data = sorted(data, key=lambda x: x['TimeStampStart'], reverse= False if asc else True)
+    sorted_data = sorted(
+        data, key=lambda x: x['TimeStampStart'], reverse=False if asc else True)
 
-    with open(output_path, 'w', newline='', encoding= 'utf-8') as file:
+    with open(output_path, 'w', newline='', encoding='utf-8') as file:
         fieldnames = sorted_data[0].keys()
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
 
         for row in sorted_data:
-            row['TimeStampStart'] = time_numeric_conversion(row['TimeStampStart'], False)
+            row['TimeStampStart'] = time_numeric_conversion(
+                row['TimeStampStart'], False)
             writer.writerow(row)
 
-if __name__ == '__main__':
-    T = 'dengue fever'
 
-    extract_data(T)
+if __name__ == '__main__':
+    T = ['Dengue Fever', 'Dysentery', 'Encephalitis', 'Enteric Fever', 'Food Poisoning', 'Leptospirosis',
+         'Typhus Fever', 'Viral Hepatitis', 'Human Rabies', 'Chickenpox', 'Meningitis', 'Leishmaniasis']
+
+    for t in T:
+        extract_data(t)
     # extract_data("Colombo", 'Out/output_dengue fever.csv')
     # extract_data("Gampaha", 'Out/output_dengue fever.csv')
     # extract_data("Kalutara", 'Out/output_dengue fever.csv')
@@ -182,4 +190,4 @@ if __name__ == '__main__':
     # extract_data("NuwaraEliya", 'Out/output_dengue fever.csv')
     # extract_data("SRILANKA", 'Out/output_dengue fever.csv')
 
-    order_by_time("Out/output_dengue fever.csv")
+    # order_by_time("Out/output_dengue fever.csv")
