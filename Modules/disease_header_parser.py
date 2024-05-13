@@ -36,16 +36,16 @@ def compare_two_word(str1: str, str2: str) -> int:
     # Python compare words with case sensitive measure.
 
     # First, need to check whether the string is two-length or one.
-    str1_list = str1.split()
+    str_1_list = str1.split()
     is_two_word1 = False
 
-    if len(str1_list) > 1:
+    if len(str_1_list) > 1:
         is_two_word1 = True
 
-    str2_list = str2.split()
+    str_2_list = str2.split()
     is_two_word2 = False
 
-    if len(str2_list) > 1:
+    if len(str_2_list) > 1:
         is_two_word2 = True
 
     if is_two_word1 and not is_two_word2:
@@ -59,20 +59,20 @@ def compare_two_word(str1: str, str2: str) -> int:
         # normalize so that maximum is 1.
     elif not is_two_word1 and is_two_word2:
         # since we don't hope the word to match second word, abort the second similarity
-        lc1 = longest_common_subsequence(str1, str2_list[0])
-        if lc1 <= 1:
+        lc_1 = longest_common_subsequence(str1, str_2_list[0])
+        if lc_1 <= 1:
             temp_score = 0
         else:
-            lc2 = longest_common_subsequence(str1, str2_list[1])
-            length1 = (len(str1) + len(str2_list[0])) / 2
-            length2 = (len(str1) + len(str2_list[1])) /2
-            temp_score = ((lc1 / length1) + (lc2 / length2)) / 2
+            lc_2 = longest_common_subsequence(str1, str_2_list[1])
+            length_1 = (len(str1) + len(str_2_list[0])) / 2
+            length_2 = (len(str1) + len(str_2_list[1])) /2
+            temp_score = ((lc_1 / length_1) + (lc_2 / length_2)) / 2
     elif is_two_word1 and is_two_word2:
-        lc1 = longest_common_subsequence(str1_list[0], str2_list[0])
-        lc2 = longest_common_subsequence(str1_list[1], str2_list[1])
-        length1 = (len(str1_list[0]) + len(str2_list[0])) / 2
-        length2 = (len(str1_list[1]) + len(str2_list[1])) / 2
-        temp_score = ((lc1 / length1) + (lc2 / length2)) / 2
+        lc_1 = longest_common_subsequence(str_1_list[0], str_2_list[0])
+        lc_2 = longest_common_subsequence(str_1_list[1], str_2_list[1])
+        length_1 = (len(str_1_list[0]) + len(str_2_list[0])) / 2
+        length_2 = (len(str_1_list[1]) + len(str_2_list[1])) / 2
+        temp_score = ((lc_1 / length_1) + (lc_2 / length_2)) / 2
 
     return temp_score
 

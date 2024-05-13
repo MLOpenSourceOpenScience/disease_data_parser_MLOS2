@@ -166,8 +166,8 @@ def order_by_time(filename: str = 'Out/output.csv', outfile: str = None, asc: bo
         data, key=lambda x: x['TimeStampStart'], reverse=False if asc else True)
 
     with open(output_path, 'w', newline='', encoding='utf-8') as file:
-        fieldnames = sorted_data[0].keys()
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        field_names = sorted_data[0].keys()
+        writer = csv.DictWriter(file, fieldnames=field_names)
         writer.writeheader()
 
         for row in sorted_data:

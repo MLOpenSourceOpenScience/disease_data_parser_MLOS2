@@ -18,7 +18,7 @@ sys.path.append(moudlues_directory)
 from typing import List, Tuple
 from ParsingModels.<Target Module>.<Target Extracter> import <extracter function name>
 # Refer rtf_extractor at SriLankaModules. It should give the important text (what is relevant) then timestamp.
-from ParsingModels.<Target Module>.<parsing module python file> import convert_to_table, tableHeading
+from ParsingModels.<Target Module>.<parsing module python file> import convert_to_table, table_heading
 # Refer brazil, then srilanka. These are two common structure of convert_to_table.
 from table_conversion_functions import print_table
 
@@ -83,7 +83,7 @@ def extract_to_table(rtf_data: List[str],
     # or somewhat similar.
     # you can see the exact format as an output using print_table() function.
 
-    heading = tableHeading
+    heading = table_heading
 
     # header of your desire.
 

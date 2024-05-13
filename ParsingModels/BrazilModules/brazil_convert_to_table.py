@@ -20,7 +20,7 @@ from location_interface import get_location_info
 from disease_header_parser import detect_diseases
 from table_conversion_functions import time_to_excel_time, remove_quotes, remove_numbers, month_to_timestamps, week_number_to_datetime
 
-tableHeading = ['Disease Name',
+table_heading = ['Disease Name',
                 'Cases',
                 'Location Name',
                 'Country Code',
@@ -102,7 +102,7 @@ def convert_to_table(important_text: List[str],
 
     table_data = []
     location_type = remove_quotes(header[0])
-    tableHeading[2] = location_type
+    table_heading[2] = location_type
 
     for row in rows:
         cells = row.split(';')
@@ -133,4 +133,4 @@ def convert_to_table(important_text: List[str],
                     time_to_excel_time(timestamps[0]),
                     time_to_excel_time(timestamps[1])])
 
-    return table_data, tableHeading
+    return table_data, table_heading

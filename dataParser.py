@@ -53,11 +53,11 @@ if __name__ == "__main__":
         sys.exit()
 
     # Import Arguments
-    inFolder = sys.argv[1]
+    in_folder = sys.argv[1]
     # Arg 1: folder of PDFs to parse. They should all be compatible with the same parsing model
-    outFile = sys.argv[2]
+    out_file = sys.argv[2]
     # Arg 2: output file, in csv format (only the name of the file)
-    modelFile = sys.argv[3]
+    model_file = sys.argv[3]
     # Arg 3: parsing model. PDF will be converted to text, but model will convert text to array data
     flags = sys.argv[4:]
 
@@ -107,23 +107,23 @@ if __name__ == "__main__":
         if not os.path.exists(ERROR_DIR):  # If there is no directory, make it
             os.makedirs(ERROR_DIR)
 
-    model = importlib.import_module(modelFile)
+    model = importlib.import_module(model_file)
 
     # process each file in input folder
-    filesToParse = []
-    if os.path.exists(inFolder):
+    files_to_parse = []
+    if os.path.exists(in_folder):
         print("Locating files...")
-        for root, dirs, files in os.walk(inFolder):
+        for root, dirs, files in os.walk(in_folder):
             for name in files:
                 # print(f'root: {root} dirs: {dirs} files: {files}')
                 if name[-4:] == '.pdf' or name[-4:] == '.txt':  # Only parse pdf or txt files
-                    filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
+                    files_to_parse.append(f'{root}/{name}'.replace('\\', '/'))
     else:
-        print(f"ERROR: folder '{inFolder}' not found!")
+        print(f"ERROR: folder '{in_folder}' not found!")
         quit()
 
     print("Will parse the following files: ", end="")
-    for f in filesToParse:
+    for f in files_to_parse:
         print(f, end=", ")
     print()
     RESPONSE = ''
@@ -134,27 +134,27 @@ if __name__ == "__main__":
 
     i = 1
     NUM_ERRORS = 0
-    for currentFile in filesToParse:
-        print(f"Parsing file {i}/{len(filesToParse)}:", currentFile)
+    for current_file in files_to_parse:
+        print(f"Parsing file {i}/{len(files_to_parse)}:", current_file)
         STEP = 0
         try:
-            rtfData = []
-            if currentFile[-4:] == '.pdf':  # if file is PDF
-                rtfData = pdf_to_rtf(currentFile)
-            elif currentFile[-4:] == '.txt': #if file is txt
-                with open(currentFile, encoding="utf8") as txt_data:
-                    rtfData = [txt_data.read()]
+            rtf_data = []
+            if current_file[-4:] == '.pdf':  # if file is PDF
+                rtf_data = pdf_to_rtf(current_file)
+            elif current_file[-4:] == '.txt': #if file is txt
+                with open(current_file, encoding="utf8") as txt_data:
+                    rtf_data = [txt_data.read()]
             STEP += 1
-            table, heading = model.extract_to_table(rtfData, flags=flags)
+            table, heading = model.extract_to_table(rtf_data, flags=flags)
             for n in range(len(table)):
                 # Added file source to show here the data came from
-                table[n].append(currentFile)
+                table[n].append(current_file)
             heading.append("Source File")
             STEP += 1
-            print_to_csv(table, heading, file_name=outFile)
+            print_to_csv(table, heading, file_name=out_file)
         except Exception as error:
             NUM_ERRORS += 1
-            error_message = f"Error for file {currentFile} "
+            error_message = f"Error for file {current_file} "
 
             if STEP == 0:
                     error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
@@ -178,8 +178,8 @@ if __name__ == "__main__":
                 if start_of_folder_name == -1:
                     # can't find line, can't categorize error (shouldn't happen)
                     print("can't find line in:", error_folder)
-                    shutil.copy(currentFile, os.path.join(
-                        ERROR_DIR, ntpath.basename(currentFile)))
+                    shutil.copy(current_file, os.path.join(
+                        ERROR_DIR, ntpath.basename(current_file)))
                 else:
                     error_folder = error_folder[start_of_folder_name:]
                     error_folder = make_valid_filename(error_folder)
@@ -187,24 +187,24 @@ if __name__ == "__main__":
                     # If there is no directory, make it
                     if not os.path.exists(output_dir):
                         os.makedirs(output_dir)
-                    shutil.copy(currentFile, os.path.join(
-                        output_dir, ntpath.basename(currentFile)))
+                    shutil.copy(current_file, os.path.join(
+                        output_dir, ntpath.basename(current_file)))
 
         i += 1
 
-    print("Done! Output in", outFile)
-    print(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
+    print("Done! Output in", out_file)
+    print(f"There were errors in {NUM_ERRORS}/{len(files_to_parse)} files")
     if log_mode:
         with open(LOG_FILE_PATH, 'a', encoding='utf-8') as log_file:
-            log_file.write(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
+            log_file.write(f"There were errors in {NUM_ERRORS}/{len(files_to_parse)} files")
 
     if sort_mode:
         from Modules.csv_management import order_by_time
 
         if '-asc' in flags:
-            order_by_time(outFile)
+            order_by_time(out_file)
         elif '-desc' in flags:
-            order_by_time(outFile, asc=False)
+            order_by_time(out_file, asc=False)
 
     if extract_mode:
         try:
@@ -226,8 +226,8 @@ if __name__ == "__main__":
                 OUTPUT_PATH = temp_path
 
         if OUTPUT_PATH is None:
-            OUTPUT_PATH = outFile.split('.')[0] + '_' + target_keyword + '.csv'
+            OUTPUT_PATH = out_file.split('.')[0] + '_' + target_keyword + '.csv'
 
         from Modules.csv_management import extract_data
 
-        extract_data(target_keyword, outFile, OUTPUT_PATH)
+        extract_data(target_keyword, out_file, OUTPUT_PATH)

@@ -80,7 +80,7 @@ def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[
             #print("starting word found: ",subset)
             try:
                 #print("DEBUG: checking", subset.split()[1])
-                temp_diseases = detect_diseases((subset))
+                temp_diseases = detect_diseases((subset),True)
             except ValueError:
                 subset = ""
                 found_starting_word = False
