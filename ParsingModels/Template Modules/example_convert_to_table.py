@@ -1,4 +1,3 @@
-#Mahi
 """
 Sri Lanka Convert to Table
 
