@@ -10,3 +10,10 @@
 - selenium `pip3 install selenium`
     - More instructions depending on OS: https://selenium-python.readthedocs.io/installation.html#introduction
     - Driver version: ChromeDriver 114.0.5735.90
+
+
+
+# Datasets
+
+### Google Drive
+- https://drive.google.com/drive/folders/1Y9nzi3MxFRZtAcrWKIAazCqqMwzwBmrg?usp=sharing
