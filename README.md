@@ -14,8 +14,10 @@
 
 ### Running the code
 
-- We use HERE API for getting location informations.
-  - In file Modules/location_interface, line 23, please insert your own API key, which can be earn from <https://wwwhere.com>.
+#### Preparation
+
+- We use the HERE API to retrieve location information.
+  - In the `Modules/location_interface` file on line 23, please insert your own API key, which can obtain from <https://www.here.com>.
 
 #### Web Scraping
 

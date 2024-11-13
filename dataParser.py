@@ -120,7 +120,7 @@ if __name__ == "__main__":
                     filesToParse.append(f'{root}/{name}'.replace('\\', '/'))
     else:
         print(f"ERROR: folder '{inFolder}' not found!")
-        quit()
+        sys.exit()
 
     print("Will parse the following files: ", end="")
     for f in filesToParse:
@@ -137,11 +137,12 @@ if __name__ == "__main__":
     for currentFile in filesToParse:
         print(f"Parsing file {i}/{len(filesToParse)}:", currentFile)
         STEP = 0
+
         try:
             rtfData = []
             if currentFile[-4:] == '.pdf':  # if file is PDF
                 rtfData = pdf_to_rtf(currentFile)
-            elif currentFile[-4:] == '.txt': #if file is txt
+            elif currentFile[-4:] == '.txt':  # if file is txt
                 with open(currentFile, encoding="utf8") as txt_data:
                     rtfData = [txt_data.read()]
             STEP += 1
@@ -152,34 +153,40 @@ if __name__ == "__main__":
             heading.append("Source File")
             STEP += 1
             print_to_csv(table, heading, file_name=outFile)
+
         except Exception as error:
             NUM_ERRORS += 1
             error_message = f"Error for file {currentFile} "
 
             if STEP == 0:
-                    error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
+                error_message += "at pdf_to_rtf(). Perhaps the file is not a proper PDF?\n"
             elif STEP == 1:
-                    error_message += ("at model.extract_to_table(). "
-                                      +"Perhaps you chose the wrong model "
-                                      +"or have an error in the model?\n")
+                error_message += ("at model.extract_to_table(). "
+                                  + "Perhaps you chose the wrong model "
+                                  + "or have an error in the model?\n")
             elif STEP == 2:
-                    error_message += "at print_to_csv()\n"
+                error_message += "at print_to_csv()\n"
             print(error_message)
+
             if not quiet_mode:
                 traceback.print_exc()  # show error stack trace
+
             if log_mode:  # Log error in logfile
                 with open(LOG_FILE_PATH, 'a', encoding='utf-8') as log_file:
                     log_file.write(error_message)
                     log_file.write(traceback.format_exc())
                     log_file.write('\n')
+
             if error_dir_mode:  # Place error files into new directory
                 error_folder = traceback.format_exc().split('\n')[-4]
                 start_of_folder_name = error_folder.rfind("line")
+
                 if start_of_folder_name == -1:
                     # can't find line, can't categorize error (shouldn't happen)
                     print("can't find line in:", error_folder)
                     shutil.copy(currentFile, os.path.join(
                         ERROR_DIR, ntpath.basename(currentFile)))
+
                 else:
                     error_folder = error_folder[start_of_folder_name:]
                     error_folder = make_valid_filename(error_folder)
@@ -194,9 +201,11 @@ if __name__ == "__main__":
 
     print("Done! Output in", outFile)
     print(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
+
     if log_mode:
         with open(LOG_FILE_PATH, 'a', encoding='utf-8') as log_file:
-            log_file.write(f"There were errors in {NUM_ERRORS}/{len(filesToParse)} files")
+            log_file.write(f"There were errors in {
+                           NUM_ERRORS}/{len(filesToParse)} files")
 
     if sort_mode:
         from Modules.csv_management import order_by_time
