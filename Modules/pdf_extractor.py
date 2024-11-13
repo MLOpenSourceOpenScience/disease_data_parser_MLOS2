@@ -14,7 +14,8 @@ Date: 2024.02.07
 import os
 from typing import List
 from PyPDF2 import PdfReader
-import fitz as pymupdf #pymupdf
+import fitz as pymupdf  # pymupdf
+
 
 def pdf_to_rtf(path: str, output_path: str = None) -> List[str]:
     """
@@ -31,7 +32,7 @@ def pdf_to_rtf(path: str, output_path: str = None) -> List[str]:
     Returns:
     - List[str]: 2 strings that is converted from pdf file, index 0 is pypdf2, index 1 is pymupdf.
     """
-    #Generate a text rendering of a PDF file in the form of a list of lines.
+    # Generate a text rendering of a PDF file in the form of a list of lines.
     full_text_pypdf2 = ""
     full_text_pymupdf = ""
 
@@ -55,6 +56,7 @@ def pdf_to_rtf(path: str, output_path: str = None) -> List[str]:
 
     return [full_text_pypdf2, full_text_pymupdf]
 
+
 def runner():
     """
     Testing function for main
@@ -62,10 +64,12 @@ def runner():
     input_file = '../Data/Dengue/sri lanka.pdf'
     output_folder = '../Data/Dengue/RTF'
     print(input_file)
-    output_file = input_file[input_file.rfind('/') + 1:input_file.rfind('.pdf')] + ".txt"
+    output_file = input_file[input_file.rfind(
+        '/') + 1:input_file.rfind('.pdf')] + ".txt"
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     print(pdf_to_rtf(input_file, f"{output_folder}/{output_file}"))
+
 
 if __name__ == '__main__':
     runner()

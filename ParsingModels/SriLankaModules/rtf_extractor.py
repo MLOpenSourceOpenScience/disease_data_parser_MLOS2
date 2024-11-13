@@ -13,11 +13,12 @@ Author: MLOS^2_NLP_TEAM
 Date: 2024.02.09
 """
 
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 import re
 from typing import List, Tuple, Optional
 from dateutil.parser import parse
 from disease_header_parser import detect_diseases
+
 
 def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
     '''
@@ -55,7 +56,7 @@ def extract_date_components(text: str) -> Tuple[Optional[str], Optional[str], Op
         return None, None, None
 
 
-#given a start and end word, extract the table between them
+# given a start and end word, extract the table between them
 def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[str]:
     """
     Find starting word, and second-startinf word from text
@@ -73,74 +74,65 @@ def extract_table(first_word: str, end_words: List[str], text: str) -> Optional[
     found_starting_word = False
     temp_diseases = []
 
-    #print("DEBUG: looking for starting word")
+    # print("DEBUG: looking for starting word")
     for idx, word in enumerate(text.split()):
-        if (found_starting_word and len(subset.split())==4):
-            #print("DEBUG: checking validity of next words")
-            #print("starting word found: ",subset)
+        if (found_starting_word and len(subset.split()) == 4):
+            # print("DEBUG: checking validity of next words")
+            # print("starting word found: ",subset)
             try:
-                #print("DEBUG: checking", subset.split()[1])
+                # print("DEBUG: checking", subset.split()[1])
                 temp_diseases = detect_diseases((subset))
             except ValueError:
                 subset = ""
                 found_starting_word = False
-                #print("DEBUG: non disease detected, start word invalid")
+                # print("DEBUG: non disease detected, start word invalid")
                 continue
             if temp_diseases.count("ignore") > 0 or len(temp_diseases) == 0:
-                    subset = ""
-                    found_starting_word = False
-                    #print("DEBUG: non disease detected, start word invalid")
-                    continue
+                subset = ""
+                found_starting_word = False
+                # print("DEBUG: non disease detected, start word invalid")
+                continue
         if found_starting_word:
-            if word in end_words and len(subset.split())>300:
-                #print("DEBUG: end word found:", word)
+            if word in end_words and len(subset.split()) > 300:
+                # print("DEBUG: end word found:", word)
                 break
             subset += word + " "
-            #print("DEBUG: adding", word, "to subset")
+            # print("DEBUG: adding", word, "to subset")
         elif word == first_word:
             found_starting_word = True
-            #print("DEBUG: starting word found")
+            # print("DEBUG: starting word found")
             subset += word + " "
         elif word in first_word:
-            #print("DEBUG: starting word found kinda wack tho")
+            # print("DEBUG: starting word found kinda wack tho")
             found_starting_word = True
             subset += word + " "
 
-    #print("DEBUG: subset", subset)
+    # print("DEBUG: subset", subset)
     return subset.strip()
 
 
+def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool = False) -> Tuple[Optional[List[str]],
+                                                                                   Optional[List[datetime]]]:
+    """
+    Extract date components and tables from RTF data based on specified mode.
 
-def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optional[List[str]],
-                                                        Optional[List[datetime]]]:
-    
-    table = ["",""]
-    # months used to convert text month to datetime
-    ''' No longer used
-    month_dict = {
-        'Jan': 1,
-        'January': 1,
-        'February': 2,
-        'Feb': 2,
-        'March': 3,
-        'Mar': 3,
-        'April': 4,
-        'May': 5,
-        'June': 6,
-        'July': 7,
-        'August': 8,
-        'Aug': 8,
-        'September': 9,
-        'Sep': 9,
-        'October': 10,
-        'Oct': 10,
-        'November': 11,
-        'Nov': 11,
-        'December': 12,
-        'Dece": 12,
-        'Dec': 12
-    }
-    '''
+    This function processes RTF data to extract date information and tables in either manual
+    or automatic mode. Manual mode, prompts the user for date components and table content.
+    Automatic mode, it attempts to extract date components and tables programmatically. The
+    extracted tables are adjusted based on date thresholds and filtered for specific content
+    patterns.
+
+    Parameters:
+    - rtf_data (List[str]): A list containing raw RTF data.
+    - manual_mode (bool): A flag indicating if manual input mode is enabled.
+
+    Returns:
+    - Tuple[Optional[List[str]], Optional[List[datetime]]]: A tuple where the first element
+    is a list of processed table strings, and the second element is a list of start and end
+    dates derived from the extracted date components. Returns (None, None) if date extraction fails.
+    """
+    table = ["", ""]
+
     if manual_mode:
         print("manual input mode enabled")
         print("raw text: ", rtf_data[0])
@@ -154,10 +146,8 @@ def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optio
 
     else:
 
-
-
         day, month, year = extract_date_components(rtf_data[0])
-        if(day is None or month is None or year is None):
+        if (day is None or month is None or year is None):
             print("Error: Invalid date")
             return None, None
 
@@ -168,7 +158,7 @@ def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optio
             print("Year:", year)
 
         if month == 'Janu':
-        # Exception Handling
+            # Exception Handling
             month = 'January'
         elif month == 'Febr':
             month = 'February'
@@ -196,31 +186,31 @@ def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optio
         end_date = parse(f"{year} {month} {day}")
         table_change_date = datetime(2013, 5, 17)
 
-        
-
         if end_date > table_change_date:
-            table[0] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
-            table[1] = extract_table("RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
+            table[0] = extract_table(
+                "RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+            table[1] = extract_table(
+                "RDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
         else:
-            table[0] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
-            table[1] = extract_table("DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
-            #MIGHT NOT BE ACCURATE!! TEST this eventually
+            table[0] = extract_table(
+                "DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[0])
+            table[1] = extract_table(
+                "DPDHS", ["Comments", "PRINTING", "WRCD", "Source", "WER", "Table"], rtf_data[1])
+            # MIGHT NOT BE ACCURATE!! TEST this eventually
 
-        #print(table)
-        #if old (by volume or date or identifying factor do this or that)
+        # print(table)
+        # if old (by volume or date or identifying factor do this or that)
 
-        
-        #extract table
-        
+        # extract table
 
-        #Hardcode fix for "T* C** " ending up in table
+        # Hardcode fix for "T* C** " ending up in table
         if "T* C** " in table[1]:
             table[1] = table[1].replace("T* C** ", "")
         if "T* C** " in table[0]:
             table[0] = table[0].replace("T* C** ", "")
 
-        #print("table", table)
-        #print("dates", dates)
+        # print("table", table)
+        # print("dates", dates)
 
     end_date = parse(f"{year} {month} {day}")
     start_date = end_date - timedelta(days=6)
@@ -229,16 +219,6 @@ def extract_data_from_rtf(rtf_data: List[str], manual_mode: bool) -> Tuple[Optio
     table[0] = table[0].replace(" ", "\n")
     table[1] = table[1].replace(" ", "\n")
     return table, dates
-
-
-
-
-
-
-
-
-
-
 
 
 TEST_STRING2 = """                       WEEKLY EPIDEMIOLOGICAL REPORT
@@ -557,7 +537,7 @@ COLOMBO 10
 TEST_STRING3 = """     WEEKLY EPIDEMIOLOGICAL REPORT
                     A publication of the Epidemiology Unit
                                Ministry of Health
-                   231, de Saram Place, Colombo 01000, Sri Lanka
+                    231, de Saram Place, Colombo 01000, Sri Lanka
        Tele: + 94 11 2695112, Fax: +94 11 2696583, E mail: epidunit@sltnet.lk
               Epidemiologist: +94 11 2681548, E mail: chepid@sltnet.lk
                             Web: http://www.epid.gov.lk
@@ -851,4 +831,6 @@ COLOMBO 10
 """
 
 if __name__ == "__main__":
+
     extract_data_from_rtf(TEST_STRING2)
+

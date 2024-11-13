@@ -39,14 +39,10 @@ def remove_blank_values(data: List[str]) -> List[str]:
     return list(filter(str.strip, new_data))
 
 # Remove unneccessary data
-
-
 def remove_quotes(data: str):
     return data.replace('"', '').strip()
 
 # Remove numbers
-
-
 def remove_numbers(data: str):
     data = re.sub("\d+", "", data)
     return data.strip()

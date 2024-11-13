@@ -11,7 +11,8 @@ Author: MLOS^2_NLP_TEAM
 Date: 2024.02.21
 """
 
-def make_valid_filename(file_name: str)-> str:
+
+def make_valid_filename(file_name: str) -> str:
     """
     Removes invalid character for creating files.
 
@@ -21,11 +22,11 @@ def make_valid_filename(file_name: str)-> str:
     Returns:
     - str: Fixed filename.
     """
-    #Remove invalid characters from filename
+    # Remove invalid characters from filename
     for c in '#%&\\{\\}\\<>*?/$!\'\":@+`|=,':
-        file_name = file_name.replace(c,'')
+        file_name = file_name.replace(c, '')
     return file_name
-    #return re.sub('#%&{}\<>*?/$!\'\":@+`|=','', filename)
+    # return re.sub('#%&{}\<>*?/$!\'\":@+`|=','', filename)
 
 
 if __name__ == '__main__':

@@ -16,6 +16,7 @@ import csv
 from typing import List
 from functools import cache
 
+
 def compare_two_word(str1: str, str2: str) -> int:
     """"
     Input two string, then compute the similarity (Max as 1).
@@ -50,7 +51,7 @@ def compare_two_word(str1: str, str2: str) -> int:
 
     if is_two_word1 and not is_two_word2:
         # the case where name is two length but db is one-word.
-        ## So automatically 0.
+        # So automatically 0.
         return 0
 
     if not is_two_word1 and not is_two_word2:
@@ -65,7 +66,7 @@ def compare_two_word(str1: str, str2: str) -> int:
         else:
             lc2 = longest_common_subsequence(str1, str2_list[1])
             length1 = (len(str1) + len(str2_list[0])) / 2
-            length2 = (len(str1) + len(str2_list[1])) /2
+            length2 = (len(str1) + len(str2_list[1])) / 2
             temp_score = ((lc1 / length1) + (lc2 / length2)) / 2
     elif is_two_word1 and is_two_word2:
         lc1 = longest_common_subsequence(str1_list[0], str2_list[0])
@@ -76,7 +77,8 @@ def compare_two_word(str1: str, str2: str) -> int:
 
     return temp_score
 
-@cache #saves time on recomputing https://docs.python.org/3/library/functools.html#functools.cache
+
+@cache  # saves time on recomputing https://docs.python.org/3/library/functools.html#functools.cache
 def longest_common_subsequence(str1: str, str2: str, index1: int = None, index2: int = None) -> int:
     """
     Input two string, then compare to have longest substring.
@@ -102,9 +104,10 @@ def longest_common_subsequence(str1: str, str2: str, index1: int = None, index2:
         return 1 + longest_common_subsequence(str1, str2, index1-1, index2-1)
 
     return max(longest_common_subsequence(str1, str2, index1, index2-1),
-                longest_common_subsequence(str1, str2, index1-1, index2))
+               longest_common_subsequence(str1, str2, index1-1, index2))
 
-def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
+
+def detect_diseases(line: str, supress_error: bool = False) -> List[str]:
     """
     Read line, and seperate the diseases by names.
 
@@ -118,10 +121,10 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
     current_directory = os.path.dirname(os.path.realpath(__file__))
     file_path = os.path.join(current_directory, 'DiseaseDict.csv')
 
-    line = line.replace("\n","")
-    line = line.replace("-","")
-    line = line.replace(".","")
-    line = line.replace("/","")
+    line = line.replace("\n", "")
+    line = line.replace("-", "")
+    line = line.replace(".", "")
+    line = line.replace("/", "")
     # remove both newline character and '-', "."
 
     names = line.lower().split()
@@ -139,7 +142,7 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
             names[itr] = 'human'
             del names[itr+1]
         else:
-            itr+=1
+            itr += 1
 
     for name, next_name in zip(names, names[1:]):
         if double_length:
@@ -147,11 +150,11 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
         else:
             full_file = []
 
-            with open(file_path, 'r', encoding= 'utf-8') as file:
+            with open(file_path, 'r', encoding='utf-8') as file:
                 reader = csv.reader(file)
                 full_file = list(reader)
 
-            with open(file_path, 'r', encoding= 'utf-8') as file:
+            with open(file_path, 'r', encoding='utf-8') as file:
 
                 reader = csv.reader(file)
                 name_found = False
@@ -178,8 +181,8 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
                     elif name in name_list:
                         if row[1] == "ignore":
                             # such as:
-                            ## RDHS (location column), WRCD (time and percentage column),
-                            ## or headers that does not have disease data in it.
+                            # RDHS (location column), WRCD (time and percentage column),
+                            # or headers that does not have disease data in it.
                             pass
                         else:
                             parsed_names.append(row[1])
@@ -194,7 +197,8 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
                             target_word = row[1]
 
                         if next_name:
-                            temp_score = compare_two_word(name+' '+next_name, row[1])
+                            temp_score = compare_two_word(
+                                name+' '+next_name, row[1])
                             if max_similarity < temp_score:
                                 most_similar_word = name+' '+next_name
                                 max_similarity = temp_score
@@ -218,9 +222,9 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
                                     if compare_two_word(most_similar_word, word) > 0.7:
                                         parsed_names.append(target_word)
                                         # row[0] += "addition on expanded similarity detection,
-                                        ## since it m,"+most_similar_word
-                                        ## Disabling ight cause an error while reaching further
-                                        ## words as the time flows (or as more words added)
+                                        # since it m,"+most_similar_word
+                                        # Disabling ight cause an error while reaching further
+                                        # words as the time flows (or as more words added)
                                         name_found = True
                                         if len(most_similar_word.split()) == 2:
                                             double_length = True
@@ -228,18 +232,19 @@ def detect_diseases(line: str, supress_error: bool=False) -> List[str]:
                         if not name_found:
                             if not supress_error:
                                 print(f"word {name}"
-                                    +f" {next_name if next_name else ''} not found!")
+                                      + f" {next_name if next_name else ''} not found!")
                                 print("Maximum similarity detected "
-                                    +f"'{max_similarity}' for '{target_word}'.")
+                                      + f"'{max_similarity}' for '{target_word}'.")
                             raise ValueError
 
-            with open(file_path, 'w', newline='', encoding= 'utf-8') as file:
+            with open(file_path, 'w', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file)
                 writer.writerows(full_file)
 
     return parsed_names
 
-#example code
+
+# example code
 if __name__ == "__main__":
 
     PARSE_LINE = ("Division Dengue Fever Dysentery Encephaliti s Enteric Fever Food Poisoning Leptospirosis Typhus Fe- ver Viral Hepatitis Human Rabies Chickenpox Meningitis Leishmani- asis")

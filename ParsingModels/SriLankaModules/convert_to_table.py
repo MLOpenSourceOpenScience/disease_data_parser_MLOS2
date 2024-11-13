@@ -13,18 +13,19 @@ Date: 2024.02.06
 
 import sys
 import os
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from typing import List, Optional
 import re
+
+from table_conversion_functions import time_to_excel_time, remove_blank_values, print_table
+from disease_header_parser import detect_diseases
+from location_interface import get_location_info
 
 current_directory = os.path.dirname(__file__)
 moudlues_directory = os.path.join(current_directory, '../../Modules')
 sys.path.append(moudlues_directory)
 # Gets the directory of Modules for import
 
-from location_interface import get_location_info
-from disease_header_parser import detect_diseases
-from table_conversion_functions import time_to_excel_time, remove_blank_values, print_table
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '../LLaMa'))
 # Gets the directory of LLaMaInterface module for import
@@ -61,7 +62,7 @@ def is_number_value(input_string: str) -> bool:
         input_string = '0'
 
     try:
-        float(input_string) #If it can cast to float, it is a number
+        float(input_string)  # If it can cast to float, it is a number
     except ValueError:
         # if alphabetic or special characetr
         return False
@@ -69,7 +70,7 @@ def is_number_value(input_string: str) -> bool:
 
 
 # Assumes `text` only contains the table.
-## if it contains more (especially at the beginning), it will give erroneous results
+# if it contains more (especially at the beginning), it will give erroneous results
 # first_location should only have table values after it
 def get_table_values(first_location: str, text: str, flags: List[str] = None) -> Optional[str]:
     """
@@ -89,7 +90,8 @@ def get_table_values(first_location: str, text: str, flags: List[str] = None) ->
     if start_index != -1:
         parsed = text[start_index:]
         parsed = re.split('\n| ', parsed)
-        parsed = remove_blank_values(parsed) # Removes empty entries in data (such as '')
+        # Removes empty entries in data (such as '')
+        parsed = remove_blank_values(parsed)
         output = []
         row = []
         for data in parsed:
@@ -98,8 +100,8 @@ def get_table_values(first_location: str, text: str, flags: List[str] = None) ->
             else:
                 if len(row) > 1:
                     # Having number of 1 means there 'is' an error.
-                    ## Or, it might having one number such as year, or number of reports,
-                    ## or something inconsistant with the real data, so remove it.
+                    # Or, it might having one number such as year, or number of reports,
+                    # or something inconsistant with the real data, so remove it.
                     output.append(row)
                 row = []
         if len(row) > 1:
@@ -116,6 +118,7 @@ def get_table_values(first_location: str, text: str, flags: List[str] = None) ->
         return output
     else:
         return None
+
 
 def header_concatenation(data: List[str]) -> List[str]:
     """
@@ -141,8 +144,10 @@ def header_concatenation(data: List[str]) -> List[str]:
         next_row_state = next_row[0].isalpha() and (next_row[-1].isalpha() or
                                                     next_row[-1] in ['-', '.'])
 
-        ab_row = (row[-1] == 'A' and next_row[0] == 'B') or (row[-1] == 'B' and next_row[0] == 'A')
-        ad_tc = (row[-1] == 'B' and next_row == 'T*') or (row[-1] == '*' and next_row == 'C**')
+        ab_row = (row[-1] == 'A' and next_row[0] ==
+                  'B') or (row[-1] == 'B' and next_row[0] == 'A')
+        ad_tc = (row[-1] == 'B' and next_row ==
+                 'T*') or (row[-1] == '*' and next_row == 'C**')
 
         if row_state and next_row_state and next_row != 'A' and next_row[0:2] != 'Co':
             data[i] = row + ' ' + next_row
@@ -154,7 +159,6 @@ def header_concatenation(data: List[str]) -> List[str]:
             i += 1
 
     return data
-
 
 
 def convert_to_table(important_text: List[str],
@@ -182,7 +186,7 @@ def convert_to_table(important_text: List[str],
     # Thus, there might need a function that works as concatination
     # of those strings
     rows = header_concatenation(rows)
-    if(len(rows) == 0):
+    if len(rows) == 0:
         print("\n\n\nNo rows found\n\n\n")
     labels = detect_diseases(rows[0])
 
@@ -204,7 +208,6 @@ def convert_to_table(important_text: List[str],
 
     # pre-process, such as removing 0, 5, 4 in front of location names
 
-    #TODO: generalize the method to fix specific errors...maybe
     for i in range(2, len(rows)):
         temp = rows[i].strip()
         if temp == "M31atale":
@@ -219,7 +222,7 @@ def convert_to_table(important_text: List[str],
 
     for i in range(2, len(rows)):
         if ((rows[i].strip()[0].isalpha() or rows[i].strip()[-1].isalpha())
-            and not rows[i].strip() == 'v' and not rows[i][-1] == 'Q'):
+                and not rows[i].strip() == 'v' and not rows[i][-1] == 'Q'):
             new_rows.append(temp_row.strip())
             temp_row = rows[i]
         else:
@@ -233,11 +236,12 @@ def convert_to_table(important_text: List[str],
         print(labels)
         print("DEBUG: ROWS:")
         for row in rows:
-            print("row: ",row)
+            print("row: ", row)
 
-    for i in range(2,len(rows)):
-        data = rows[i].strip().split(" ") # Splits row into data
-        data = remove_blank_values(data) # Removes empty entries in data (such as '')
+    for i in range(2, len(rows)):
+        data = rows[i].strip().split(" ")  # Splits row into data
+        # Removes empty entries in data (such as '')
+        data = remove_blank_values(data)
 
         location_name = data[0]
 
@@ -256,33 +260,36 @@ def convert_to_table(important_text: List[str],
             break
 
         if table_values is None:
-            table_values = get_table_values(location_name, important_text[1], flags)
+            table_values = get_table_values(
+                location_name, important_text[1], flags)
             if debug_mode:
                 print("DEBUG: TABLE VALUES:")
                 for row in table_values:
                     print("Row Length:", len(row), row)
 
-        long, lat, region_type, country_code, region_boundary = get_location_info(location_name)
-        for j in range(1,len(data)-3,2):
+        long, lat, region_type, country_code, region_boundary = get_location_info(
+            location_name)
+        for j in range(1, len(data)-3, 2):
             cases = table_values[i-2][j-1]
-            #print("data:", data)
-            #print("labels:", labels)
-            #print("j:", j)
+            # print("data:", data)
+            # print("labels:", labels)
+            # print("j:", j)
             disease_name = labels[j//2]
             # j//2 is to skip every other value,
             # since for Sri Lanka the tables have A and B values,
             # B values being cummulative(not useful for us)
             table_data.append([disease_name,
-                          cases,
-                          location_name,
-                          country_code,
-                          region_type,
-                          lat,
-                          long,
-                          region_boundary,
-                          time_to_excel_time(timestamps[0]),
-                          time_to_excel_time(timestamps[1])])
+                               cases,
+                               location_name,
+                               country_code,
+                               region_type,
+                               lat,
+                               long,
+                               region_boundary,
+                               time_to_excel_time(timestamps[0]),
+                               time_to_excel_time(timestamps[1])])
     return table_data
+
 
 if __name__ == '__main__':
     TEST_DATA = '''RDHS Dengue Fever Dysentery Encephaliti Enteric Fever Food Poi-
@@ -317,8 +324,8 @@ Kalmune 29 1448 3 34 0 7 0 0 0 0 2 30 0 0 0 0 0 0 4 35 1 16 0 0 41 100
 SRILANKA 216 39392 23 506 4 90 2 36 9 222 24 4390 22 810 3 149 0 9 77 2370 20 566 74 1582 33 98 '''
 
     table = convert_to_table(TEST_DATA,
-                           [datetime(2023, 6, 9) +timedelta(days=-7),
-                            datetime(2023, 6, 9)])
+                             [datetime(2023, 6, 9) + timedelta(days=-7),
+                              datetime(2023, 6, 9)])
     print_table(table, tableHeading)
     from table_to_csv import print_to_csv
-    print_to_csv(table,tableHeading)
+    print_to_csv(table, tableHeading)
