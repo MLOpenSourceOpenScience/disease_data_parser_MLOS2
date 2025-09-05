@@ -2,7 +2,7 @@
 
 ## Abstract
 
-- This repository is based on the research held in RPI.
+- This repository is based on the research held in RPI. Read the paper here: https://ntrs.nasa.gov/citations/20240015043
 
 ### Dependencies
 
